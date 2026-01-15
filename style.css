@@ -273,6 +273,27 @@ section p {
   line-height: 1.6;
 }
 
+.cta-section {
+  background: linear-gradient(180deg, #0b1220, #0e1a2f);
+  text-align: center;
+}
+
+.cta-section h2 {
+  font-size: 42px;
+  margin-bottom: 16px;
+}
+
+.cta-section p {
+  max-width: 720px;
+  margin: 0 auto 32px;
+  opacity: 0.85;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
 
 
 
