@@ -72,4 +72,18 @@ section {
   margin-top: 32px;
   display: inline-block;
 }
+.hero a.btn {
+  display: inline-block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  position: relative !important;
+  z-index: 9999 !important;
+
+  background: linear-gradient(135deg, #00b4ff, #0066ff) !important;
+  color: #ffffff !important;
+
+  padding: 16px 36px !important;
+  border-radius: 32px !important;
+  font-size: 16px !important;
+  font-weight: 600 !i
 
