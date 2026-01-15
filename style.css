@@ -126,5 +126,26 @@
 section {
   background: #0b0f14 !important;
 }
+.glidecore {
+  background: linear-gradient(
+    180deg,
+    #0b1220 0%,
+    #0f1b2e 50%,
+    #0b1220 100%
+  );
+  padding: 140px 0;
+}
+.glidecore::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 120, 255, 0.12),
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
 
 
