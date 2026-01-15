@@ -170,4 +170,48 @@ section p {
   color: #e6eefc;
 }
 
+/* ===== GLIDECORE SECTION FIX ===== */
+
+.glidecore {
+  background: linear-gradient(
+    180deg,
+    #070d18 0%,
+    #0b1426 50%,
+    #070d18 100%
+  );
+  padding: 120px 0;
+}
+
+.glidecore h2 {
+  color: #eaf2ff;
+}
+
+.glidecore p {
+  color: #cfd9ee;
+}
+
+/* Points grid */
+.glidecore-points {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 48px;
+}
+
+.glidecore .point {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(120,180,255,0.25);
+  border-radius: 18px;
+  padding: 28px;
+  backdrop-filter: blur(10px);
+}
+
+.glidecore .point h3 {
+  color: #ffffff;
+}
+
+.glidecore .point p {
+  color: #cfd9ee;
+}
+
 
