@@ -147,5 +147,27 @@ section {
   pointer-events: none;
 }
 
+/* ===== FORCE DARK AEROSPACE BACKGROUND ===== */
+
+body {
+  background: linear-gradient(
+    180deg,
+    #060b14 0%,
+    #0b1220 50%,
+    #060b14 100%
+  );
+}
+
+/* All major sections */
+section {
+  background: transparent;
+}
+
+/* GlideCore text area fix */
+section h2,
+section h3,
+section p {
+  color: #e6eefc;
+}
 
 
