@@ -242,6 +242,21 @@ section p {
 #glidecore .point p {
   color: #d6e1ff !important;
 }
+.alpha-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 20px;
+  padding: 32px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  transition: all 0.35s ease;
+}
+
+.alpha-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 30px 90px rgba(80, 160, 255, 0.45);
+}
 
 
 
