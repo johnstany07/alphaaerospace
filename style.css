@@ -58,3 +58,18 @@ section {
   transform: translateY(-3px);
   box-shadow: 0 14px 30px rgba(0,0,0,.45);
 }
+.hero {
+  position: relative;
+  z-index: 1;
+}
+
+.hero .container {
+  position: relative;
+  z-index: 2;
+}
+
+.hero .btn {
+  margin-top: 32px;
+  display: inline-block;
+}
+
