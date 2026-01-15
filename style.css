@@ -185,5 +185,9 @@ section {
   font-size: 1.05rem;
   color: #cfd8e3;
 }
+.variant-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
 
 
