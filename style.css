@@ -1,4 +1,55 @@
 /* GLOBAL SAFETY */
+/* NAVBAR */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 72px;
+  background: rgba(11, 15, 20, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  z-index: 999;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 100%;
+  padding: 0 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-logo img {
+  height: 36px;
+}
+
+.nav-logo span {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.nav-links a {
+  margin-left: 28px;
+  text-decoration: none;
+  font-size: 14px;
+  color: rgba(255,255,255,0.8);
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #5fb3ff;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -492,6 +543,9 @@ section {
   justify-content: center;
 
   padding: 80px 24px;
+}
+.hero {
+  padding-top: 120px;
 }
 
 
