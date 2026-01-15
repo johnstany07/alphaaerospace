@@ -147,17 +147,6 @@ section {
   pointer-events: none;
 }
 
-/* ===== FORCE DARK AEROSPACE BACKGROUND ===== */
-
-body {
-  background: linear-gradient(
-    180deg,
-    #060b14 0%,
-    #0b1220 50%,
-    #060b14 100%
-  );
-}
-
 /* All major sections */
 section {
   background: transparent;
@@ -213,5 +202,22 @@ section p {
 .glidecore .point p {
   color: #cfd9ee;
 }
+/* ===== GLIDECORE FORCE TEXT COLOR FIX ===== */
+
+#glidecore,
+#glidecore h2,
+#glidecore h3,
+#glidecore p {
+  color: #eaf2ff !important;
+}
+
+#glidecore .glidecore-intro {
+  color: #cfd9ee !important;
+}
+
+#glidecore .point p {
+  color: #d6e1ff !important;
+}
+
 
 
