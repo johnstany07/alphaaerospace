@@ -1,193 +1,60 @@
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AlphaX Aerospace</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-.hero {
-  position: relative;
-  height: 100vh;
-  background: linear-gradient(
-      rgba(5, 6, 10, 0.65),
-      rgba(5, 6, 10, 0.85)
-    ),
-    url("hero.jpg"); /* image irundhaal */
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+/* ===== GLOBAL ===== */
+* {
+  box-sizing: border-box;
 }
 
-.hero .content {
-  position: relative;
-  z-index: 2;
-  max-width: 800px;
-  padding: 0 20px;
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #0b0f14;
+  color: #eaeef3;
+  line-height: 1.6;
+}
+
+/* ===== CONTAINER ===== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+/* ===== SECTIONS ===== */
+section {
+  padding: 120px 0;
+}
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
 }
 
 .hero h1 {
-  font-size: 3.2rem;
-  font-weight: 700;
-  margin-bottom: 20px;
-  color: #ffffff;
+  font-size: clamp(42px, 6vw, 64px);
+  letter-spacing: -0.5px;
+  margin-bottom: 18px;
 }
 
 .hero p {
-  font-size: 1.2rem;
-  color: #cfd8e3;
-  line-height: 1.6;
+  font-size: 18px;
+  max-width: 780px;
+  opacity: 0.9;
 }
 
-.hero .btn {
+.btn {
   display: inline-block;
-  margin-top: 30px;
-  padding: 14px 36px;
-  border-radius: 30px;
-  background: linear-gradient(135deg, #1f6cff, #00d4ff);
-  color: #ffffff;
-  font-weight: 600;
+  margin-top: 28px;
+  padding: 14px 28px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #4aa3ff, #1f6bff);
+  color: #fff;
   text-decoration: none;
-}
-.skyrover {
-  padding: 120px 20px;
-  background: #05060a;
-  color: #ffffff;
+  font-weight: 600;
+  transition: transform .2s ease, box-shadow .2s ease;
 }
 
-.skyrover .container {
-  max-width: 1100px;
-  margin: 0 auto;
-  text-align: center;
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(0,0,0,.45);
 }
-
-.skyrover h2 {
-  font-size: 2.6rem;
-  margin-bottom: 20px;
-  font-weight: 700;
-}
-
-.skyrover-intro {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 24px;
-}
-
-p {
-  max-width: 900px;
-}
-
-}
-
-.variants {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 30px;
-}
-
-.variant-card {
-  background: #0b0d14;
-  border: 1px solid #1a1d2b;
-  padding: 40px 30px;
-  border-radius: 14px;
-  transition: transform 0.3s ease, border 0.3s ease;
-}
-
-.variant-card:hover {
-  transform: translateY(-6px);
-  border-color: #1f6cff;
-}
-
-.variant-card h3 {
-  font-size: 1.4rem;
-  margin-bottom: 15px;
-}
-
-.variant-card p {
-  font-size: 0.95rem;
-  color: #b8c2d6;
-  line-height: 1.6;
-}
-.glidecore {
-  padding: 120px 20px;
-  background: #0b0d14;
-  color: #ffffff;
-}
-
-.glidecore .container {
-  max-width: 1100px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.glidecore h2 {
-  font-size: 2.4rem;
-  margin-bottom: 20px;
-  font-weight: 700;
-}
-
-.glidecore-intro {
-  font-size: 1.05rem;
-  color: #cfd8e3;
-  max-width: 760px;
-  margin: 0 auto 60px;
-  line-height: 1.7;
-}
-
-.glidecore-points {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 30px;
-}
-
-.glidecore-points .point {
-  background: #05060a;
-  border: 1px solid #1a1d2b;
-  padding: 36px 28px;
-  border-radius: 14px;
-}
-
-.glidecore-points h3 {
-  font-size: 1.3rem;
-  margin-bottom: 12px;
-}
-
-.glidecore-points p {
-  font-size: 0.95rem;
-  color: #b8c2d6;
-  line-height: 1.6;
-}
-p {
-  max-width: 720px;
-  margin-left: auto;
-  margin-right: auto;
-}
-section {
-  margin-bottom: 140px;
-}
-.hero {
-  background-size: 380px; /* instead of contain */
-}
-.vision {
-  padding: 120px 20px;
-  background: #05060a;
-  color: #ffffff;
-  text-align: center;
-}
-
-.vision h2 {
-  font-size: 2.4rem;
-  margin-bottom: 20px;
-}
-
-.vision p {
-  font-size: 1.05rem;
-  color: #cfd8e3;
-}
-.variant-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-}
-
-
