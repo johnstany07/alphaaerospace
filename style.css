@@ -86,12 +86,30 @@
   border-color: rgba(0, 140, 255, 0.5);
 }
 .variant-card.premium {
-  background: linear-gradient(
-    135deg,
-    rgba(0, 140, 255, 0.25),
-    rgba(0, 60, 120, 0.25)
-  );
-  border-color: rgba(0, 160, 255, 0.6);
+  background:
+    linear-gradient(
+      135deg,
+      #0b1f3a,
+      #0e3a6d
+    );
+  border: 1px solid rgba(0, 160, 255, 0.6);
+  box-shadow:
+    inset 0 0 40px rgba(0, 160, 255, 0.15),
+    0 20px 60px rgba(0, 100, 255, 0.35);
 }
+.variant-card h3 {
+  color: #ffffff;
+}
+
+.variant-card p {
+  color: rgba(230, 240, 255, 0.9);
+}
+
+.variant-card:hover {
+  transform: translateY(-10px);
+  box-shadow:
+    0 30px 80px rgba(0, 140, 255, 0.45);
+}
+
 
 
