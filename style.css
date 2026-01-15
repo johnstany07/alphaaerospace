@@ -37,3 +37,15 @@
   transform: translateY(-3px) scale(1.05);
   box-shadow: 0 10px 40px rgba(0, 120, 255, 0.6);
 }
+.hero {
+  background: radial-gradient(
+    circle at top left,
+    rgba(0, 180, 255, 0.15),
+    rgba(0, 20, 40, 0.95)
+  );
+}
+.hero .btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 12px 40px rgba(0, 120, 255, 0.6);
+}
+
