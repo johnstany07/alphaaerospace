@@ -49,19 +49,26 @@
   box-shadow: 0 12px 40px rgba(0, 120, 255, 0.6);
 }
 .skyrover-section {
-  background:
-    radial-gradient(
-      circle at center,
-      rgba(0, 120, 255, 0.12),
-      rgba(0, 0, 0, 0.92) 65%
-    ),
-    linear-gradient(
-      180deg,
-      #05070a,
-      #0b1220
-    );
+  background: linear-gradient(
+    180deg,
+    #0b0f14 0%,
+    #0e141b 50%,
+    #0b0f14 100%
+  );
   padding: 140px 0;
 }
+.skyrover-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(255,255,255,0.04),
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
 
 .variant-grid {
   display: grid;
