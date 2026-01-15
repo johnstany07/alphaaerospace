@@ -159,5 +159,21 @@ section {
 .hero {
   background-size: 380px; /* instead of contain */
 }
+.vision {
+  padding: 120px 20px;
+  background: #05060a;
+  color: #ffffff;
+  text-align: center;
+}
+
+.vision h2 {
+  font-size: 2.4rem;
+  margin-bottom: 20px;
+}
+
+.vision p {
+  font-size: 1.05rem;
+  color: #cfd8e3;
+}
 
 
