@@ -827,5 +827,37 @@ section {
   color: #b6ffdd;
   border: 1px solid rgba(120, 200, 160, 0.4);
 }
+/* EXPANDABLE DETAILS (CSS ONLY) */
+.variant-details {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.45s ease, opacity 0.35s ease;
+  margin-top: 0;
+}
+
+.variant-details ul {
+  padding-left: 18px;
+  margin-top: 16px;
+}
+
+.variant-details li {
+  margin-bottom: 8px;
+  font-size: 15px;
+  color: rgba(255,255,255,0.85);
+}
+
+/* CLICK / FOCUS TO EXPAND */
+.variant-card:focus-within .variant-details,
+.variant-card:hover .variant-details {
+  max-height: 220px;   /* enough for bullets */
+  opacity: 1;
+  margin-top: 10px;
+}
+
+/* Make card clickable */
+.variant-card {
+  cursor: pointer;
+}
 
 
