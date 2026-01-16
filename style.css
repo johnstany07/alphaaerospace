@@ -613,5 +613,14 @@ section {
     filter: drop-shadow(0 0 14px rgba(80, 180, 255, 0.6));
   }
 }
+.logo-anim {
+  height: 48px;
+  animation: logoRotate 12s linear infinite;
+}
+
+@keyframes logoRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 
 
