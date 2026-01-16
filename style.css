@@ -632,4 +632,48 @@ section {
   filter: drop-shadow(0 0 14px rgba(80, 180, 255, 0.7));
 }
 
+.page-hero {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 120, 255, 0.18),
+    #0b0f14 70%
+  );
+}
+
+.page-hero h1 {
+  font-size: 56px;
+  margin-bottom: 20px;
+}
+
+.page-hero p {
+  max-width: 720px;
+  font-size: 18px;
+  opacity: 0.85;
+}
+
+.section {
+  padding: 120px 0;
+}
+
+.section.dark {
+  background: linear-gradient(
+    180deg,
+    #0b0f14,
+    #0e1623
+  );
+}
+
+.use-cases {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 30px;
+}
+
+.use-cases li {
+  margin-bottom: 14px;
+  font-size: 16px;
+}
 
