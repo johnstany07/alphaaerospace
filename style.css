@@ -142,26 +142,48 @@ html, body {
   margin-bottom: 32px;
 }
 
-/* BUTTONS */
-.hero-buttons {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
+/* PRIMARY BUTTON – Explore SkyRover */
+.btn-primary {
+  display: inline-block;
+  padding: 14px 34px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+  background: linear-gradient(135deg, #1ea5ff, #0077cc);
+  border-radius: 30px;
+  border: none;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(30,165,255,0.35);
+  transition: all 0.35s ease;
+  position: relative;
 }
 
-.btn.primary {
-  background: linear-gradient(135deg, #0078ff, #00c6ff);
-  color: #fff;
+/* Hover */
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 38px rgba(30,165,255,0.55);
+  background: linear-gradient(135deg, #3bb6ff, #0a8be0);
 }
 
-.btn.secondary {
+.btn-secondary {
+  display: inline-block;
+  padding: 13px 32px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #cfe9ff;
+  border: 1px solid rgba(120,190,255,0.5);
+  border-radius: 30px;
+  text-decoration: none;
   background: transparent;
-  border: 1px solid rgba(255,255,255,0.3);
-  color: #fff;
+  transition: all 0.35s ease;
 }
 
-body {
-  background-color: #0b0f14;
+.btn-secondary:hover {
+  background: rgba(120,190,255,0.12);
+  box-shadow: 0 0 18px rgba(120,190,255,0.35);
+}
+
 }
 
 /* ===== GLOBAL RESET (APPLE BASE) ===== */
