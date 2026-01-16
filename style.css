@@ -859,4 +859,35 @@ section {
 .variant-card {
   cursor: pointer;
 }
+/* Sticky Mini CTA */
+.mini-cta {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  background: rgba(11, 15, 20, 0.9);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0,180,255,0.35);
+  border-radius: 18px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+  z-index: 999;
+}
+
+.mini-cta span {
+  font-size: 14px;
+  color: rgba(255,255,255,0.85);
+}
+
+/* Mobile adjust */
+@media (max-width: 768px) {
+  .mini-cta {
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    justify-content: space-between;
+  }
+}
 
