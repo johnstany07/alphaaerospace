@@ -983,3 +983,24 @@ section {
     gap: 16px;
   }
 }
+/* TECHNOLOGY PAGE */
+.tech-points {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 30px;
+}
+
+.tech-points li {
+  margin-bottom: 14px;
+  padding-left: 20px;
+  position: relative;
+  font-size: 16px;
+  color: rgba(255,255,255,0.85);
+}
+
+.tech-points li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: #3bb6ff;
+}
