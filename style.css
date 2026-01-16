@@ -740,4 +740,54 @@ section {
     transform: translateY(0);
   }
 }
+/* SKYROVER VARIANT CARDS – PREMIUM HOVER */
+.variant-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(0, 180, 255, 0.25);
+  border-radius: 18px;
+  padding: 28px;
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Glow layer */
+.variant-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at top,
+    rgba(0,180,255,0.25),
+    transparent 65%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+/* Hover effect */
+.variant-card:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 25px 60px rgba(0, 180, 255, 0.35);
+  border-color: rgba(0, 180, 255, 0.7);
+}
+
+.variant-card:hover::before {
+  opacity: 1;
+}
+
+.variant-card h3 {
+  margin-bottom: 10px;
+  transition: color 0.3s ease;
+}
+
+.variant-card:hover h3 {
+  color: #7ddcff;
+}
+.variant-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
 
