@@ -587,5 +587,31 @@ section {
   width: auto;
   display: block;
 }
+/* ===== AlphaX Logo Animation ===== */
+.logo-anim {
+  height: 48px;
+  animation: logoFloat 4s ease-in-out infinite,
+             logoGlow 3s ease-in-out infinite;
+}
+
+/* Floating motion */
+@keyframes logoFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* Subtle glow */
+@keyframes logoGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 6px rgba(80, 180, 255, 0.3));
+  }
+  50% {
+    filter: drop-shadow(0 0 14px rgba(80, 180, 255, 0.6));
+  }
+}
 
 
