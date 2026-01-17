@@ -1063,4 +1063,53 @@ section {
     grid-template-columns: 1fr;
   }
 }
+/* SKYROVER VIDEO HERO */
+.video-hero {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.hero-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  opacity: 0.75;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(5,10,20,0.85),
+    rgba(5,10,20,0.6),
+    rgba(5,10,20,0.9)
+  );
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* MOBILE SAFETY */
+@media (max-width: 768px) {
+  .hero-video {
+    display: none;
+  }
+
+  .video-hero {
+    background: radial-gradient(
+      circle at center,
+      rgba(0,140,255,0.25),
+      #0b0f14 70%
+    );
+  }
+}
+
 
