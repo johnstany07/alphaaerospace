@@ -1187,4 +1187,39 @@ body {
   box-shadow: 0 0 24px rgba(0,180,255,0.45);
 }
 
+/* TECHNOLOGY CARD EXPAND DETAILS */
+.tech-details {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.45s ease, opacity 0.35s ease;
+  margin-top: 0;
+}
+
+.tech-details ul {
+  margin-top: 16px;
+  padding-left: 18px;
+}
+
+.tech-details li {
+  margin-bottom: 8px;
+  font-size: 14.5px;
+  color: rgba(255,255,255,0.85);
+}
+
+.tech-diff {
+  margin-top: 14px;
+  font-size: 14.5px;
+  color: rgba(255,255,255,0.8);
+}
+
+/* Expand on hover / tap */
+.tech-main-card:hover .tech-details,
+.tech-main-card:focus-within .tech-details {
+  max-height: 420px;
+  opacity: 1;
+  margin-top: 14px;
+}
+
+
 
