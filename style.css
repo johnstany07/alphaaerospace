@@ -1128,5 +1128,63 @@ html, body {
 body {
   -webkit-overflow-scrolling: touch;
 }
+/* TECHNOLOGY CARDS – SAME STYLE AS SKYROVER VARIANTS */
+.tech-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.tech-main-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(0,180,255,0.25);
+  border-radius: 18px;
+  padding: 32px;
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* subtle glow layer */
+.tech-main-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at top,
+    rgba(0,180,255,0.22),
+    transparent 65%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+/* hover effect */
+.tech-main-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 22px 55px rgba(0,180,255,0.35);
+  border-color: rgba(0,180,255,0.6);
+}
+
+.tech-main-card:hover::before {
+  opacity: 1;
+}
+
+.tech-main-card h3 {
+  margin-bottom: 12px;
+  color: #7ddcff;
+}
+
+.tech-main-card p {
+  font-size: 15px;
+  color: rgba(255,255,255,0.85);
+}
+
+/* Premium highlight (PowerCore) */
+.tech-main-card.premium {
+  border-color: rgba(0,180,255,0.8);
+  box-shadow: 0 0 24px rgba(0,180,255,0.45);
+}
 
 
