@@ -1064,37 +1064,44 @@ section {
   }
 }
 /* SKYROVER VIDEO HERO */
-.video-hero {
+.hero,
+.page-hero-video {
   position: relative;
   min-height: 100vh;
+  width: 100%;
   overflow: hidden;
+  display: flex;
+  align-items: center;
 }
 
-.hero-video {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  transform: translate(-50%, -50%);
-  object-fit: cover;
-  opacity: 0.75;
 }
+
+.hero-video video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(1.25) contrast(1.15) saturate(1.1);
+}
+
 
 .hero-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    180deg,
-    rgba(5,10,20,0.85),
-    rgba(5,10,20,0.6),
-    rgba(5,10,20,0.9)
+    to right,
+    rgba(0,0,0,0.55),
+    rgba(0,0,0,0.15)
   );
+  z-index: 1;
 }
 
 .hero-content {
   position: relative;
   z-index: 2;
+  padding: 120px 6vw 80px;
+  max-width: 700px;
+}
+
 }
 
 /* MOBILE SAFETY */
