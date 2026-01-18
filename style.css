@@ -1118,4 +1118,15 @@ section {
   }
 }
 
+/* 🔓 FORCE SCROLL UNLOCK */
+html, body {
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  position: static !important;
+  height: auto !important;
+}
+body {
+  -webkit-overflow-scrolling: touch;
+}
+
 
