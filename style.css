@@ -948,6 +948,10 @@ section {
   position: relative;
   padding: 6px 0;
 }
+.project-card {
+  display: block !important;
+  opacity: 1 !important;
+}
 
 /* Hover underline */
 .nav-menu a::after {
