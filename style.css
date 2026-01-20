@@ -1220,6 +1220,18 @@ body {
   opacity: 1;
   margin-top: 14px;
 }
+.project-card {
+  margin-top: 40px;
+  padding: 32px;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(0,180,255,0.25);
+}
+
+.project-card h2 {
+  color: #7ddcff;
+  margin-bottom: 12px;
+}
 
 
 
