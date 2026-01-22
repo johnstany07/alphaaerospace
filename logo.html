@@ -1,104 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>AlphaX Aerospace</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
-
 <style>
-    body {
-        margin: 0;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: radial-gradient(circle at top, #0b1c2d, #02080f);
-    }
+  :root {
+    --bg-black: #050505;
+    --logo-white: #ffffff;
+    --sub-text: #666666;
+  }
 
-    .logo {
-        text-align: center;
-    }
+  body {
+    background-color: var(--bg-black);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Inter', sans-serif;
+  }
 
-    svg {
-        width: 180px;
-    }
+  .logo-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+  }
 
-    .a-stroke {
-        fill: none;
-        stroke: #4fc3ff;
-        stroke-width: 10;
-        stroke-linecap: round;
-        stroke-linejoin: round;
+  /* Precision Icon Styling */
+  .alphax-svg {
+    width: 180px;
+    height: auto;
+    overflow: visible;
+  }
 
-        stroke-dasharray: 600;
-        stroke-dashoffset: 600;
-        animation: drawA 2.5s ease forwards;
-    }
+  /* The EXACT sharp "A" structure from your image */
+  /* Replicates the wide base, sharp peak, and narrow hollow center */
+  .a-frame {
+    fill: transparent;
+    stroke: var(--logo-white);
+    stroke-width: 0.8;
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: drawPath 2.5s cubic-bezier(0.19, 1, 0.22, 1) forwards,
+               solidify 1s 2s forwards;
+  }
 
-    .a-glow {
-        animation: glow 3s ease-in-out infinite;
-        animation-delay: 2.5s;
-    }
+  /* The INTERNAL SWOOSH - Sharp and curved exactly like the logo */
+  .a-swoosh {
+    fill: none;
+    stroke: var(--logo-white);
+    stroke-width: 3;
+    stroke-linecap: butt;
+    stroke-dasharray: 300;
+    stroke-dashoffset: 300;
+    animation: drawPath 2s 1.2s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  }
 
-    @keyframes drawA {
-        to {
-            stroke-dashoffset: 0;
-        }
-    }
+  /* Text Container Animation */
+  .text-box {
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transform: translateX(20px);
+    animation: revealText 1.5s 2.2s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  }
 
-    @keyframes glow {
-        0% {
-            filter: drop-shadow(0 0 6px rgba(79,195,255,0.4));
-        }
-        50% {
-            filter: drop-shadow(0 0 25px rgba(79,195,255,0.9));
-        }
-        100% {
-            filter: drop-shadow(0 0 6px rgba(79,195,255,0.4));
-        }
-    }
+  .main-title {
+    color: var(--logo-white);
+    font-size: 64px;
+    font-weight: 800;
+    letter-spacing: 8px;
+    line-height: 0.9;
+    margin: 0;
+    text-transform: uppercase;
+  }
 
-    .brand {
-        margin-top: 18px;
-        font-family: 'Orbitron', sans-serif;
-        font-size: 20px;
-        letter-spacing: 4px;
-        color: #e6f3ff;
-    }
+  .sub-title {
+    color: var(--sub-text);
+    font-size: 16px;
+    letter-spacing: 7px;
+    margin-top: 10px;
+    text-transform: uppercase;
+  }
 
-    .sub {
-        margin-top: 6px;
-        font-size: 12px;
-        letter-spacing: 3px;
-        color: #9ecfff;
-    }
+  /* Shimmering Metallic Overlay */
+  .shimmer-effect {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .shimmer-effect::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 60%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+    animation: lightSweep 6s infinite 4s;
+  }
+
+  /* Keyframes */
+  @keyframes drawPath {
+    to { stroke-dashoffset: 0; }
+  }
+
+  @keyframes solidify {
+    to { fill: var(--logo-white); stroke-width: 0; }
+  }
+
+  @keyframes revealText {
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes lightSweep {
+    to { left: 200%; }
+  }
 </style>
 </head>
-
 <body>
 
-<div class="logo">
+<div class="logo-wrapper">
+  <svg class="alphax-svg" viewBox="0 0 120 120">
+    <path class="a-frame" d="M10,110 L60,10 L110,110 L92,110 L60,45 L28,110 Z" />
+    
+    <path class="a-swoosh" d="M18,92 C38,70 82,70 102,92" />
+  </svg>
 
-    <!-- Animated A -->
-    <svg viewBox="0 0 200 220">
-        <path class="a-stroke a-glow"
-              d="M100 20
-                 L30 200
-                 L65 200
-                 L85 150
-                 L115 150
-                 L135 200
-                 L170 200
-                 Z
-                 M92 120
-                 L108 120" />
-    </svg>
-
-    <div class="brand">ALPHAX</div>
-    <div class="sub">AEROSPACE PVT LTD</div>
-
+  <div class="text-box shimmer-effect">
+    <div class="main-title">ALPHAX</div>
+    <div class="sub-title">AEROSPACE PVT LTD</div>
+  </div>
 </div>
 
 </body>
