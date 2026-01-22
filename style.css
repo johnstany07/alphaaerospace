@@ -1305,4 +1305,39 @@ Fix navbar link to projects page
   color: var(--text-muted);
 }
 
+/* ANIMATED LOGO */
+.logo-svg {
+  width: 260px;
+  height: auto;
+}
+
+.logo-text {
+  font-family: 'Arial', sans-serif;
+  font-size: 42px;
+  font-weight: 700;
+  fill: none;
+  stroke: #0aff9d;
+  stroke-width: 1.5;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: drawText 2.5s ease forwards,
+             glowPulse 4s ease-in-out infinite;
+}
+
+@keyframes drawText {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 4px rgba(10,255,157,0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 12px rgba(10,255,157,0.8));
+  }
+}
+
+
 
