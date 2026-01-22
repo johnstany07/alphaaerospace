@@ -3,134 +3,121 @@
 <head>
 <style>
   :root {
-    --bg: #050505;
-    --glare: rgba(255, 255, 255, 0.8);
-    --accent: #ffffff;
-    --tech-blue: #00f2ff; /* Aerospace HUD blue */
+    --bg-black: #08080a;
+    --logo-white: #ffffff;
+    --aero-blue: #00d4ff;
   }
 
   body {
-    background: var(--bg);
+    background-color: var(--bg-black);
     margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    overflow: hidden;
-    font-family: 'Orbitron', sans-serif; /* Modern tech font */
+    font-family: 'Inter', sans-serif;
   }
 
   .logo-container {
-    position: relative;
     display: flex;
     align-items: center;
-    gap: 40px;
+    gap: 25px;
   }
 
-  /* The "A" Icon Construction */
-  .svg-icon {
-    width: 150px;
-    filter: drop-shadow(0 0 10px rgba(0, 242, 255, 0.3));
+  /* High-Precision SVG Styling */
+  .alphax-svg {
+    width: 140px;
+    height: auto;
+    overflow: visible;
   }
 
-  .main-a-shape {
+  /* The exact "A" Frame Geometry */
+  .a-frame {
     fill: transparent;
-    stroke: var(--accent);
-    stroke-width: 1.5;
-    stroke-dasharray: 800;
-    stroke-dashoffset: 800;
-    animation: draw 2.5s cubic-bezier(0.7, 0, 0.3, 1) forwards, 
-               fillIn 1.5s 2s forwards;
+    stroke: var(--logo-white);
+    stroke-width: 0.8;
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: 
+      drawPath 2s cubic-bezier(0.65, 0, 0.35, 1) forwards,
+      solidify 0.5s 1.8s forwards;
   }
 
-  .swoosh-line {
-    fill: none;
-    stroke: var(--tech-blue);
-    stroke-width: 3;
-    stroke-linecap: round;
+  /* The Sharp Aerospace Swoosh */
+  .a-swoosh {
+    fill: transparent;
+    stroke: var(--logo-white);
+    stroke-width: 1.2;
     stroke-dasharray: 300;
     stroke-dashoffset: 300;
-    animation: draw 2s 1s cubic-bezier(0.7, 0, 0.3, 1) forwards;
-    filter: drop-shadow(0 0 8px var(--tech-blue));
+    animation: drawPath 1.5s 0.8s ease-out forwards;
+    filter: drop-shadow(0 0 5px rgba(255,255,255,0.4));
   }
 
-  /* Text Animation */
-  .brand-text {
+  /* Text Reveal */
+  .text-reveal {
     display: flex;
     flex-direction: column;
+    clip-path: inset(0 100% 0 0); /* Hide text initially */
+    animation: slideReveal 1.2s 2s cubic-bezier(0.19, 1, 0.22, 1) forwards;
   }
 
-  .title {
-    color: white;
-    font-size: 60px;
-    font-weight: 900;
-    letter-spacing: 12px;
+  .main-name {
+    color: var(--logo-white);
+    font-size: 58px;
+    font-weight: 800;
+    letter-spacing: 10px;
     text-transform: uppercase;
-    opacity: 0;
-    transform: skewX(-10deg) translateX(30px);
-    animation: revealText 1.2s 2.2s forwards;
+    line-height: 0.9;
   }
 
-  .subtitle {
-    color: var(--tech-blue);
+  .sub-name {
+    color: #666;
     font-size: 14px;
-    letter-spacing: 8px;
+    letter-spacing: 7px;
     text-transform: uppercase;
-    margin-top: 5px;
-    opacity: 0;
-    animation: revealText 1.2s 2.6s forwards;
+    margin-top: 8px;
   }
 
-  /* Keyframes for the "Best" Look */
-  @keyframes draw {
+  /* Keyframes */
+  @keyframes drawPath {
     to { stroke-dashoffset: 0; }
   }
 
-  @keyframes fillIn {
-    from { fill: transparent; }
-    to { fill: rgba(255, 255, 255, 0.05); stroke-width: 0.5; }
-  }
-
-  @keyframes revealText {
-    to {
-      opacity: 1;
-      transform: skewX(0deg) translateX(0);
+  @keyframes solidify {
+    to { 
+      fill: var(--logo-white);
+      stroke-width: 0;
     }
   }
 
-  /* Scanning Laser Effect */
-  .scanner {
-    position: absolute;
-    width: 2px;
-    height: 150px;
-    background: linear-gradient(to bottom, transparent, var(--tech-blue), transparent);
-    left: 0;
-    opacity: 0;
-    animation: scan 3s ease-in-out infinite;
+  @keyframes slideReveal {
+    to { clip-path: inset(0 0 0 0); }
   }
 
-  @keyframes scan {
-    0% { left: 0; opacity: 0; }
-    50% { opacity: 1; }
-    100% { left: 150px; opacity: 0; }
+  /* Subtle flickering light effect on the A */
+  .glow-pulse {
+    animation: pulse 4s infinite 3s;
+  }
+
+  @keyframes pulse {
+    0%, 100% { filter: drop-shadow(0 0 2px white); }
+    50% { filter: drop-shadow(0 0 10px var(--aero-blue)); }
   }
 </style>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <div class="logo-container">
-  <div class="scanner"></div>
-  
-  <svg class="svg-icon" viewBox="0 0 100 100">
-    <path class="main-a-shape" d="M15,90 L50,10 L85,90 L70,90 L50,45 L30,90 Z" />
+  <svg class="alphax-svg glow-pulse" viewBox="0 0 120 120">
+    <path class="a-frame" d="M15,110 L60,10 L105,110 L88,110 L60,45 L32,110 Z" />
     
-    <path class="swoosh-line" d="M20,75 Q50,50 80,75" />
+    <path class="a-swoosh" d="M22,90 C40,70 80,70 98,90" stroke-linecap="butt" />
   </svg>
 
-  <div class="brand-text">
-    <div class="title">Alphax</div>
-    <div class="subtitle">Aerospace Pvt Ltd</div>
+  <div class="text-reveal">
+    <div class="main-name">ALPHAX</div>
+    <div class="sub-name">AEROSPACE PVT LTD</div>
   </div>
 </div>
 
