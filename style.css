@@ -1276,5 +1276,12 @@ Fix navbar link to projects page
   color: rgba(255,255,255,0.85);
   line-height: 1.7;
 }
+:root {
+  --bg-main: #05070c;
+  --bg-section: #0b0f1a;
+  --accent: #0aff9d;
+  --text-main: #e6e6e6;
+  --text-muted: rgba(230,230,230,0.65);
+}
 
 
