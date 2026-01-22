@@ -1556,5 +1556,40 @@ html, body {
     opacity: 1;
   }
 }
+/* =========================
+   ALPHAX SIGNATURE A
+========================= */
+
+.alphax-logo-svg {
+  margin-bottom: 32px;
+}
+
+/* Outer A draw animation */
+.outer-a {
+  stroke-dasharray: 520;
+  stroke-dashoffset: 520;
+  animation: drawOuterA 2s ease forwards;
+}
+
+/* Curved swoosh animation */
+.alphax-swoosh {
+  stroke-dasharray: 160;
+  stroke-dashoffset: 160;
+  animation: drawSwoosh 1.2s ease forwards;
+  animation-delay: 1.6s;
+}
+
+/* Animations */
+@keyframes drawOuterA {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes drawSwoosh {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
 
 
