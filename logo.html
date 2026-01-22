@@ -1,1 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  :root {
+    --brand-blue: #1e2d3d; /* Matching the dark navy in your image */
+    --animation-speed: 2s;
+  }
 
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f8f9fa;
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+  }
+
+  .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  /* The Icon Animation */
+  .icon-svg {
+    width: 100px;
+    height: auto;
+  }
+
+  .a-frame {
+    fill: none;
+    stroke: var(--brand-blue);
+    stroke-width: 8;
+    stroke-dasharray: 500;
+    stroke-dashoffset: 500;
+    animation: drawPath var(--animation-speed) forwards ease-in-out;
+  }
+
+  .swoosh {
+    fill: none;
+    stroke: var(--brand-blue);
+    stroke-width: 6;
+    stroke-linecap: round;
+    stroke-dasharray: 200;
+    stroke-dashoffset: 200;
+    animation: drawPath var(--animation-speed) forwards ease-in-out;
+    animation-delay: 0.5s;
+  }
+
+  /* The Text Animation */
+  .text-container {
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transform: translateX(-10px);
+    animation: fadeIn var(--animation-speed) forwards ease-out;
+    animation-delay: 0.8s;
+  }
+
+  .brand-name {
+    font-size: 42px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: var(--brand-blue);
+    line-height: 1;
+    margin: 0;
+  }
+
+  .sub-text {
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    color: var(--brand-blue);
+    margin-top: 5px;
+    text-transform: uppercase;
+  }
+
+  /* Keyframes */
+  @keyframes drawPath {
+    to { stroke-dashoffset: 0; fill: var(--brand-blue); }
+  }
+
+  @keyframes fadeIn {
+    to { opacity: 1; transform: translateX(0); }
+  }
+</style>
+</head>
+<body>
+
+<div class="logo-container">
+  <svg class="icon-svg" viewBox="0 0 100 100">
+    <path class="a-frame" d="M10,90 L50,10 L90,90 L75,90 L50,40 L25,90 Z" />
+    <path class="swoosh" d="M15,75 Q50,45 85,75" fill="transparent" stroke-width="4" />
+  </svg>
+
+  <div class="text-container">
+    <div class="brand-name">ALPHAX</div>
+    <div class="sub-text">AEROSPACE PVT LTD</div>
+  </div>
+</div>
+
+</body>
+</html>
