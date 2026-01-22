@@ -1,130 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg-black: #050505;
-    --logo-white: #ffffff;
-    --dim-text: #888888;
+    --bg: #030305;
+    --primary: #ffffff;
+    --accent: #00d4ff;
+    --speed: 3s;
   }
 
   body {
-    background-color: var(--bg-black);
+    background: var(--bg);
     margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    font-family: 'Inter', sans-serif; /* Clean, modern aerospace feel */
+    overflow: hidden;
+    font-family: 'Syncopate', sans-serif;
   }
 
-  .logo-container {
-    display: flex;
-    align-items: center;
-    gap: 25px;
-  }
-
-  /* High-Precision SVG Styling */
-  .alphax-svg {
-    width: 150px;
-    height: auto;
-    overflow: visible;
-  }
-
-  /* EXACT "A" STRUCTURE REPLICATION */
-  /* Replicating the unique inward curve on the left leg and sharp peak */
-  .a-frame {
-    fill: transparent;
-    stroke: var(--logo-white);
-    stroke-width: 1;
-    stroke-dasharray: 800;
-    stroke-dashoffset: 800;
-    animation: drawPath 2s ease-in-out forwards, 
-               fillSolid 0.8s 1.8s forwards;
-  }
-
-  /* THE EXACT SWOOSH (Curved internal bar) */
-  .a-swoosh {
-    fill: none;
-    stroke: var(--logo-white);
-    stroke-width: 2.5;
-    stroke-linecap: round;
-    stroke-dasharray: 200;
-    stroke-dashoffset: 200;
-    animation: drawPath 1.5s 0.8s ease-out forwards;
-  }
-
-  /* TEXT GROUP */
-  .text-reveal {
+  .canvas {
+    position: relative;
     display: flex;
     flex-direction: column;
-    opacity: 0;
-    animation: fadeIn 1.5s 2.2s forwards;
+    align-items: center;
+    gap: 40px;
   }
 
-  .main-name {
-    color: var(--logo-white);
-    font-size: 56px;
-    font-weight: 800;
-    letter-spacing: 6px;
-    line-height: 0.9;
+  /* The Precision Icon */
+  .logo-svg {
+    width: 220px;
+    filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.4));
+  }
+
+  /* High-precision path for the exact "A" */
+  .a-path {
+    fill: none;
+    stroke: var(--primary);
+    stroke-width: 0.5;
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: forge var(--speed) cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  }
+
+  /* The Swoosh with a Tapered Gradient */
+  .swoosh-trace {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-dasharray: 400;
+    stroke-dashoffset: 400;
+    animation: drawSwoosh 2s 1s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  }
+
+  /* Cinematic Text Reveal */
+  .text-box {
+    text-align: center;
+    perspective: 1000px;
+  }
+
+  .main-text {
+    color: white;
+    font-size: 5vw;
+    font-weight: 700;
+    letter-spacing: 25px;
     margin: 0;
-    text-transform: uppercase;
+    padding-left: 25px; /* balance centering due to spacing */
+    opacity: 0;
+    transform: translateZ(-100px) rotateX(20deg);
+    animation: cinematicReveal 2s 2s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+    background: linear-gradient(to right, #fff 20%, #444 40%, #444 60%, #fff 80%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: cinematicReveal 2s 2s cubic-bezier(0.19, 1, 0.22, 1) forwards,
+               shine 6s linear infinite;
   }
 
-  .sub-name {
-    color: var(--dim-text);
-    font-size: 15px;
-    letter-spacing: 5px;
-    margin-top: 8px;
-    text-transform: uppercase;
+  .sub-text {
+    color: #555;
+    font-size: 1.2vw;
+    letter-spacing: 15px;
+    margin-top: 15px;
+    opacity: 0;
+    animation: fadeIn 2s 3s forwards;
   }
 
-  /* ANIMATIONS */
-  @keyframes drawPath {
-    to { stroke-dashoffset: 0; }
+  /* Particle Orbit (The "Unreachable" Level) */
+  .orbit {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 50%;
+    animation: rotate 10s linear infinite;
   }
 
-  @keyframes fillSolid {
-    to { fill: var(--logo-white); stroke-width: 0; }
+  .particle {
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 15px var(--accent);
+  }
+
+  /* Animations */
+  @keyframes forge {
+    0% { stroke-dashoffset: 1000; fill: transparent; }
+    70% { stroke-dashoffset: 0; fill: transparent; stroke-width: 0.5; }
+    100% { stroke-dashoffset: 0; fill: var(--primary); stroke-width: 0; }
+  }
+
+  @keyframes drawSwoosh {
+    to { stroke-dashoffset: 0; filter: drop-shadow(0 0 10px var(--accent)); }
+  }
+
+  @keyframes cinematicReveal {
+    to { opacity: 1; transform: translateZ(0) rotateX(0); }
+  }
+
+  @keyframes shine {
+    to { background-position: 200% center; }
+  }
+
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
   }
 
   @keyframes fadeIn {
-    to { opacity: 1; transform: translateX(0); }
-  }
-
-  /* SUBTLE METALLIC SHIMMER EFFECT */
-  .shimmer {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .shimmer::after {
-    content: '';
-    position: absolute;
-    top: 0; left: -100%;
-    width: 50%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-    animation: lightSweep 5s infinite 4s;
-  }
-
-  @keyframes lightSweep {
-    to { left: 200%; }
+    to { opacity: 1; }
   }
 </style>
 </head>
 <body>
 
-<div class="logo-container">
-  <svg class="alphax-svg" viewBox="0 0 120 120">
-    <path class="a-frame" d="M15,110 Q28,70 60,10 L105,110 L86,110 L60,45 L34,110 Z" />
-    
-    <path class="a-swoosh" d="M22,88 C38,70 75,70 95,88" />
+<div class="canvas">
+  <div class="orbit">
+    <div class="particle"></div>
+  </div>
+
+  <svg class="logo-svg" viewBox="0 0 100 100">
+    <path class="a-path" d="M50,5 L5,95 L25,95 L50,42 L75,95 L95,95 Z" />
+    <path class="swoosh-trace" d="M12,78 Q50,50 88,78" />
   </svg>
 
-  <div class="text-reveal shimmer">
-    <div class="main-name">ALPHAX</div>
-    <div class="sub-name">AEROSPACE PVT LTD</div>
+  <div class="text-box">
+    <h1 class="main-text">ALPHAX</h1>
+    <div class="sub-text">AEROSPACE PVT LTD</div>
   </div>
 </div>
 
