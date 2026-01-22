@@ -1,52 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>AlphaX Aerospace</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>AlphaX Aerospace</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Aerospace style font -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
 
-    <style>
-        body {
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: radial-gradient(circle at top, #0b1c2d, #02080f);
-        }
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: radial-gradient(circle at top, #0b1c2d, #02080f);
+        overflow: hidden;
+    }
 
-        .logo-container {
-            padding: 30px 50px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 14px;
-            backdrop-filter: blur(12px);
-            box-shadow: 0 0 40px rgba(79, 195, 255, 0.15);
-            text-align: center;
-        }
+    .logo-wrapper {
+        text-align: center;
+        animation: fadeIn 2s ease forwards;
+    }
 
-        .logo-container img {
-            max-width: 420px;
-            width: 100%;
-        }
+    .logo-wrapper img {
+        width: 420px;
+        max-width: 90%;
+        animation: float 4s ease-in-out infinite,
+                   glow 3s ease-in-out infinite;
+    }
 
-        .tagline {
-            margin-top: 14px;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 14px;
-            letter-spacing: 2px;
-            color: #9ecfff;
-        }
-    </style>
-</head>
-<body>
+    .tagline {
+        margin-top: 18px;
+        font-family: 'Orbitron', sans-serif;
+        font-size: 14px;
+        letter-spacing: 3px;
+        color: #9ecfff;
+        opacity: 0;
+        animation: slideUp 1.5s ease forwards;
+        animation-delay: 1.5s;
+    }
 
-    <div class="logo-container">
-        <img src="alphax-logo.jpeg" alt="AlphaX Aerospace Logo">
-        <div class="tagline">AEROSPACE · DEFENCE · FUTURE MOBILITY</div>
-    </div>
-
-</body>
-</html>
+    /* Animations */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: scale(0.95); }
+        t
