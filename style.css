@@ -1284,4 +1284,25 @@ Fix navbar link to projects page
   --text-muted: rgba(230,230,230,0.65);
 }
 
+.section {
+  padding: 120px 0;
+}
+
+.section.dark {
+  background: var(--bg-section);
+}
+
+.section h1,
+.section h2 {
+  font-size: clamp(32px, 4vw, 56px);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.section p {
+  max-width: 720px;
+  font-size: 17px;
+  color: var(--text-muted);
+}
+
 
