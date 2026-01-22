@@ -1,124 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --deep-black: #0a0b0d;
-    --metal-white: #e0e0e0;
-    --glow: rgba(255, 255, 255, 0.2);
+    --bg: #030305;
+    --primary: #ffffff;
+    --accent: #00d4ff;
+    --speed: 3s;
   }
 
   body {
-    background-color: var(--deep-black);
+    background: var(--bg);
     margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+    font-family: 'Syncopate', sans-serif;
   }
 
-  .logo-container {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-  }
-
-  /* The Precision SVG */
-  .alphax-icon {
-    width: 160px;
-    height: auto;
-    filter: drop-shadow(0 0 15px rgba(255,255,255,0.1));
-  }
-
-  /* Replicating the exact "A" thickness and sharp angles */
-  .a-body {
-    fill: var(--metal-white);
-    clip-path: polygon(50% 0%, 0% 100%, 18% 100%, 50% 35%, 82% 100%, 100% 100%);
-    opacity: 0;
-    transform: translateY(10px);
-    animation: fadeUp 1s ease-out forwards;
-  }
-
-  /* The Sharp Tapered Swoosh */
-  .a-swoosh {
-    fill: var(--metal-white);
-    opacity: 0;
-    animation: swooshIn 1.2s 0.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-  }
-
-  /* Text Styling to match your image exactly */
-  .text-group {
+  .canvas {
+    position: relative;
     display: flex;
     flex-direction: column;
-    color: var(--metal-white);
-    opacity: 0;
-    animation: fadeIn 1.5s 1s forwards;
+    align-items: center;
+    gap: 40px;
   }
 
-  .main-title {
-    font-size: 64px;
-    font-weight: 600;
-    letter-spacing: 5px;
-    line-height: 1;
+  /* The Precision Icon */
+  .logo-svg {
+    width: 220px;
+    filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.4));
+  }
+
+  /* High-precision path for the exact "A" */
+  .a-path {
+    fill: none;
+    stroke: var(--primary);
+    stroke-width: 0.5;
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: forge var(--speed) cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  }
+
+  /* The Swoosh with a Tapered Gradient */
+  .swoosh-trace {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-dasharray: 400;
+    stroke-dashoffset: 400;
+    animation: drawSwoosh 2s 1s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  }
+
+  /* Cinematic Text Reveal */
+  .text-box {
+    text-align: center;
+    perspective: 1000px;
+  }
+
+  .main-text {
+    color: white;
+    font-size: 5vw;
+    font-weight: 700;
+    letter-spacing: 25px;
     margin: 0;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    padding-left: 25px; /* balance centering due to spacing */
+    opacity: 0;
+    transform: translateZ(-100px) rotateX(20deg);
+    animation: cinematicReveal 2s 2s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+    background: linear-gradient(to right, #fff 20%, #444 40%, #444 60%, #fff 80%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: cinematicReveal 2s 2s cubic-bezier(0.19, 1, 0.22, 1) forwards,
+               shine 6s linear infinite;
   }
 
-  .sub-title {
-    font-size: 19px;
-    letter-spacing: 4.5px;
-    font-weight: 300;
-    margin-top: 5px;
-    color: #888;
+  .sub-text {
+    color: #555;
+    font-size: 1.2vw;
+    letter-spacing: 15px;
+    margin-top: 15px;
+    opacity: 0;
+    animation: fadeIn 2s 3s forwards;
   }
 
-  /* Aerospace "Shimmer" Effect */
-  .shimmer-overlay {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .shimmer-overlay::after {
-    content: '';
+  /* Particle Orbit (The "Unreachable" Level) */
+  .orbit {
     position: absolute;
-    top: 0; left: -100%;
-    width: 50%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-    animation: shimmer 4s infinite 3s;
+    width: 250px;
+    height: 250px;
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 50%;
+    animation: rotate 10s linear infinite;
+  }
+
+  .particle {
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 15px var(--accent);
   }
 
   /* Animations */
-  @keyframes fadeUp {
-    to { opacity: 1; transform: translateY(0); }
+  @keyframes forge {
+    0% { stroke-dashoffset: 1000; fill: transparent; }
+    70% { stroke-dashoffset: 0; fill: transparent; stroke-width: 0.5; }
+    100% { stroke-dashoffset: 0; fill: var(--primary); stroke-width: 0; }
   }
 
-  @keyframes swooshIn {
-    from { transform: translateX(-20px) scaleX(0.5); opacity: 0; }
-    to { transform: translateX(0) scaleX(1); opacity: 1; }
+  @keyframes drawSwoosh {
+    to { stroke-dashoffset: 0; filter: drop-shadow(0 0 10px var(--accent)); }
+  }
+
+  @keyframes cinematicReveal {
+    to { opacity: 1; transform: translateZ(0) rotateX(0); }
+  }
+
+  @keyframes shine {
+    to { background-position: 200% center; }
+  }
+
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
   }
 
   @keyframes fadeIn {
     to { opacity: 1; }
   }
-
-  @keyframes shimmer {
-    to { left: 200%; }
-  }
 </style>
 </head>
 <body>
 
-<div class="logo-container">
-  <svg class="alphax-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <path class="a-body" d="M50,5 L5,95 L24,95 L50,42 L76,95 L95,95 Z" />
-    
-    <path class="a-swoosh" d="M12,82 Q45,55 88,80 L88,72 Q45,45 12,74 Z" />
+<div class="canvas">
+  <div class="orbit">
+    <div class="particle"></div>
+  </div>
+
+  <svg class="logo-svg" viewBox="0 0 100 100">
+    <path class="a-path" d="M50,5 L5,95 L25,95 L50,42 L75,95 L95,95 Z" />
+    <path class="swoosh-trace" d="M12,78 Q50,50 88,78" />
   </svg>
 
-  <div class="text-group shimmer-overlay">
-    <div class="main-title">ALPHAX</div>
-    <div class="sub-title">AEROSPACE PVT LTD</div>
+  <div class="text-box">
+    <h1 class="main-text">ALPHAX</h1>
+    <div class="sub-text">AEROSPACE PVT LTD</div>
   </div>
 </div>
 
