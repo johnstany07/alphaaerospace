@@ -1508,5 +1508,53 @@ html, body {
     transform: scale(1);
   }
 }
+/* =========================
+   ALPHAX CURVED A ANIMATION
+========================= */
+
+.alphax-logo-svg {
+  margin-bottom: 28px;
+}
+
+/* Outer A draw */
+.outer-a {
+  stroke-dasharray: 420;
+  stroke-dashoffset: 420;
+  animation: drawOuter 2.2s ease forwards;
+}
+
+/* Cross bar fade */
+.cross-bar {
+  opacity: 0;
+  animation: fadeIn 0.8s ease forwards;
+  animation-delay: 1.6s;
+}
+
+/* Inner curved A draw */
+.inner-a {
+  stroke-dasharray: 160;
+  stroke-dashoffset: 160;
+  animation: drawInner 1.6s ease forwards;
+  animation-delay: 2.1s;
+}
+
+/* Animations */
+@keyframes drawOuter {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes drawInner {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
 
 
