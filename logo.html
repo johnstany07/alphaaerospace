@@ -3,114 +3,111 @@
 <head>
 <style>
   :root {
-    --bg-color: #0a0a0b;        /* Deep space black */
-    --accent-white: #ffffff;    /* High contrast white */
-    --tech-blue: #00aaff;       /* Subtle glow color */
-    --anim-speed: 2.5s;
+    --bg: #050505;
+    --glare: rgba(255, 255, 255, 0.8);
+    --accent: #ffffff;
+    --tech-blue: #00f2ff; /* Aerospace HUD blue */
   }
 
   body {
+    background: var(--bg);
     margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: var(--bg-color);
-    font-family: 'Inter', 'Segoe UI', sans-serif;
+    overflow: hidden;
+    font-family: 'Orbitron', sans-serif; /* Modern tech font */
   }
 
-  .logo-wrapper {
+  .logo-container {
+    position: relative;
     display: flex;
     align-items: center;
-    gap: 30px;
+    gap: 40px;
   }
 
-  /* SVG Icon Styling */
-  .logo-svg {
-    width: 120px;
-    filter: drop-shadow(0 0 5px rgba(0, 170, 255, 0.2));
+  /* The "A" Icon Construction */
+  .svg-icon {
+    width: 150px;
+    filter: drop-shadow(0 0 10px rgba(0, 242, 255, 0.3));
   }
 
-  /* Exact geometry of your "A" */
-  .a-path {
+  .main-a-shape {
     fill: transparent;
-    stroke: var(--accent-white);
-    stroke-width: 2;
-    stroke-dasharray: 600;
-    stroke-dashoffset: 600;
-    animation: drawPath var(--anim-speed) forwards ease-in-out;
+    stroke: var(--accent);
+    stroke-width: 1.5;
+    stroke-dasharray: 800;
+    stroke-dashoffset: 800;
+    animation: draw 2.5s cubic-bezier(0.7, 0, 0.3, 1) forwards, 
+               fillIn 1.5s 2s forwards;
   }
 
-  /* The Curved Swoosh */
-  .swoosh-path {
-    fill: transparent;
-    stroke: var(--accent-white);
-    stroke-width: 2.5;
-    stroke-dasharray: 200;
-    stroke-dashoffset: 200;
-    animation: drawPath var(--anim-speed) forwards ease-in-out;
-    animation-delay: 0.5s;
+  .swoosh-line {
+    fill: none;
+    stroke: var(--tech-blue);
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-dasharray: 300;
+    stroke-dashoffset: 300;
+    animation: draw 2s 1s cubic-bezier(0.7, 0, 0.3, 1) forwards;
+    filter: drop-shadow(0 0 8px var(--tech-blue));
   }
 
-  /* Text Container */
-  .text-box {
+  /* Text Animation */
+  .brand-text {
     display: flex;
     flex-direction: column;
+  }
+
+  .title {
+    color: white;
+    font-size: 60px;
+    font-weight: 900;
+    letter-spacing: 12px;
+    text-transform: uppercase;
     opacity: 0;
-    transform: translateX(20px);
-    animation: slideIn 1.5s forwards ease-out;
-    animation-delay: 1.2s;
+    transform: skewX(-10deg) translateX(30px);
+    animation: revealText 1.2s 2.2s forwards;
   }
 
-  .main-title {
-    color: var(--accent-white);
-    font-size: 52px;
-    font-weight: 800;
-    letter-spacing: 8px;
-    line-height: 0.9;
-    margin: 0;
-    text-transform: uppercase;
-  }
-
-  .sub-title {
-    color: #888; /* Dimmed silver for secondary text */
+  .subtitle {
+    color: var(--tech-blue);
     font-size: 14px;
-    font-weight: 400;
-    letter-spacing: 6.5px;
-    margin-top: 8px;
+    letter-spacing: 8px;
     text-transform: uppercase;
+    margin-top: 5px;
+    opacity: 0;
+    animation: revealText 1.2s 2.6s forwards;
   }
 
-  /* Animations */
-  @keyframes drawPath {
-    to {
-      stroke-dashoffset: 0;
-      fill: var(--accent-white);
-      stroke-width: 0;
-    }
+  /* Keyframes for the "Best" Look */
+  @keyframes draw {
+    to { stroke-dashoffset: 0; }
   }
 
-  @keyframes slideIn {
+  @keyframes fillIn {
+    from { fill: transparent; }
+    to { fill: rgba(255, 255, 255, 0.05); stroke-width: 0.5; }
+  }
+
+  @keyframes revealText {
     to {
       opacity: 1;
-      transform: translateX(0);
+      transform: skewX(0deg) translateX(0);
     }
   }
-</style>
-</head>
-<body>
 
-<div class="logo-wrapper">
-  <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <path class="a-path" d="M10,95 L50,5 L90,95 L72,95 L50,45 L28,95 Z" />
-    <path class="swoosh-path" d="M18,78 Q50,55 82,78" stroke-linecap="round" />
-  </svg>
+  /* Scanning Laser Effect */
+  .scanner {
+    position: absolute;
+    width: 2px;
+    height: 150px;
+    background: linear-gradient(to bottom, transparent, var(--tech-blue), transparent);
+    left: 0;
+    opacity: 0;
+    animation: scan 3s ease-in-out infinite;
+  }
 
-  <div class="text-box">
-    <div class="main-title">Alphax</div>
-    <div class="sub-title">Aerospace Pvt Ltd</div>
-  </div>
-</div>
-
-</body>
-</html>
+  @keyframes scan {
+    0% { left
