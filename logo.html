@@ -5,7 +5,7 @@
 <title>AlphaX Aerospace</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
 
 <style>
     body {
@@ -15,61 +15,90 @@
         justify-content: center;
         align-items: center;
         background: radial-gradient(circle at top, #0b1c2d, #02080f);
-        overflow: hidden;
     }
 
-    .logo-wrapper {
+    .logo {
         text-align: center;
-        animation: fadeIn 2s ease forwards;
     }
 
-    .logo-wrapper img {
-        width: 420px;
-        max-width: 90%;
-        animation: float 4s ease-in-out infinite,
-                   glow 3s ease-in-out infinite;
+    svg {
+        width: 180px;
     }
 
-    .tagline {
-        margin-top: 18px;
-        font-family: 'Orbitron', sans-serif;
-        font-size: 14px;
-        letter-spacing: 3px;
-        color: #9ecfff;
-        opacity: 0;
-        animation: slideUp 1.5s ease forwards;
-        animation-delay: 1.5s;
+    .a-stroke {
+        fill: none;
+        stroke: #4fc3ff;
+        stroke-width: 10;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+
+        stroke-dasharray: 600;
+        stroke-dashoffset: 600;
+        animation: drawA 2.5s ease forwards;
     }
 
-    /* Animations */
-    @keyframes fadeIn {
-        from { opacity: 0; transform: scale(0.95); }
-        to { opacity: 1; transform: scale(1); }
+    .a-glow {
+        animation: glow 3s ease-in-out infinite;
+        animation-delay: 2.5s;
     }
 
-    @keyframes slideUp {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes float {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-12px); }
+    @keyframes drawA {
+        to {
+            stroke-dashoffset: 0;
+        }
     }
 
     @keyframes glow {
-        0% { filter: drop-shadow(0 0 5px rgba(79,195,255,0.3)); }
-        50% { filter: drop-shadow(0 0 25px rgba(79,195,255,0.7)); }
-        100% { filter: drop-shadow(0 0 5px rgba(79,195,255,0.3)); }
+        0% {
+            filter: drop-shadow(0 0 6px rgba(79,195,255,0.4));
+        }
+        50% {
+            filter: drop-shadow(0 0 25px rgba(79,195,255,0.9));
+        }
+        100% {
+            filter: drop-shadow(0 0 6px rgba(79,195,255,0.4));
+        }
+    }
+
+    .brand {
+        margin-top: 18px;
+        font-family: 'Orbitron', sans-serif;
+        font-size: 20px;
+        letter-spacing: 4px;
+        color: #e6f3ff;
+    }
+
+    .sub {
+        margin-top: 6px;
+        font-size: 12px;
+        letter-spacing: 3px;
+        color: #9ecfff;
     }
 </style>
 </head>
 
 <body>
 
-<div class="logo-wrapper">
-    <img src="alphax-logo.jpeg" alt="AlphaX Aerospace Logo">
-    <div class="tagline">AEROSPACE · DEFENCE · FUTURE MOBILITY</div>
+<div class="logo">
+
+    <!-- Animated A -->
+    <svg viewBox="0 0 200 220">
+        <path class="a-stroke a-glow"
+              d="M100 20
+                 L30 200
+                 L65 200
+                 L85 150
+                 L115 150
+                 L135 200
+                 L170 200
+                 Z
+                 M92 120
+                 L108 120" />
+    </svg>
+
+    <div class="brand">ALPHAX</div>
+    <div class="sub">AEROSPACE PVT LTD</div>
+
 </div>
 
 </body>
