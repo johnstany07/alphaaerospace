@@ -1,103 +1,114 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <style>
   :root {
-    --brand-blue: #1e2d3d; /* Matching the dark navy in your image */
-    --animation-speed: 2s;
+    --bg-color: #0a0a0b;        /* Deep space black */
+    --accent-white: #ffffff;    /* High contrast white */
+    --tech-blue: #00aaff;       /* Subtle glow color */
+    --anim-speed: 2.5s;
   }
 
   body {
+    margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f8f9fa;
-    margin: 0;
-    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: var(--bg-color);
+    font-family: 'Inter', 'Segoe UI', sans-serif;
   }
 
-  .logo-container {
+  .logo-wrapper {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 30px;
   }
 
-  /* The Icon Animation */
-  .icon-svg {
-    width: 100px;
-    height: auto;
+  /* SVG Icon Styling */
+  .logo-svg {
+    width: 120px;
+    filter: drop-shadow(0 0 5px rgba(0, 170, 255, 0.2));
   }
 
-  .a-frame {
-    fill: none;
-    stroke: var(--brand-blue);
-    stroke-width: 8;
-    stroke-dasharray: 500;
-    stroke-dashoffset: 500;
-    animation: drawPath var(--animation-speed) forwards ease-in-out;
+  /* Exact geometry of your "A" */
+  .a-path {
+    fill: transparent;
+    stroke: var(--accent-white);
+    stroke-width: 2;
+    stroke-dasharray: 600;
+    stroke-dashoffset: 600;
+    animation: drawPath var(--anim-speed) forwards ease-in-out;
   }
 
-  .swoosh {
-    fill: none;
-    stroke: var(--brand-blue);
-    stroke-width: 6;
-    stroke-linecap: round;
+  /* The Curved Swoosh */
+  .swoosh-path {
+    fill: transparent;
+    stroke: var(--accent-white);
+    stroke-width: 2.5;
     stroke-dasharray: 200;
     stroke-dashoffset: 200;
-    animation: drawPath var(--animation-speed) forwards ease-in-out;
+    animation: drawPath var(--anim-speed) forwards ease-in-out;
     animation-delay: 0.5s;
   }
 
-  /* The Text Animation */
-  .text-container {
+  /* Text Container */
+  .text-box {
     display: flex;
     flex-direction: column;
     opacity: 0;
-    transform: translateX(-10px);
-    animation: fadeIn var(--animation-speed) forwards ease-out;
-    animation-delay: 0.8s;
+    transform: translateX(20px);
+    animation: slideIn 1.5s forwards ease-out;
+    animation-delay: 1.2s;
   }
 
-  .brand-name {
-    font-size: 42px;
-    font-weight: 700;
-    letter-spacing: 4px;
-    color: var(--brand-blue);
-    line-height: 1;
+  .main-title {
+    color: var(--accent-white);
+    font-size: 52px;
+    font-weight: 800;
+    letter-spacing: 8px;
+    line-height: 0.9;
     margin: 0;
-  }
-
-  .sub-text {
-    font-size: 16px;
-    font-weight: 400;
-    letter-spacing: 3px;
-    color: var(--brand-blue);
-    margin-top: 5px;
     text-transform: uppercase;
   }
 
-  /* Keyframes */
-  @keyframes drawPath {
-    to { stroke-dashoffset: 0; fill: var(--brand-blue); }
+  .sub-title {
+    color: #888; /* Dimmed silver for secondary text */
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 6.5px;
+    margin-top: 8px;
+    text-transform: uppercase;
   }
 
-  @keyframes fadeIn {
-    to { opacity: 1; transform: translateX(0); }
+  /* Animations */
+  @keyframes drawPath {
+    to {
+      stroke-dashoffset: 0;
+      fill: var(--accent-white);
+      stroke-width: 0;
+    }
+  }
+
+  @keyframes slideIn {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
   }
 </style>
 </head>
 <body>
 
-<div class="logo-container">
-  <svg class="icon-svg" viewBox="0 0 100 100">
-    <path class="a-frame" d="M10,90 L50,10 L90,90 L75,90 L50,40 L25,90 Z" />
-    <path class="swoosh" d="M15,75 Q50,45 85,75" fill="transparent" stroke-width="4" />
+<div class="logo-wrapper">
+  <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <path class="a-path" d="M10,95 L50,5 L90,95 L72,95 L50,45 L28,95 Z" />
+    <path class="swoosh-path" d="M18,78 Q50,55 82,78" stroke-linecap="round" />
   </svg>
 
-  <div class="text-container">
-    <div class="brand-name">ALPHAX</div>
-    <div class="sub-text">AEROSPACE PVT LTD</div>
+  <div class="text-box">
+    <div class="main-title">Alphax</div>
+    <div class="sub-title">Aerospace Pvt Ltd</div>
   </div>
 </div>
 
