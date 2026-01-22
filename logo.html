@@ -3,123 +3,95 @@
 <head>
 <style>
   :root {
-    --bg-black: #08080a;
-    --logo-white: #ffffff;
-    --aero-blue: #00d4ff;
+    --deep-black: #0a0b0d;
+    --metal-white: #e0e0e0;
+    --glow: rgba(255, 255, 255, 0.2);
   }
 
   body {
-    background-color: var(--bg-black);
+    background-color: var(--deep-black);
     margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Arial', sans-serif;
   }
 
   .logo-container {
     display: flex;
     align-items: center;
-    gap: 25px;
+    gap: 30px;
   }
 
-  /* High-Precision SVG Styling */
-  .alphax-svg {
-    width: 140px;
+  /* The Precision SVG */
+  .alphax-icon {
+    width: 160px;
     height: auto;
-    overflow: visible;
+    filter: drop-shadow(0 0 15px rgba(255,255,255,0.1));
   }
 
-  /* The exact "A" Frame Geometry */
-  .a-frame {
-    fill: transparent;
-    stroke: var(--logo-white);
-    stroke-width: 0.8;
-    stroke-dasharray: 1000;
-    stroke-dashoffset: 1000;
-    animation: 
-      drawPath 2s cubic-bezier(0.65, 0, 0.35, 1) forwards,
-      solidify 0.5s 1.8s forwards;
+  /* Replicating the exact "A" thickness and sharp angles */
+  .a-body {
+    fill: var(--metal-white);
+    clip-path: polygon(50% 0%, 0% 100%, 18% 100%, 50% 35%, 82% 100%, 100% 100%);
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeUp 1s ease-out forwards;
   }
 
-  /* The Sharp Aerospace Swoosh */
+  /* The Sharp Tapered Swoosh */
   .a-swoosh {
-    fill: transparent;
-    stroke: var(--logo-white);
-    stroke-width: 1.2;
-    stroke-dasharray: 300;
-    stroke-dashoffset: 300;
-    animation: drawPath 1.5s 0.8s ease-out forwards;
-    filter: drop-shadow(0 0 5px rgba(255,255,255,0.4));
+    fill: var(--metal-white);
+    opacity: 0;
+    animation: swooshIn 1.2s 0.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
   }
 
-  /* Text Reveal */
-  .text-reveal {
+  /* Text Styling to match your image exactly */
+  .text-group {
     display: flex;
     flex-direction: column;
-    clip-path: inset(0 100% 0 0); /* Hide text initially */
-    animation: slideReveal 1.2s 2s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+    color: var(--metal-white);
+    opacity: 0;
+    animation: fadeIn 1.5s 1s forwards;
   }
 
-  .main-name {
-    color: var(--logo-white);
-    font-size: 58px;
-    font-weight: 800;
-    letter-spacing: 10px;
-    text-transform: uppercase;
-    line-height: 0.9;
+  .main-title {
+    font-size: 64px;
+    font-weight: 600;
+    letter-spacing: 5px;
+    line-height: 1;
+    margin: 0;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
 
-  .sub-name {
-    color: #666;
-    font-size: 14px;
-    letter-spacing: 7px;
-    text-transform: uppercase;
-    margin-top: 8px;
+  .sub-title {
+    font-size: 19px;
+    letter-spacing: 4.5px;
+    font-weight: 300;
+    margin-top: 5px;
+    color: #888;
   }
 
-  /* Keyframes */
-  @keyframes drawPath {
-    to { stroke-dashoffset: 0; }
+  /* Aerospace "Shimmer" Effect */
+  .shimmer-overlay {
+    position: relative;
+    overflow: hidden;
   }
 
-  @keyframes solidify {
-    to { 
-      fill: var(--logo-white);
-      stroke-width: 0;
-    }
+  .shimmer-overlay::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 50%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    animation: shimmer 4s infinite 3s;
   }
 
-  @keyframes slideReveal {
-    to { clip-path: inset(0 0 0 0); }
+  /* Animations */
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
   }
 
-  /* Subtle flickering light effect on the A */
-  .glow-pulse {
-    animation: pulse 4s infinite 3s;
-  }
-
-  @keyframes pulse {
-    0%, 100% { filter: drop-shadow(0 0 2px white); }
-    50% { filter: drop-shadow(0 0 10px var(--aero-blue)); }
-  }
-</style>
-</head>
-<body>
-
-<div class="logo-container">
-  <svg class="alphax-svg glow-pulse" viewBox="0 0 120 120">
-    <path class="a-frame" d="M15,110 L60,10 L105,110 L88,110 L60,45 L32,110 Z" />
-    
-    <path class="a-swoosh" d="M22,90 C40,70 80,70 98,90" stroke-linecap="butt" />
-  </svg>
-
-  <div class="text-reveal">
-    <div class="main-name">ALPHAX</div>
-    <div class="sub-name">AEROSPACE PVT LTD</div>
-  </div>
-</div>
-
-</body>
-</html>
+  @keyframes swooshIn {
+    from
