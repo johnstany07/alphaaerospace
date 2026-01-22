@@ -1472,5 +1472,41 @@ html, body {
   text-decoration: none;
 }
 
+/* =========================
+   ALPHAX SVG LOGO ANIMATION
+========================= */
+
+.alphax-logo-svg {
+  margin-bottom: 24px;
+}
+
+.logo-stroke {
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  animation: drawLogo 2.2s ease forwards;
+}
+
+.logo-fill {
+  opacity: 0;
+  transform: scale(0.6);
+  transform-origin: center;
+  animation: fillLogo 1.2s ease forwards;
+  animation-delay: 1.6s;
+}
+
+/* Draw line animation */
+@keyframes drawLogo {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Fill pop animation */
+@keyframes fillLogo {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
 
 
