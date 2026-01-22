@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg-black: #050505;
-    --logo-white: #ffffff;
-    --jet-glow: #00f2ff;
+    --bg-black: #020406;
+    --aero-cyan: #00f2ff;
+    --metal-silver: #e0e0e0;
   }
 
   body {
@@ -15,118 +16,138 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    font-family: 'Inter', sans-serif;
     overflow: hidden;
+    font-family: 'Syncopate', sans-serif;
   }
 
-  .logo-container {
+  /* Deep Space Grid Background */
+  .space-grid {
+    position: absolute;
+    width: 200%; height: 200%;
+    background-image: 
+      linear-gradient(rgba(0, 242, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 242, 255, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+    transform: perspective(500px) rotateX(60deg);
+    animation: gridMove 20s linear infinite;
+    z-index: -1;
+  }
+
+  .logo-stage {
     position: relative;
     display: flex;
     align-items: center;
-    gap: 30px;
+    gap: 40px;
+    filter: drop-shadow(0 0 20px rgba(0, 242, 255, 0.2));
   }
 
-  /* PRECISION SVG ICON */
-  .alphax Aerospace pvt ltd-svg {
-    width: 180px;
+  /* Precision SVG - Exactly matching the Alphax 'A' */
+  .alphax-svg {
+    width: 200px;
     height: auto;
     overflow: visible;
   }
 
-  /* The exact sharp "A" structure from your logo */
   .a-frame {
     fill: none;
-    stroke: var(--logo-white);
-    stroke-width: 1.2;
+    stroke: var(--metal-silver);
+    stroke-width: 0.5;
     stroke-dasharray: 1000;
     stroke-dashoffset: 1000;
-    animation: drawPath 2s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+    animation: draw 2s cubic-bezier(0.19, 1, 0.22, 1) forwards,
+               fillMetal 1.5s 1.5s forwards;
   }
 
-  /* THE JET FLIGHT PATH (Replaces the dash line) */
-  .flight-path {
+  .swoosh-path {
     fill: none;
-    stroke: var(--logo-white);
-    stroke-width: 2.5;
-    stroke-linecap: round;
-    stroke-dasharray: 300;
-    stroke-dashoffset: 300;
-    filter: drop-shadow(0 0 8px var(--jet-glow));
-    animation: drawPath 1.5s 1.5s cubic-bezier(0.45, 0, 0.55, 1) backwards;
+    stroke: var(--aero-cyan);
+    stroke-width: 3;
+    stroke-dasharray: 400;
+    stroke-dashoffset: 400;
+    animation: draw 1.5s 1s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+    filter: drop-shadow(0 0 10px var(--aero-cyan));
   }
 
-  /* THE JET ICON */
-  .jet-icon {
-    position: absolute;
-    width: 24px;
-    height: 24px;
-    fill: var(--logo-white);
-    offset-path: path("M18,92 C38,70 82,70 102,92"); /* Matches the swoosh curve */
-    offset-rotate: auto;
-    opacity: 0;
-    animation: jetFly 1.5s 1.5s cubic-bezier(0.45, 0, 0.55, 1) backwards;
-    filter: drop-shadow(0 0 5px var(--jet-glow));
-  }
-
-  /* TEXT GROUP */
-  .text-box {
+  /* High-end Text Reveal */
+  .text-reveal {
     display: flex;
     flex-direction: column;
     opacity: 0;
-    transform: translateX(20px);
-    animation: fadeIn 1.2s 2.5s forwards;
+    transform: translateX(40px);
+    animation: cinematicReveal 1.5s 2s forwards;
   }
 
-  .main-title {
-    color: var(--logo-white);
-    font-size: 62px;
-    font-weight: 800;
-    letter-spacing: 8px;
-    line-height: 0.9;
-    margin: 0;
-    text-transform: uppercase;
+  .title {
+    color: var(--metal-silver);
+    font-size: 72px;
+    font-weight: 700;
+    letter-spacing: 15px;
+    line-height: 0.8;
+    background: linear-gradient(135deg, #fff 30%, #444 50%, #fff 70%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 8s linear infinite;
   }
 
-  .sub-title {
+  .subtitle {
     color: #666;
-    font-size: 16px;
-    letter-spacing: 6px;
-    margin-top: 8px;
+    font-size: 14px;
+    letter-spacing: 12px;
+    margin-top: 15px;
     text-transform: uppercase;
   }
 
-  /* ANIMATIONS */
-  @keyframes drawPath {
-    to { stroke-dashoffset: 0; }
+  /* Lens Flare Effect */
+  .lens-flare {
+    position: absolute;
+    width: 200px; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--aero-cyan), transparent);
+    top: 50%; left: -100px;
+    opacity: 0;
+    animation: flareSweep 4s ease-in-out infinite 3.5s;
   }
 
-  @keyframes jetFly {
-    0% { offset-distance: 0%; opacity: 0; }
-    10% { opacity: 1; }
-    90% { opacity: 1; }
-    100% { offset-distance: 100%; opacity: 0; }
+  /* Animations */
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  
+  @keyframes fillMetal { 
+    to { fill: rgba(224, 224, 224, 0.1); stroke-width: 1.5; stroke: #fff; } 
   }
 
-  @keyframes fadeIn {
+  @keyframes cinematicReveal {
     to { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes shine { to { background-position: 200% center; } }
+
+  @keyframes gridMove {
+    from { background-position: 0 0; }
+    to { background-position: 0 1000px; }
+  }
+
+  @keyframes flareSweep {
+    0% { left: -100px; opacity: 0; }
+    50% { opacity: 1; }
+    100% { left: 100%; opacity: 0; }
   }
 </style>
 </head>
 <body>
 
-<div class="logo-container">
-  <div class="jet-icon">
-    <svg viewBox="0 0 24 24"><path d="M21,16L21,14L13,9L13,3.5A1.5,1.5 0 0,0 11.5,2A1.5,1.5 0 0,0 10,3.5L10,9L2,14L2,16L10,13.5L10,19L8,20.5L8,22L11.5,21L15,22L15,20.5L13,19L13,13.5L21,16Z"/></svg>
-  </div>
+<div class="space-grid"></div>
 
+<div class="logo-stage">
+  <div class="lens-flare"></div>
+  
   <svg class="alphax-svg" viewBox="0 0 120 120">
     <path class="a-frame" d="M10,110 L60,10 L110,110 L92,110 L60,45 L28,110 Z" />
-    <path class="flight-path" d="M18,92 C38,70 82,70 102,92" />
+    <path class="swoosh-path" d="M18,92 C40,70 80,70 102,92" />
   </svg>
 
-  <div class="text-box">
-    <div class="main-title">ALPHAX</div>
-    <div class="sub-name">AEROSPACE PVT LTD</div>
+  <div class="text-reveal">
+    <div class="title">ALPHAX</div>
+    <div class="subtitle">AEROSPACE PVT LTD</div>
   </div>
 </div>
 
