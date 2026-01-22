@@ -1,138 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg-deep: #020203;
-    --primary-white: #ffffff;
-    --aero-cyan: #00f2ff;
-    --speed: 3s;
+    --bg-black: #050505;
+    --logo-white: #ffffff;
+    --dim-text: #888888;
   }
 
   body {
-    background: var(--bg-deep);
+    background-color: var(--bg-black);
     margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    overflow: hidden;
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Inter', sans-serif; /* Clean, modern aerospace feel */
   }
 
-  .logo-stage {
-    position: relative;
+  .logo-container {
     display: flex;
     align-items: center;
-    gap: 40px;
+    gap: 25px;
   }
 
-  /* The Exact Precision SVG */
-  .svg-precision {
-    width: 180px;
+  /* High-Precision SVG Styling */
+  .alphax-svg {
+    width: 150px;
     height: auto;
     overflow: visible;
-    filter: drop-shadow(0 0 10px rgba(0, 242, 255, 0.2));
   }
 
-  /* REPLICATING THE EXACT "A" STRUCTURE */
-  .a-structure {
-    fill: none;
-    stroke: var(--primary-white);
-    stroke-width: 0.5;
-    stroke-dasharray: 1000;
-    stroke-dashoffset: 1000;
-    animation: drawStructure var(--speed) cubic-bezier(0.19, 1, 0.22, 1) forwards,
-               solidify 1s 2s forwards;
+  /* EXACT "A" STRUCTURE REPLICATION */
+  /* Replicating the unique inward curve on the left leg and sharp peak */
+  .a-frame {
+    fill: transparent;
+    stroke: var(--logo-white);
+    stroke-width: 1;
+    stroke-dasharray: 800;
+    stroke-dashoffset: 800;
+    animation: drawPath 2s ease-in-out forwards, 
+               fillSolid 0.8s 1.8s forwards;
   }
 
-  /* THE SHARP SWOOSH FROM YOUR IMAGE */
+  /* THE EXACT SWOOSH (Curved internal bar) */
   .a-swoosh {
     fill: none;
-    stroke: var(--aero-cyan);
+    stroke: var(--logo-white);
     stroke-width: 2.5;
-    stroke-linecap: butt;
-    stroke-dasharray: 400;
-    stroke-dashoffset: 400;
-    animation: drawStructure 2s 1.2s cubic-bezier(0.19, 1, 0.22, 1) forwards;
-    filter: drop-shadow(0 0 12px var(--aero-cyan));
+    stroke-linecap: round;
+    stroke-dasharray: 200;
+    stroke-dashoffset: 200;
+    animation: drawPath 1.5s 0.8s ease-out forwards;
   }
 
-  /* HIGH-END TEXT REVEAL */
-  .text-container {
+  /* TEXT GROUP */
+  .text-reveal {
     display: flex;
     flex-direction: column;
     opacity: 0;
-    transform: translateX(30px) skewX(-10deg);
-    animation: textEntry 1.5s 2.2s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+    animation: fadeIn 1.5s 2.2s forwards;
   }
 
-  .main-text {
-    color: var(--primary-white);
-    font-size: 68px;
-    font-weight: 900;
-    letter-spacing: 12px;
+  .main-name {
+    color: var(--logo-white);
+    font-size: 56px;
+    font-weight: 800;
+    letter-spacing: 6px;
     line-height: 0.9;
     margin: 0;
-    text-shadow: 0 0 20px rgba(255,255,255,0.2);
-  }
-
-  .sub-text {
-    color: #666;
-    font-size: 16px;
-    letter-spacing: 8px;
-    margin-top: 10px;
     text-transform: uppercase;
   }
 
-  /* LASER SCANNING EFFECT */
-  .scanner-line {
-    position: absolute;
-    top: -20%;
-    width: 2px;
-    height: 140%;
-    background: linear-gradient(to bottom, transparent, var(--aero-cyan), transparent);
-    box-shadow: 0 0 15px var(--aero-cyan);
-    opacity: 0;
-    animation: scanning 4s linear infinite 3.5s;
+  .sub-name {
+    color: var(--dim-text);
+    font-size: 15px;
+    letter-spacing: 5px;
+    margin-top: 8px;
+    text-transform: uppercase;
   }
 
   /* ANIMATIONS */
-  @keyframes drawStructure {
+  @keyframes drawPath {
     to { stroke-dashoffset: 0; }
   }
 
-  @keyframes solidify {
-    to { fill: var(--primary-white); stroke-width: 0; }
+  @keyframes fillSolid {
+    to { fill: var(--logo-white); stroke-width: 0; }
   }
 
-  @keyframes textEntry {
-    to { opacity: 1; transform: translateX(0) skewX(0deg); }
+  @keyframes fadeIn {
+    to { opacity: 1; transform: translateX(0); }
   }
 
-  @keyframes scanning {
-    0% { left: 0%; opacity: 0; }
-    10% { opacity: 1; }
-    90% { opacity: 1; }
-    100% { left: 100%; opacity: 0; }
+  /* SUBTLE METALLIC SHIMMER EFFECT */
+  .shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .shimmer::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 50%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: lightSweep 5s infinite 4s;
+  }
+
+  @keyframes lightSweep {
+    to { left: 200%; }
   }
 </style>
 </head>
 <body>
 
-<div class="logo-stage">
-  <div class="scanner-line"></div>
-  
-  <svg class="svg-precision" viewBox="0 0 100 100">
-    <path class="a-structure" d="M10,95 L50,8 L90,95 L72,95 L50,42 L28,95 Z" />
+<div class="logo-container">
+  <svg class="alphax-svg" viewBox="0 0 120 120">
+    <path class="a-frame" d="M15,110 Q28,70 60,10 L105,110 L86,110 L60,45 L34,110 Z" />
     
-    <path class="a-swoosh" d="M18,80 C35,60 70,60 85,82" />
+    <path class="a-swoosh" d="M22,88 C38,70 75,70 95,88" />
   </svg>
 
-  <div class="text-container">
-    <div class="main-text">ALPHAX</div>
-    <div class="sub-text">AEROSPACE PVT LTD</div>
+  <div class="text-reveal shimmer">
+    <div class="main-name">ALPHAX</div>
+    <div class="sub-name">AEROSPACE PVT LTD</div>
   </div>
 </div>
 
