@@ -2,302 +2,139 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AlphaX Aerospace</title>
-
-  <!-- FONT -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background: #0b0f17;
-      color: #ffffff;
-      overflow-x: hidden;
-    }
-
-    /* ---------- NAVBAR ---------- */
-    header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 1000;
-      background: rgba(10, 14, 25, 0.7);
-      backdrop-filter: blur(10px);
-    }
-
-    .navbar {
-      max-width: 1200px;
-      margin: auto;
-      padding: 16px 24px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo {
-      font-size: 20px;
-      font-weight: 700;
-      letter-spacing: 2px;
-    }
-
-    .nav-links a {
-      margin-left: 24px;
-      text-decoration: none;
-      color: #cfd6ff;
-      font-size: 14px;
-    }
-
-    .nav-links a:hover {
-      color: #4da3ff;
-    }
-
-    /* ---------- HERO ---------- */
-    .hero {
-      height: 100vh;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-
-    .hero video {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -2;
-    }
-
-    .hero-overlay {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(180deg, rgba(11,15,23,0.6), #0b0f17);
-      z-index: -1;
-    }
-
-    .hero h1 {
-      font-size: 52px;
-      font-weight: 700;
-      margin-bottom: 20px;
-    }
-
-    .hero p {
-      font-size: 18px;
-      max-width: 700px;
-      margin: auto;
-      opacity: 0.85;
-    }
-
-    .hero-buttons {
-      margin-top: 32px;
-    }
-
-    .btn {
-      padding: 14px 28px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-size: 14px;
-      margin: 8px;
-      display: inline-block;
-    }
-
-    .btn-primary {
-      background: #4da3ff;
-      color: #000;
-    }
-
-    .btn-secondary {
-      border: 1px solid #4da3ff;
-      color: #4da3ff;
-    }
-
-    /* ---------- SECTION ---------- */
-    section {
-      padding: 120px 24px;
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    section h2 {
-      font-size: 36px;
-      margin-bottom: 20px;
-    }
-
-    section p {
-      max-width: 800px;
-      opacity: 0.85;
-      line-height: 1.7;
-    }
-
-    /* ---------- SKYROVER ---------- */
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 24px;
-      margin-top: 40px;
-    }
-
-    .card {
-      background: #11162a;
-      border-radius: 16px;
-      padding: 28px;
-      transition: 0.3s;
-    }
-
-    .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-    }
-
-    .card h3 {
-      margin-bottom: 12px;
-    }
-
-    /* ---------- FOOTER ---------- */
-    footer {
-      padding: 40px 24px;
-      background: #080b12;
-      text-align: center;
-      font-size: 13px;
-      opacity: 0.7;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AlphaX Aerospace | Indigenous Aerospace Platforms</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- NAVBAR -->
-<header>
-  <div class="navbar">
-    <div class="logo">ALPHAX</div>
-    <div class="nav-links">
-      <a href="#home">Home</a>
-      <a href="#skyrover">SkyRover</a>
-      <a href="#technology">Technology</a>
-      <a href="#projects">Projects</a>
-      <a href="#founders">Founders</a>
-      <a href="#contact">Contact</a>
-    </div>
-  </div>
-</header>
-
-<!-- HERO -->
-<section id="home" class="hero">
-  <video autoplay muted loop playsinline>
-    <source src="skyrover360.mp4" type="video/mp4">
-  </video>
+<!-- ================= HERO ================= -->
+<section class="hero">
   <div class="hero-overlay"></div>
 
-  <div>
-    <h1>Indigenous Aerospace Platforms</h1>
+  <div class="hero-content">
+    <h1>Engineering India’s<br>Next Generation of Flight</h1>
     <p>
-      Engineering India’s next generation of flight — defence, pilot training,
-      and regional aviation.
+      Indigenous aerospace platforms engineered for defence, pilot training,
+      surveillance, and next-generation air mobility.
     </p>
 
     <div class="hero-buttons">
-      <a href="#skyrover" class="btn btn-primary">Explore SkyRover</a>
-      <a href="#contact" class="btn btn-secondary">Request Briefing</a>
+      <a href="skyrover.html" class="btn primary">Explore SkyRover</a>
+      <a href="projects.html" class="btn secondary">View Programs</a>
     </div>
   </div>
 </section>
 
-<!-- SKYROVER -->
-<section id="skyrover">
-  <h2>SkyRover™ Aircraft Platform</h2>
+<!-- ================= WHO WE ARE ================= -->
+<section class="section">
+  <h2>Who We Are</h2>
   <p>
-    SkyRover is AlphaX Aerospace’s indigenous, mission-adaptive manned light
-    aircraft designed for defence, pilot training, and reconnaissance.
+    AlphaX Aerospace Pvt Ltd is an Indian deep-tech aerospace company focused on
+    designing, engineering, and manufacturing mission-adaptive aircraft and
+    autonomous platforms.
   </p>
-
-  <div class="cards">
-    <div class="card">
-      <h3>SkyRover Base</h3>
-      <p>Optimized for pilot training and civil operations.</p>
-    </div>
-
-    <div class="card">
-      <h3>SkyRover Premium</h3>
-      <p>Enhanced endurance, avionics, and comfort.</p>
-    </div>
-
-    <div class="card">
-      <h3>SkyRover Tactical</h3>
-      <p>Mission-ready for ISR, surveillance, and defence roles.</p>
-    </div>
-  </div>
+  <p>
+    We build platforms that prioritize operational reliability, indigenous
+    systems, and real-world deployment — not experimental concepts.
+  </p>
 </section>
 
-<!-- TECHNOLOGY -->
-<section id="technology">
-  <h2>Core Technologies</h2>
-  <p>
-    AlphaX technologies are engineered in-house to deliver superior stability,
-    endurance, and operational safety.
-  </p>
+<!-- ================= TECHNOLOGIES ================= -->
+<section class="section dark">
+  <h2>Core Aerospace Technologies</h2>
 
   <div class="cards">
+
     <div class="card">
       <h3>AlphaX GlideCore™</h3>
-      <p>Advanced vibration isolation and comfort system.</p>
+      <p>
+        Advanced vibration isolation and comfort architecture designed to
+        reduce pilot fatigue and improve stability during prolonged missions.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>AlphaX AeroCore™</h3>
+      <p>
+        Indigenous aerodynamic and structural optimization framework enabling
+        high endurance, efficiency, and modular aircraft configurations.
+      </p>
     </div>
 
     <div class="card">
       <h3>AlphaX FlightCore™</h3>
-      <p>Indigenous flight control and autonomy architecture.</p>
+      <p>
+        Mission-adaptive flight control and avionics architecture supporting
+        training, reconnaissance, and autonomous-assisted operations.
+      </p>
     </div>
 
     <div class="card">
       <h3>AlphaX PowerCore™</h3>
-      <p>Battery management and power optimization platform.</p>
+      <p>
+        High-density energy management and propulsion integration system
+        optimized for long-endurance and hybrid-electric aircraft platforms.
+      </p>
     </div>
+
   </div>
 </section>
 
-<!-- PROJECTS -->
-<section id="projects">
-  <h2>Upcoming & Strategic Projects</h2>
+<!-- ================= PROGRAMS ================= -->
+<section class="section">
+  <h2>Flagship Programs</h2>
 
   <div class="cards">
+
     <div class="card">
-      <h3>SeaRover</h3>
-      <p>Maritime ISR platform for coastal defence.</p>
+      <h3>SkyRover™</h3>
+      <p>
+        Indigenous manned light aircraft platform for defence, pilot training,
+        and regional aviation.
+      </p>
+      <a href="skyrover.html">Learn More →</a>
+    </div>
+
+    <div class="card">
+      <h3>SeaRover™</h3>
+      <p>
+        Maritime reconnaissance and ISR platform designed for coastal defence
+        and surveillance operations.
+      </p>
     </div>
 
     <div class="card">
       <h3>Anti-Landmine Detection Drone</h3>
-      <p>Autonomous terrain scanning and threat detection.</p>
+      <p>
+        Autonomous ground–air hybrid system for mine detection and battlefield
+        reconnaissance.
+      </p>
     </div>
 
     <div class="card">
-      <h3>Weaponized UAV Program</h3>
-      <p>Modular defence drone platforms.</p>
+      <h3>Weaponized ISR Drone</h3>
+      <p>
+        Mission-configurable unmanned platform designed for surveillance,
+        precision payload delivery, and tactical operations.
+      </p>
     </div>
 
     <div class="card">
-      <h3>Nuclear-Powered Aircraft (R&D)</h3>
-      <p>Long-endurance next-gen aviation research.</p>
+      <h3>Future Nuclear-Powered Aircraft</h3>
+      <p>
+        Long-term research initiative exploring ultra-long endurance aerospace
+        propulsion concepts.
+      </p>
     </div>
+
   </div>
 </section>
 
-<!-- FOUNDERS -->
-<section id="founders">
+<!-- ================= LEADERSHIP ================= -->
+<section class="section dark">
   <h2>Leadership</h2>
-  <p>
-    AlphaX Aerospace is led by a mission-driven leadership team focused on
-    building India’s next generation of indigenous aerospace platforms.
-  </p>
 
   <div class="cards">
 
@@ -305,8 +142,8 @@
       <h3>John Stany Xavier</h3>
       <p><strong>Founder & CEO</strong></p>
       <p>
-        Visionary behind AlphaX Aerospace, leading indigenous aircraft
-        development, strategy, and long-term aerospace programs.
+        Leads aircraft architecture, systems integration, and long-term
+        aerospace strategy.
       </p>
     </div>
 
@@ -314,8 +151,7 @@
       <h3>Sanjeev Kumar</h3>
       <p><strong>Co-Founder</strong></p>
       <p>
-        Responsible for business strategy, partnerships, government relations,
-        and expansion across defence and aviation sectors.
+        Heads partnerships, institutional engagement, and strategic growth.
       </p>
     </div>
 
@@ -323,26 +159,29 @@
       <h3>Arogyaswamy Steevan</h3>
       <p><strong>Managing Director</strong></p>
       <p>
-        Provides executive leadership, governance, and operational oversight,
-        ensuring long-term stability and compliance.
+        Oversees governance, operations, and organizational leadership.
       </p>
     </div>
 
   </div>
 </section>
 
-
-<!-- CONTACT -->
-<section id="contact">
-  <h2>Engage With AlphaX</h2>
+<!-- ================= VISION ================= -->
+<section class="section">
+  <h2>Our Vision</h2>
   <p>
-    Ready to explore partnerships, demonstrations, or briefings?
+    To build India’s most trusted indigenous aerospace platforms by combining
+    disciplined engineering, national priorities, and long-term thinking.
+  </p>
+  <p>
+    Future of Flight. Made in India.
   </p>
 </section>
 
-<!-- FOOTER -->
+<!-- ================= FOOTER ================= -->
 <footer>
-  © 2026 AlphaX Aerospace Pvt Ltd. Made in India 🇮🇳
+  <p>© 2026 AlphaX Aerospace Pvt Ltd. All rights reserved.</p>
+  <p>Made in India 🇮🇳</p>
 </footer>
 
 </body>
