@@ -12,7 +12,7 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
 body{background:#02040a;color:#fff;overflow:hidden;}
 
-/* ================= SCENE SYSTEM ================= */
+/* ================= VIEWPORT ================= */
 #viewport{
   height:100vh;
   width:100vw;
@@ -20,6 +20,7 @@ body{background:#02040a;color:#fff;overflow:hidden;}
   position:relative;
 }
 
+/* ================= SCENES ================= */
 .scene{
   position:absolute;
   inset:0;
@@ -28,14 +29,14 @@ body{background:#02040a;color:#fff;overflow:hidden;}
   justify-content:center;
   padding:8vw;
   opacity:0;
-  transform:scale(0.98);
-  transition:opacity 1s ease, transform 1s ease;
+  transform:translateY(30px);
+  transition:opacity .9s ease, transform .9s ease;
   pointer-events:none;
 }
 
 .scene.active{
   opacity:1;
-  transform:scale(1);
+  transform:translateY(0);
   pointer-events:auto;
 }
 
@@ -44,35 +45,34 @@ body{background:#02040a;color:#fff;overflow:hidden;}
   position:fixed;
   inset:0;
   z-index:-2;
-  object-fit:cover;
   width:100%;
   height:100%;
-  filter:brightness(0.35) contrast(1.1);
+  object-fit:cover;
+  filter:brightness(.35) contrast(1.1);
 }
 
 .bg-overlay{
   position:fixed;
   inset:0;
   z-index:-1;
-  background:radial-gradient(circle at center, rgba(15,25,50,0.45), #02040a 70%);
+  background:radial-gradient(circle at center, rgba(15,25,50,.45), #02040a 70%);
 }
 
-/* ================= TEXT ================= */
+/* ================= TYPOGRAPHY ================= */
 h1{
-  font-size:clamp(44px,6vw,82px);
+  font-size:clamp(44px,6vw,80px);
   font-weight:700;
   line-height:1.05;
-  letter-spacing:-1px;
 }
 
 h2{
-  font-size:clamp(30px,4vw,48px);
+  font-size:clamp(28px,4vw,46px);
   font-weight:600;
   line-height:1.2;
 }
 
 p{
-  margin-top:24px;
+  margin-top:22px;
   font-size:17px;
   line-height:1.8;
   color:#cfd8e3;
@@ -86,13 +86,13 @@ p{
   left:30px;
   font-size:12px;
   letter-spacing:4px;
-  color:rgba(255,255,255,0.45);
+  color:rgba(255,255,255,.45);
   z-index:10;
 }
 
 /* ================= CTA ================= */
 .cta{
-  margin-top:40px;
+  margin-top:36px;
   display:inline-block;
   padding:14px 36px;
   border-radius:999px;
@@ -110,7 +110,23 @@ p{
   text-align:center;
   font-size:11px;
   letter-spacing:2px;
-  opacity:0.5;
+  opacity:.45;
+}
+
+/* ================= LEADERSHIP PHOTOS ================= */
+.leader-photo{
+  margin-top:28px;
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  object-fit:cover;
+  filter:grayscale(100%);
+  opacity:0;
+  transition:opacity .8s ease, filter .8s ease;
+}
+
+.scene.active .leader-photo{
+  opacity:1;
 }
 </style>
 </head>
@@ -126,115 +142,197 @@ p{
 </video>
 <div class="bg-overlay"></div>
 
-<!-- VIEWPORT -->
 <div id="viewport">
 
-  <!-- SCENE 1 -->
-  <section class="scene active">
-    <div>
-      <h1>Engineering India’s<br>Sovereign Skies</h1>
-      <p>
-        This is not an aircraft company.<br>
-        This is a long-term aerospace mission.
-      </p>
-    </div>
-  </section>
+<!-- ACT I — AUTHORITY -->
+<section class="scene active">
+  <div>
+    <h1>Engineering India’s<br>Sovereign Skies</h1>
+    <p>
+      AlphaX Aerospace is not a product company.<br>
+      It is a long-term aerospace mission.
+    </p>
+  </div>
+</section>
 
-  <!-- SCENE 2 -->
-  <section class="scene">
-    <div>
-      <h2>The Problem</h2>
-      <p>
-        India depends on imported platforms for pilot training, surveillance,
-        and light tactical aviation.
-      </p>
-      <p>
-        Existing solutions are expensive, over-specialized,
-        or not designed for Indian operational realities.
-      </p>
-    </div>
-  </section>
+<section class="scene">
+  <div>
+    <h2>The Problem</h2>
+    <p>
+      India relies on imported platforms for pilot training,
+      surveillance, and light tactical aviation.
+    </p>
+    <p>
+      These platforms are expensive, rigid, and not designed
+      for Indian operational realities.
+    </p>
+  </div>
+</section>
 
-  <!-- SCENE 3 -->
-  <section class="scene">
-    <div>
-      <h2>Why AlphaX Exists</h2>
-      <p>
-        AlphaX Aerospace was founded to build indigenous,
-        mission-adaptive aerospace platforms —
-        engineered for scale, endurance, and sovereignty.
-      </p>
-    </div>
-  </section>
+<section class="scene">
+  <div>
+    <h2>Why AlphaX Exists</h2>
+    <p>
+      AlphaX Aerospace was founded to build indigenous,
+      mission-adaptive aerospace platforms — engineered
+      for scale, endurance, and sovereignty.
+    </p>
+  </div>
+</section>
 
-  <!-- SCENE 4 -->
-  <section class="scene">
-    <div>
-      <h2>Core Systems</h2>
-      <p><strong>GlideCore™</strong> — Human-centric vibration & fatigue control.</p>
-      <p><strong>FlightCore™</strong> — Predictable, pilot-first flight architecture.</p>
-      <p><strong>PowerCore™</strong> — Aviation-grade energy & propulsion intelligence.</p>
-    </div>
-  </section>
+<!-- ACT II — SYSTEM THINKING -->
+<section class="scene">
+  <div>
+    <h2>Our Aerospace Philosophy</h2>
+    <p>
+      AlphaX does not build aircraft as isolated products.
+      We build systems designed to survive decades
+      of operational evolution.
+    </p>
+  </div>
+</section>
 
-  <!-- SCENE 5 -->
-  <section class="scene">
-    <div>
-      <h2>SkyRover™</h2>
-      <p>
-        India’s indigenous manned light aircraft platform —
-        designed as a modular system, not a single configuration.
-      </p>
-      <p>
-        One airframe. Multiple missions. Long-term evolution.
-      </p>
-    </div>
-  </section>
+<section class="scene">
+  <div>
+    <h2>GlideCore™</h2>
+    <p>
+      Most aircraft treat pilot fatigue as an afterthought.
+      AlphaX treats the human as part of the system.
+    </p>
+    <p>
+      GlideCore™ governs vibration, comfort, and control
+      consistency at the airframe level.
+    </p>
+  </div>
+</section>
 
-  <!-- SCENE 6 -->
-  <section class="scene">
-    <div>
-      <h2>SkyRover Variants</h2>
-      <p>
-        Base — Pilot training & surveillance familiarization.
-      </p>
-      <p>
-        Premium — Extended endurance & advanced avionics.
-      </p>
-      <p>
-        Tactical — ISR-ready configuration for defence operations.
-      </p>
-    </div>
-  </section>
+<section class="scene">
+  <div>
+    <h2>FlightCore™</h2>
+    <p>
+      Aggressive automation fails in unpredictable missions.
+      AlphaX prioritizes predictability over novelty.
+    </p>
+    <p>
+      FlightCore™ ensures stable, intuitive handling
+      across training and operational environments.
+    </p>
+  </div>
+</section>
 
-  <!-- SCENE 7 -->
-  <section class="scene">
-    <div>
-      <h2>Strategic Programs</h2>
-      <p>SeaRover™ — Maritime ISR</p>
-      <p>Anti-Landmine Detection Systems</p>
-      <p>Autonomous ISR Platforms</p>
-      <p>Advanced Propulsion Research</p>
-    </div>
-  </section>
+<section class="scene">
+  <div>
+    <h2>PowerCore™</h2>
+    <p>
+      Aviation energy systems are not automotive systems.
+      Safety margins, redundancy, and thermal discipline matter.
+    </p>
+    <p>
+      PowerCore™ is designed from aviation-first principles,
+      not adapted from other industries.
+    </p>
+  </div>
+</section>
 
-  <!-- SCENE 8 -->
-  <section class="scene">
-    <div>
-      <h2>Leadership</h2>
-      <p>John Stany Xavier — Founder & CEO</p>
-      <p>Sanjeev Kumar — Co-Founder</p>
-      <p>Arogyaswamy Steevan — Managing Director</p>
-    </div>
-  </section>
+<section class="scene">
+  <div>
+    <h2>AeroCore™</h2>
+    <p>
+      Speed is meaningless without structure.
+      AeroCore™ governs airframe geometry,
+      modularity, and long-term maintainability.
+    </p>
+  </div>
+</section>
 
-  <!-- SCENE 9 -->
-  <section class="scene">
-    <div>
-      <h2>Built in India.<br>Engineered for the Next 50 Years.</h2>
-      <a href="#" class="cta">Request Briefing</a>
-    </div>
-  </section>
+<!-- ACT III — SKYROVER -->
+<section class="scene">
+  <div>
+    <h2>The Origin of SkyRover™</h2>
+    <p>
+      India lacked an indigenous, affordable,
+      manned light aircraft platform
+      adaptable across missions.
+    </p>
+    <p>
+      SkyRover™ was conceived to bridge this gap.
+    </p>
+  </div>
+</section>
+
+<section class="scene">
+  <div>
+    <h2>SkyRover Is a Platform</h2>
+    <p>
+      SkyRover™ was never designed as a single aircraft.
+      It is a modular system capable of evolving
+      without redesigning the airframe.
+    </p>
+  </div>
+</section>
+
+<section class="scene">
+  <div>
+    <h2>SkyRover Variants</h2>
+    <p>Base — Pilot training & surveillance familiarization</p>
+    <p>Premium — Extended endurance & advanced avionics</p>
+    <p>Tactical — ISR-ready defence configuration</p>
+  </div>
+</section>
+
+<section class="scene">
+  <div>
+    <h2>Problems SkyRover Solves</h2>
+    <p>
+      Accelerates pilot training pipelines,
+      enables affordable ISR,
+      and restores lifecycle control
+      to indigenous stakeholders.
+    </p>
+  </div>
+</section>
+
+<!-- ACT IV — PIPELINE -->
+<section class="scene">
+  <div>
+    <h2>Strategic Programs</h2>
+    <p>SeaRover™ — Maritime ISR</p>
+    <p>Anti-Landmine Detection Systems</p>
+    <p>Autonomous ISR Platforms</p>
+    <p>Long-Endurance Research Programs</p>
+  </div>
+</section>
+
+<section class="scene">
+  <div>
+    <h2>Long-Term Vision</h2>
+    <p>
+      AlphaX is not optimized for the next funding round.
+      It is optimized for the next 30 years.
+    </p>
+  </div>
+</section>
+
+<!-- ACT V — PEOPLE -->
+<section class="scene">
+  <div>
+    <h2>Leadership</h2>
+    <p>John Stany Xavier — Founder & CEO</p>
+    <p>Sanjeev Kumar — Co-Founder</p>
+    <p>Arogyaswamy Steevan — Managing Director</p>
+
+    <img src="john.jpeg" class="leader-photo" alt="">
+    <img src="sanjeev.jpeg" class="leader-photo" alt="">
+    <img src="arogyaswamy.jpeg" class="leader-photo" alt="">
+  </div>
+</section>
+
+<section class="scene">
+  <div>
+    <h2>Built in India.<br>Engineered for the Next 50 Years.</h2>
+    <a href="#contact" class="cta">Request Briefing</a>
+  </div>
+</section>
 
 </div>
 
@@ -243,18 +341,25 @@ p{
 <script>
 let current = 0;
 const scenes = document.querySelectorAll('.scene');
+let locked = false;
 
 window.addEventListener('wheel', (e)=>{
+  if(locked) return;
+  locked = true;
+
   if(e.deltaY > 0 && current < scenes.length - 1){
     scenes[current].classList.remove('active');
     current++;
     scenes[current].classList.add('active');
   }
+
   if(e.deltaY < 0 && current > 0){
     scenes[current].classList.remove('active');
     current--;
     scenes[current].classList.add('active');
   }
+
+  setTimeout(()=>locked=false, 900);
 },{passive:true});
 </script>
 
