@@ -1639,82 +1639,16 @@ html, body {
   cursor: pointer;
 }
 
-.project-details {
-  margin-top: 16px;
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: max-height 0.4s ease, opacity 0.3s ease;
+.section video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:-2;
+  background:black;
+
+  /* 🔥 VIDEO COLOR FIX */
+  filter: brightness(1.25) contrast(1.1) saturate(1.05);
 }
 
-.project-card:hover .project-details {
-  max-height: 300px;
-  opacity: 1;
-}
-
-.leaders-with-images {
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-  margin-top: 40px;
-}
-
-.leader {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  justify-content: center;
-}
-
-.leader img {
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  object-fit: cover;
-  filter: grayscale(100%);
-  border: 1px solid rgba(255,255,255,0.3);
-  transition: all 0.3s ease;
-}
-
-.leader:hover img {
-  filter: grayscale(0%);
-  transform: scale(1.05);
-}
-.brand-mark {
-  position: fixed;
-  top: 24px;
-  left: 30px;
-  font-size: 14px;
-  letter-spacing: 4px;
-  color: rgba(255,255,255,0.4);
-  z-index: 100;
-  pointer-events: none;
-}
-#v-tactical{
-  transform: rotate(90deg) scale(1.2);
-  transform-origin: center;
-}
-
-#v-interor{
-  object-fit: cover;
-  object-position: center center;
-  transform: scale(1.15);
-}
-section[data-video="interor"]{
-  justify-content:center;
-  padding: 0 8vw;
-}
-
-section[data-video="interor"] .content{
-  max-width: 900px;
-  text-align: center;
-}
-section[data-video="interor"] .bg-overlay{
-  background: radial-gradient(circle at center,
-    rgba(20,30,60,.15),
-    #02040a 85%);
-}
-.bg-video{
-  transform: translate(-50%, -50%) !important;
-  rotate: 0deg !important;
-}
