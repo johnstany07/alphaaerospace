@@ -1690,4 +1690,8 @@ html, body {
   z-index: 100;
   pointer-events: none;
 }
+#v-tactical{
+  transform: rotate(90deg) scale(1.2);
+  transform-origin: center;
+}
 
