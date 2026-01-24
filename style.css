@@ -1695,3 +1695,22 @@ html, body {
   transform-origin: center;
 }
 
+#v-interor{
+  object-fit: cover;
+  object-position: center center;
+  transform: scale(1.15);
+}
+section[data-video="interor"]{
+  justify-content:center;
+  padding: 0 8vw;
+}
+
+section[data-video="interor"] .content{
+  max-width: 900px;
+  text-align: center;
+}
+section[data-video="interor"] .bg-overlay{
+  background: radial-gradient(circle at center,
+    rgba(20,30,60,.15),
+    #02040a 85%);
+}
