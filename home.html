@@ -2,235 +2,326 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AlphaX Aerospace</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-/* ================= BASE ================= */
-*{margin:0;padding:0;box-sizing:border-box}
-html,body{
-  background:#020406;
-  color:#e0e0e0;
-  font-family:'Syncopate',sans-serif;
-  overflow-x:hidden;
-}
+/* ========== RESET ========== */
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
+body{background:#02040a;color:#fff;overflow-x:hidden;}
 
-/* ================= INTRO ================= */
-.intro{
-  height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  position:relative;
-  overflow:hidden;
-}
-
-/* Space grid */
-.space-grid{
-  position:absolute;
-  inset:-100%;
-  background-image:
-    linear-gradient(rgba(0,242,255,.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,242,255,.05) 1px, transparent 1px);
-  background-size:50px 50px;
-  transform:perspective(600px) rotateX(60deg);
-  animation:gridMove 20s linear infinite;
-  z-index:0;
-}
-
-/* Logo stage */
-.logo-stage{
-  position:relative;
-  display:flex;
-  align-items:center;
-  gap:40px;
-  z-index:1;
-}
-
-/* SVG */
-.alphax-svg{width:200px}
-.a-frame{
-  fill:none;
-  stroke:#e0e0e0;
-  stroke-width:.6;
-  stroke-dasharray:1000;
-  stroke-dashoffset:1000;
-  animation:draw 3s ease forwards, fillMetal 2s 2s forwards;
-}
-.swoosh-path{
-  fill:none;
-  stroke:#00f2ff;
-  stroke-width:3;
-  stroke-dasharray:400;
-  stroke-dashoffset:400;
-  animation:draw 2s 2s ease forwards;
-}
-
-/* Text */
-.text-reveal{
-  opacity:0;
-  transform:translateX(40px);
-  animation:reveal 2s 2s forwards;
-}
-.title{
-  font-size:72px;
-  letter-spacing:14px;
-}
-.subtitle{
-  font-size:14px;
-  letter-spacing:10px;
-  color:#777;
-  margin-top:14px;
-}
-
-/* ================= SECTIONS ================= */
-.section{
-  position:relative;
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  padding:10vw;
-  overflow:hidden;
-}
-
-.section video{
-  position:absolute;
+/* ========== BACKGROUND VIDEOS ========== */
+.bg-video{
+  position:fixed;
   inset:0;
   width:100%;
   height:100%;
   object-fit:cover;
-  z-index:-2;
-  background:black;
+  z-index:-3;
+  opacity:0;
+  transform:scale(1.08);
+  transition:opacity 1.4s ease, transform 1.4s ease;
+  filter:brightness(.38) contrast(1.15) saturate(1.05);
+}
+.bg-video.active{
+  opacity:1;
+  transform:scale(1);
 }
 
-.overlay{
-  position:absolute;
+.bg-overlay{
+  position:fixed;
   inset:0;
-  background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.85));
-  z-index:-1;
+  z-index:-2;
+  background:radial-gradient(circle at center, rgba(20,30,60,.45), #02040a 72%);
+}
+
+/* ========== BRAND ========== */
+.brand{
+  position:fixed;
+  top:24px;
+  left:30px;
+  font-size:12px;
+  letter-spacing:4px;
+  color:rgba(255,255,255,.45);
+  z-index:10;
+}
+
+/* ========== SECTIONS ========== */
+section{
+  min-height:100vh;
+  padding:9vw;
+  display:flex;
+  align-items:center;
 }
 
 .content{
-  max-width:800px;
+  max-width:780px;
+  opacity:0;
+  transform:translateY(50px);
+  transition:all 1.1s ease;
+}
+.content.visible{
+  opacity:1;
+  transform:translateY(0);
 }
 
-.content h1{
-  font-size:clamp(36px,6vw,64px);
+/* ========== TYPOGRAPHY ========== */
+h1{
+  font-size:clamp(44px,6vw,84px);
+  font-weight:700;
+  line-height:1.05;
 }
-.content p{
-  margin-top:20px;
-  font-family:system-ui,sans-serif;
-  letter-spacing:.3px;
-  line-height:1.7;
-  color:#cfd6df;
+h2{
+  font-size:clamp(30px,4vw,48px);
+  font-weight:600;
 }
-
-/* ================= FOOTER ================= */
-footer{
-  padding:40px;
-  text-align:center;
-  font-family:system-ui,sans-serif;
-  color:#888;
+p{
+  margin-top:22px;
+  font-size:17px;
+  line-height:1.85;
+  color:#cfd8e3;
 }
 
-/* ================= MOBILE ================= */
+/* ========== CTA ========== */
+.cta{
+  margin-top:36px;
+  display:inline-block;
+  padding:14px 38px;
+  border-radius:999px;
+  background:linear-gradient(135deg,#4cc3ff,#63ffd8);
+  color:#000;
+  font-weight:600;
+  text-decoration:none;
+}
+
+/* ========== LEADERSHIP ========== */
+.leader{
+  margin-top:22px;
+}
+.leader img{
+  width:92px;
+  height:92px;
+  border-radius:50%;
+  object-fit:cover;
+  filter:grayscale(100%);
+  opacity:0;
+  transition:opacity 1s ease, filter 1s ease;
+}
+.content.visible img{
+  opacity:1;
+}
+
+/* ========== SPACING ========== */
+.spacer{height:18vh;}
+
+/* ========== MOBILE OPTIMIZATION ========== */
 @media(max-width:768px){
-  .title{font-size:42px;letter-spacing:8px}
-  .section{padding:14vw 8vw}
+  section{padding:14vw 8vw;}
+  .bg-video{display:none;}
+  .bg-overlay{
+    background:linear-gradient(180deg,#050914,#02040a);
+  }
 }
-
-/* ================= ANIMATIONS ================= */
-@keyframes draw{to{stroke-dashoffset:0}}
-@keyframes fillMetal{to{fill:rgba(224,224,224,.08);stroke-width:1.4}}
-@keyframes reveal{to{opacity:1;transform:none}}
-@keyframes gridMove{to{background-position:0 1000px}}
 </style>
 </head>
 
 <body>
 
-<!-- INTRO -->
-<section class="intro">
-  <div class="space-grid"></div>
+<!-- BRAND -->
+<div class="brand">ALPHAX</div>
 
-  <div class="logo-stage">
-    <svg class="alphax-svg" viewBox="0 0 120 120">
-      <path class="a-frame" d="M10,110 L60,10 L110,110 L92,110 L60,45 L28,110 Z"/>
-      <path class="swoosh-path" d="M18,92 C40,70 80,70 102,92"/>
-    </svg>
+<!-- BACKGROUND VIDEOS -->
+<video id="v-future" class="bg-video active" autoplay muted loop playsinline>
+  <source src="future.mp4" type="video/mp4">
+</video>
+<video id="v-interor" class="bg-video" autoplay muted loop playsinline>
+  <source src="interor.mp4" type="video/mp4">
+</video>
+<video id="v-skyrover" class="bg-video" autoplay muted loop playsinline>
+  <source src="skyrover1.mp4" type="video/mp4">
+</video>
+<video id="v-tactical" class="bg-video" autoplay muted loop playsinline>
+  <source src="tacticalrover.mp4" type="video/mp4">
+</video>
 
-    <div class="text-reveal">
-      <div class="title">ALPHAX</div>
-      <div class="subtitle">AEROSPACE PVT LTD</div>
+<div class="bg-overlay"></div>
+
+<!-- HERO -->
+<section data-video="future">
+  <div class="content">
+    <h1>Engineering India’s<br>Sovereign Skies</h1>
+    <p>
+      AlphaX Aerospace is not a product company.<br>
+      It is a long-term aerospace mission.
+    </p>
+  </div>
+</section>
+
+<div class="spacer"></div>
+
+<section data-video="future">
+  <div class="content">
+    <h2>The Problem</h2>
+    <p>
+      India relies on imported platforms for pilot training,
+      surveillance, and light tactical aviation.
+    </p>
+    <p>
+      These platforms are expensive, rigid, and misaligned
+      with Indian operational realities.
+    </p>
+  </div>
+</section>
+
+<div class="spacer"></div>
+
+<section data-video="future">
+  <div class="content">
+    <h2>Why AlphaX Exists</h2>
+    <p>
+      AlphaX was founded to build indigenous, mission-adaptive
+      aerospace systems designed for decades — not cycles.
+    </p>
+  </div>
+</section>
+
+<div class="spacer"></div>
+
+<!-- TECHNOLOGY -->
+<section data-video="interor">
+  <div class="content">
+    <h2>Our Aerospace Philosophy</h2>
+    <p>
+      AlphaX does not build aircraft as isolated products.
+      We design systems that evolve without redesign.
+    </p>
+  </div>
+</section>
+
+<div class="spacer"></div>
+
+<section data-video="interor">
+  <div class="content">
+    <h2>Core Systems</h2>
+    <p><strong>GlideCore™</strong> — Human-centric vibration & fatigue control.</p>
+    <p><strong>FlightCore™</strong> — Predictability-first flight architecture.</p>
+    <p><strong>PowerCore™</strong> — Aviation-grade energy intelligence.</p>
+    <p><strong>AeroCore™</strong> — Structure, modularity, longevity.</p>
+  </div>
+</section>
+
+<div class="spacer"></div>
+
+<!-- SKYROVER -->
+<section data-video="skyrover">
+  <div class="content">
+    <h2>The Origin of SkyRover™</h2>
+    <p>
+      India lacked an affordable, indigenous,
+      manned light aircraft adaptable across missions.
+    </p>
+  </div>
+</section>
+
+<div class="spacer"></div>
+
+<section data-video="skyrover">
+  <div class="content">
+    <h2>SkyRover Variants</h2>
+    <p>Base — Training & surveillance familiarization</p>
+    <p>Premium — Extended endurance & avionics</p>
+    <p>Tactical — ISR-ready defence configuration</p>
+  </div>
+</section>
+
+<div class="spacer"></div>
+
+<!-- PROGRAMS -->
+<section data-video="tactical">
+  <div class="content">
+    <h2>Strategic Programs</h2>
+    <p>SeaRover™ — Maritime ISR</p>
+    <p>Anti-Landmine Detection Systems</p>
+    <p>Autonomous ISR Platforms</p>
+    <p>Long-Endurance Research Programs</p>
+  </div>
+</section>
+
+<div class="spacer"></div>
+
+<!-- LEADERSHIP -->
+<section data-video="tactical">
+  <div class="content">
+    <h2>Leadership</h2>
+    <div class="leader">
+      John Stany Xavier — Founder & CEO<br>
+      <img src="john.jpeg">
+    </div>
+    <div class="leader">
+      Sanjeev Kumar — Co-Founder<br>
+      <img src="sanjeev.jpeg">
+    </div>
+    <div class="leader">
+      Arogyaswamy Steevan — Managing Director<br>
+      <img src="arogyaswamy.jpeg">
     </div>
   </div>
 </section>
 
-<!-- HERO -->
-<section class="section">
-  <video autoplay muted loop playsinline preload="auto">
-    <source src="future.mp4" type="video/mp4">
-  </video>
-  <div class="overlay"></div>
+<div class="spacer"></div>
+
+<!-- FINAL -->
+<section data-video="future">
   <div class="content">
-    <h1>Engineering the Skies</h1>
-    <p>
-      AlphaX Aerospace designs indigenous aircraft platforms
-      for defence, training, and next-generation aviation.
-    </p>
+    <h2>Built in India.<br>Engineered for the Next 50 Years.</h2>
+    <a href="#" class="cta">Request Briefing</a>
   </div>
 </section>
 
-<!-- SKYROVER -->
-<section class="section">
-  <video autoplay muted loop playsinline preload="auto">
-    <source src="skyrover1.mp4" type="video/mp4">
-  </video>
-  <div class="overlay"></div>
-  <div class="content">
-    <h1>SkyRover Platform</h1>
-    <p>
-      A modular manned aircraft engineered for ISR,
-      pilot training, and tactical endurance.
-    </p>
-  </div>
-</section>
+<!-- VIDEO SWITCH + PARALLAX + REVEAL -->
+<script>
+const contents = document.querySelectorAll('.content');
+const sections = document.querySelectorAll('section');
 
-<!-- INTERIOR -->
-<section class="section">
-  <video autoplay muted loop playsinline preload="auto">
-    <source src="interior.mp4" type="video/mp4">
-  </video>
-  <div class="overlay"></div>
-  <div class="content">
-    <h1>Human-Centric Flight</h1>
-    <p>
-      GlideCore™ vibration isolation and ergonomic cockpit
-      architecture reduce fatigue on long missions.
-    </p>
-  </div>
-</section>
+const videos = {
+  future: document.getElementById('v-future'),
+  interor: document.getElementById('v-interor'),
+  skyrover: document.getElementById('v-skyrover'),
+  tactical: document.getElementById('v-tactical')
+};
 
-<!-- TACTICAL -->
-<section class="section">
-  <video autoplay muted loop playsinline preload="auto">
-    <source src="tacticalrover.mp4" type="video/mp4">
-  </video>
-  <div class="overlay"></div>
-  <div class="content">
-    <h1>Mission-Ready Systems</h1>
-    <p>
-      Designed for surveillance, reconnaissance,
-      and future defence adaptability.
-    </p>
-  </div>
-</section>
+const revealObserver = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+    }
+  });
+},{threshold:.3});
 
-<footer>
-© 2026 AlphaX Aerospace Pvt Ltd · Engineering the Skies
-</footer>
+contents.forEach(c=>revealObserver.observe(c));
+
+const videoObserver = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const key = e.target.getAttribute('data-video');
+      if(!key) return;
+      Object.values(videos).forEach(v=>v.classList.remove('active'));
+      videos[key].classList.add('active');
+    }
+  });
+},{threshold:.6});
+
+sections.forEach(s=>videoObserver.observe(s));
+
+window.addEventListener('scroll',()=>{
+  const y = window.scrollY * 0.0003;
+  document.querySelectorAll('.bg-video').forEach(v=>{
+    v.style.transform = `scale(${1.05 - y})`;
+  });
+});
+</script>
 
 </body>
 </html>
