@@ -1,236 +1,265 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AlphaX Aerospace</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+<html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> <title>AlphaX Aerospace | Engineering the Skies</title> <style> :root { --accent-cyan: #00f2ff; --metallic-silver: #c0c0c0; --deep-space: #05070a; --text-main: #ffffff; --text-muted: #a0a0a0; --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
 
-<style>
-/* ================= BASE ================= */
-*{margin:0;padding:0;box-sizing:border-box}
-html,body{
-  background:#020406;
-  color:#e0e0e0;
-  font-family:'Syncopate',sans-serif;
-  overflow-x:hidden;
-}
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-/* ================= INTRO ================= */
-.intro{
-  height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  position:relative;
-  overflow:hidden;
-}
+    body {
+        background-color: var(--deep-space);
+        color: var(--text-main);
+        font-family: var(--font-sans);
+        line-height: 1.6;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+    }
 
-/* Space grid */
-.space-grid{
-  position:absolute;
-  inset:-100%;
-  background-image:
-    linear-gradient(rgba(0,242,255,.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,242,255,.05) 1px, transparent 1px);
-  background-size:50px 50px;
-  transform:perspective(600px) rotateX(60deg);
-  animation:gridMove 20s linear infinite;
-  z-index:0;
-}
+    /* --- Intro Animation --- */
+    #intro-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--deep-space);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        transition: opacity 1s ease-in-out, visibility 1s;
+    }
 
-/* Logo stage */
-.logo-stage{
-  position:relative;
-  display:flex;
-  align-items:center;
-  gap:40px;
-  z-index:1;
-}
+    .intro-svg {
+        width: 120px;
+        height: auto;
+        overflow: visible;
+    }
 
-/* SVG */
-.alphax-svg{width:200px}
-.a-frame{
-  fill:none;
-  stroke:#e0e0e0;
-  stroke-width:.6;
-  stroke-dasharray:1000;
-  stroke-dashoffset:1000;
-  animation:draw 3s ease forwards, fillMetal 2s 2s forwards;
-}
-.swoosh-path{
-  fill:none;
-  stroke:#00f2ff;
-  stroke-width:3;
-  stroke-dasharray:400;
-  stroke-dashoffset:400;
-  animation:draw 2s 2s ease forwards;
-}
+    .logo-stroke {
+        fill: none;
+        stroke: var(--metallic-silver);
+        stroke-width: 2;
+        stroke-dasharray: 500;
+        stroke-dashoffset: 500;
+        animation: drawLogo 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
 
-/* Text */
-.text-reveal{
-  opacity:0;
-  transform:translateX(40px);
-  animation:reveal 2s 2s forwards;
-}
-.title{
-  font-size:72px;
-  letter-spacing:14px;
-}
-.subtitle{
-  font-size:14px;
-  letter-spacing:10px;
-  color:#777;
-  margin-top:14px;
-}
+    .swoosh {
+        fill: none;
+        stroke: var(--accent-cyan);
+        stroke-width: 3;
+        stroke-linecap: round;
+        stroke-dasharray: 300;
+        stroke-dashoffset: 300;
+        animation: drawSwoosh 2s cubic-bezier(0.4, 0, 0.2, 1) forwards 1s;
+    }
 
-/* ================= SECTIONS ================= */
-.section{
-  position:relative;
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  padding:10vw;
-  overflow:hidden;
-}
+    @keyframes drawLogo {
+        to { stroke-dashoffset: 0; }
+    }
 
-.section video{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  z-index:-2;
-  background:black;
-}
+    @keyframes drawSwoosh {
+        to { stroke-dashoffset: 0; }
+    }
 
-.overlay{
-  position:absolute;
-  inset:0;
-  background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.85));
-  z-index:-1;
-}
+    .fade-out {
+        opacity: 0;
+        visibility: hidden;
+    }
 
-.content{
-  max-width:800px;
-}
+    /* --- Navigation --- */
+    nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        padding: 30px 50px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 100;
+        background: linear-gradient(to bottom, rgba(5,7,10,0.8) 0%, transparent 100%);
+    }
 
-.content h1{
-  font-size:clamp(36px,6vw,64px);
-}
-.content p{
-  margin-top:20px;
-  font-family:system-ui,sans-serif;
-  letter-spacing:.3px;
-  line-height:1.7;
-  color:#cfd6df;
-}
+    .nav-logo {
+        font-weight: 700;
+        letter-spacing: 2px;
+        font-size: 1.2rem;
+        color: var(--text-main);
+        text-decoration: none;
+    }
 
-/* ================= FOOTER ================= */
-footer{
-  padding:40px;
-  text-align:center;
-  font-family:system-ui,sans-serif;
-  color:#888;
-}
+    .nav-logo span {
+        color: var(--accent-cyan);
+    }
 
-/* ================= MOBILE ================= */
-@media(max-width:768px){
-  .title{font-size:42px;letter-spacing:8px}
-  .section{padding:14vw 8vw}
-}
+    /* --- Fullscreen Sections --- */
+    section {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
 
-/* ================= ANIMATIONS ================= */
-@keyframes draw{to{stroke-dashoffset:0}}
-@keyframes fillMetal{to{fill:rgba(224,224,224,.08);stroke-width:1.4}}
-@keyframes reveal{to{opacity:1;transform:none}}
-@keyframes gridMove{to{background-position:0 1000px}}
+    .video-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
+
+    video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .overlay-vignette {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle, transparent 40%, rgba(5,7,10,0.4) 100%);
+    }
+
+    .content {
+        max-width: 900px;
+        padding: 0 40px;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: clamp(2.5rem, 8vw, 4.5rem);
+        font-weight: 300;
+        letter-spacing: -1px;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+    }
+
+    h2 {
+        font-size: clamp(1.5rem, 5vw, 2.5rem);
+        font-weight: 400;
+        margin-bottom: 20px;
+    }
+
+    p {
+        font-size: 1.1rem;
+        color: var(--text-muted);
+        max-width: 600px;
+        margin: 0 auto;
+        font-weight: 300;
+    }
+
+    .accent-bar {
+        width: 40px;
+        height: 2px;
+        background: var(--accent-cyan);
+        margin: 20px auto;
+    }
+
+    /* --- Mobile Responsiveness --- */
+    @media (max-width: 768px) {
+        nav { padding: 20px; }
+        .content { padding: 0 20px; }
+        p { font-size: 0.95rem; }
+    }
+
+    /* Prevent scroll pull-to-refresh on mobile while allowing normal scroll */
+    html, body {
+        overscroll-behavior-y: none;
+    }
 </style>
-</head>
+</head> <body>
 
-<body>
-
-<!-- INTRO -->
-<section class="intro">
-  <div class="space-grid"></div>
-
-  <div class="logo-stage">
-    <svg class="alphax-svg" viewBox="0 0 120 120">
-      <path class="a-frame" d="M10,110 L60,10 L110,110 L92,110 L60,45 L28,110 Z"/>
-      <path class="swoosh-path" d="M18,92 C40,70 80,70 102,92"/>
+<div id="intro-overlay">
+    <svg class="intro-svg" viewBox="0 0 100 100">
+        <path class="logo-stroke" d="M20 80 L50 20 L80 80 M35 55 L65 55" />
+        <path class="swoosh" d="M10 85 C 30 75, 70 95, 95 65" />
     </svg>
+</div>
 
-    <div class="text-reveal">
-      <div class="title">ALPHAX</div>
-      <div class="subtitle">AEROSPACE PVT LTD</div>
+<nav>
+    <a href="#" class="nav-logo">ALPHAX <span>AEROSPACE</span></a>
+</nav>
+
+<section id="vision">
+    <div class="video-container">
+        <video autoplay muted loop playsinline poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+            <source src="future.mp4" type="video/mp4">
+        </video>
+        <div class="overlay-vignette"></div>
     </div>
-  </div>
+    <div class="content">
+        <h1>Engineering the Skies</h1>
+        <p>Pioneering indigenous aerospace solutions designed for the next century of global flight and beyond.</p>
+    </div>
 </section>
 
-<!-- HERO -->
-<section class="section">
-  <video autoplay muted loop playsinline preload="auto">
-    <source src="future.mp4" type="video/mp4">
-  </video>
-  <div class="overlay"></div>
-  <div class="content">
-    <h1>Engineering the Skies</h1>
-    <p>
-      AlphaX Aerospace designs indigenous aircraft platforms
-      for defence, training, and next-generation aviation.
-    </p>
-  </div>
+<section id="skyrover">
+    <div class="video-container">
+        <video autoplay muted loop playsinline>
+            <source src="skyrover1.mp4" type="video/mp4">
+        </video>
+        <div class="overlay-vignette"></div>
+    </div>
+    <div class="content">
+        <div class="accent-bar"></div>
+        <h2>SkyRover Platform</h2>
+        <p>Our flagship manned aircraft architecture. High-altitude endurance meets unprecedented aerodynamic efficiency.</p>
+    </div>
 </section>
 
-<!-- SKYROVER -->
-<section class="section">
-  <video autoplay muted loop playsinline preload="auto">
-    <source src="skyrover1.mp4" type="video/mp4">
-  </video>
-  <div class="overlay"></div>
-  <div class="content">
-    <h1>SkyRover Platform</h1>
-    <p>
-      A modular manned aircraft engineered for ISR,
-      pilot training, and tactical endurance.
-    </p>
-  </div>
+<section id="interior">
+    <div class="video-container">
+        <video autoplay muted loop playsinline>
+            <source src="interior.mp4" type="video/mp4">
+        </video>
+        <div class="overlay-vignette"></div>
+    </div>
+    <div class="content">
+        <div class="accent-bar"></div>
+        <h2>Human-Centric Flight</h2>
+        <p>Rethinking the cockpit. We prioritize pilot ergonomics and situational awareness through integrated digital-analogue systems.</p>
+    </div>
 </section>
 
-<!-- INTERIOR -->
-<section class="section">
-  <video autoplay muted loop playsinline preload="auto">
-    <source src="interior.mp4" type="video/mp4">
-  </video>
-  <div class="overlay"></div>
-  <div class="content">
-    <h1>Human-Centric Flight</h1>
-    <p>
-      GlideCore™ vibration isolation and ergonomic cockpit
-      architecture reduce fatigue on long missions.
-    </p>
-  </div>
+<section id="tactical">
+    <div class="video-container">
+        <video autoplay muted loop playsinline>
+            <source src="tacticalrover.mp4" type="video/mp4">
+        </video>
+        <div class="overlay-vignette"></div>
+    </div>
+    <div class="content">
+        <div class="accent-bar"></div>
+        <h2>Defence Readiness</h2>
+        <p>Mission-ready systems engineered for tactical superiority and rugged reliability in contested environments.</p>
+    </div>
 </section>
 
-<!-- TACTICAL -->
-<section class="section">
-  <video autoplay muted loop playsinline preload="auto">
-    <source src="tacticalrover.mp4" type="video/mp4">
-  </video>
-  <div class="overlay"></div>
-  <div class="content">
-    <h1>Mission-Ready Systems</h1>
-    <p>
-      Designed for surveillance, reconnaissance,
-      and future defence adaptability.
-    </p>
-  </div>
-</section>
+<script>
+    // Intro handling
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            const intro = document.getElementById('intro-overlay');
+            intro.classList.add('fade-out');
+        }, 3500);
+    });
 
-<footer>
-© 2026 AlphaX Aerospace Pvt Ltd · Engineering the Skies
-</footer>
-
-</body>
-</html>
+    // Ensure videos play on mobile power-save or interaction
+    document.body.addEventListener('touchstart', function() {
+        const videos = document.querySelectorAll('video');
+        videos.forEach(v => {
+            if (v.paused) v.play();
+        });
+    }, {once: true});
+</script>
+</body> </html>
