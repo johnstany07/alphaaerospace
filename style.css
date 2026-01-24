@@ -1652,40 +1652,82 @@ html, body {
   opacity: 1;
 }
 
-/* =========================
-   FOUNDERS – PHOTO CARDS
-========================= */
+/* ================================
+   FOUNDERS / LEADERSHIP SECTION
+================================ */
 
-.founders-cards {
-  align-items: stretch;
+.founders-section {
+  padding: 100px 8%;
+  background: radial-gradient(circle at top, #0b1220, #03060c);
 }
 
-.founder-card {
+.founders-title {
   text-align: center;
-}
-
-.founder-card img {
-  width: 170px;
-  height: 170px;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 50%;
+  font-size: 42px;
+  font-weight: 600;
+  color: #ffffff;
   margin-bottom: 20px;
-  border: 2px solid rgba(255,255,255,0.18);
-  transition: all 0.3s ease;
 }
 
+.founders-subtitle {
+  text-align: center;
+  color: #9fb6cc;
+  max-width: 720px;
+  margin: 0 auto 70px;
+  line-height: 1.7;
 }
 
-.founder-card:hover img {
-  filter: grayscale(0%);
-  transform: translateY(-4px);
-  border-color: #4da3ff;
+/* GRID */
+.founders-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 60px;
 }
 
-.founder-card .role {
-  font-size: 14px;
-  color: #4da3ff;
-  margin-bottom: 12px;
-  letter-spacing: 0.5px;
+/* CARD */
+.founder {
+  text-align: center;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 22px;
+  padding: 45px 30px;
+  transition: all 0.35s ease;
 }
+
+.founder:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 30px 80px rgba(0,160,255,0.18);
+}
+
+/* IMAGE */
+.founder img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.25);
+  margin-bottom: 28px;
+}
+
+/* TEXT */
+.founder h3 {
+  font-size: 20px;
+  color: #ffffff;
+  margin-bottom: 6px;
+}
+
+.founder span {
+  display: block;
+  font-size: 13px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: #4cc3ff;
+  margin-bottom: 18px;
+}
+
+.founder p {
+  font-size: 14.5px;
+  color: #cfd8e3;
+  line-height: 1.7;
+}
+
