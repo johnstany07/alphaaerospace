@@ -5,20 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AlphaX Aerospace | Engineering the Skies</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
 <style>
 :root{
   --bg:#0b0f14;
   --text:#ffffff;
-  --muted:#c9d1d9;
+  --muted:#cfd6df;
   --accent:#00f2ff;
-  --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
 body{
   background:var(--bg);
   color:var(--text);
-  font-family:var(--font);
+  font-family:'Inter',sans-serif;
   overflow-x:hidden;
 }
 
@@ -27,13 +28,13 @@ nav{
   position:fixed;
   top:0;
   width:100%;
-  padding:22px 40px;
+  padding:24px 40px;
   z-index:10;
   background:linear-gradient(to bottom, rgba(0,0,0,.35), transparent);
 }
 nav span{
-  font-weight:600;
-  letter-spacing:2px;
+  letter-spacing:3px;
+  font-weight:500;
 }
 
 /* SECTIONS */
@@ -43,8 +44,10 @@ section{
   display:flex;
   align-items:center;
   padding:0 10vw;
+  overflow:hidden;
 }
 
+/* VIDEO — ABSOLUTELY NO TRANSFORM */
 .video-bg{
   position:absolute;
   inset:0;
@@ -52,34 +55,41 @@ section{
   height:100%;
   object-fit:cover;
   z-index:-2;
-
-  /* 🔥 IMPORTANT: BRIGHT VIDEO */
-  filter: brightness(1.35) contrast(1.05) saturate(1.05);
+  filter:brightness(1.35) contrast(1.05) saturate(1.05);
 }
 
+/* LIGHT OVERLAY */
 .overlay{
   position:absolute;
   inset:0;
   background:linear-gradient(
     180deg,
-    rgba(0,0,0,.15),
+    rgba(0,0,0,.18),
     rgba(0,0,0,.35)
   );
   z-index:-1;
 }
 
+/* CONTENT */
 .content{
-  max-width:760px;
+  max-width:780px;
+  opacity:0;
+  transform:translateY(40px);
+  transition:all 1s ease;
+}
+.content.show{
+  opacity:1;
+  transform:translateY(0);
 }
 
 h1{
-  font-size:clamp(42px,6vw,76px);
+  font-size:clamp(42px,6vw,78px);
   font-weight:600;
-  margin-bottom:20px;
+  margin-bottom:22px;
 }
 
 h2{
-  font-size:clamp(26px,4vw,42px);
+  font-size:clamp(26px,4vw,44px);
   font-weight:500;
   margin-bottom:18px;
 }
@@ -101,7 +111,7 @@ p{
 @media(max-width:768px){
   section{padding:0 7vw}
   .video-bg{
-    filter: brightness(1.45) contrast(1.05);
+    filter:brightness(1.45) contrast(1.05);
   }
 }
 </style>
@@ -123,7 +133,7 @@ p{
     <h1>Engineering the Skies</h1>
     <p>
       AlphaX Aerospace builds indigenous aircraft platforms
-      focused on defence, pilot training, and next-generation aviation.
+      for defence, pilot training, and next-generation aviation.
     </p>
   </div>
 </section>
@@ -155,7 +165,7 @@ p{
     <h2>Human-Centric Flight</h2>
     <p>
       GlideCore™ vibration control and ergonomic cockpit design
-      reduce fatigue and improve mission endurance.
+      reduce fatigue and increase mission endurance.
     </p>
   </div>
 </section>
@@ -175,6 +185,20 @@ p{
     </p>
   </div>
 </section>
+
+<script>
+/* PURE TEXT REVEAL — NO VIDEO TOUCH */
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('show');
+    }
+  });
+},{threshold:0.4});
+
+document.querySelectorAll('.content')
+  .forEach(el=>observer.observe(el));
+</script>
 
 </body>
 </html>
