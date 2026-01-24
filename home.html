@@ -2,336 +2,344 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AlphaX Aerospace | Indigenous Aerospace Platforms</title>
-  <link rel="stylesheet" href="style.css">
+  <title>AlphaX Aerospace | Take Off</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- FONT -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================
+       RESET & BASE
+    ========================= */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: #03060c;
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 10%;
+      scroll-snap-align: start;
+      position: relative;
+    }
+
+    html {
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+    }
+
+    h1 {
+      font-size: clamp(42px, 6vw, 76px);
+      font-weight: 700;
+      line-height: 1.05;
+    }
+
+    h2 {
+      font-size: clamp(28px, 4vw, 46px);
+      font-weight: 600;
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 1.7;
+      color: #cfd8e3;
+      max-width: 720px;
+    }
+
+    .center {
+      text-align: center;
+    }
+
+    /* =========================
+       HERO / TAKE OFF
+    ========================= */
+    .hero {
+      background: #000;
+      overflow: hidden;
+    }
+
+    .hero video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.35) contrast(1.1);
+      z-index: 0;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(10,15,25,0.5), rgba(3,6,12,0.95));
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+
+    .hero-content span {
+      display: block;
+      letter-spacing: 3px;
+      font-size: 12px;
+      color: #4cc3ff;
+      margin-bottom: 18px;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 40px;
+      font-size: 12px;
+      letter-spacing: 2px;
+      opacity: 0.6;
+    }
+
+    /* =========================
+       STORY SECTIONS
+    ========================= */
+    .dark {
+      background: #02040a;
+    }
+
+    .gradient {
+      background: linear-gradient(180deg, #040814, #02040a);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.9s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =========================
+       TECH BLOCKS
+    ========================= */
+    .tech-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      margin-top: 40px;
+    }
+
+    .tech {
+      border-left: 3px solid #4cc3ff;
+      padding-left: 24px;
+    }
+
+    .tech h3 {
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    /* =========================
+       SKYROVER
+    ========================= */
+    .skyrover {
+      background: linear-gradient(180deg, #02040a, #050b18);
+    }
+
+    .cta {
+      margin-top: 30px;
+      display: inline-block;
+      padding: 14px 34px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #4cc3ff, #63ffd8);
+      color: #000;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    /* =========================
+       PROJECTS
+    ========================= */
+    .projects-list {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      font-size: 18px;
+    }
+
+    .projects-list span {
+      color: #9fb6cc;
+    }
+
+    /* =========================
+       LEADERSHIP
+    ========================= */
+    .leaders {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      font-size: 18px;
+    }
+
+    .leaders strong {
+      color: #ffffff;
+    }
+
+    /* =========================
+       FOOTER / CTA
+    ========================= */
+    .final {
+      background: radial-gradient(circle at top, #0a1222, #02040a);
+    }
+
+    footer {
+      position: absolute;
+      bottom: 30px;
+      font-size: 12px;
+      opacity: 0.6;
+    }
+  </style>
 </head>
 
 <body>
 
 <!-- ================= HERO ================= -->
-<section class="hero hero-video">
+<section class="hero">
+  <!-- Optional video (keep file in root) -->
+  <video autoplay muted loop playsinline>
+    <source src="skyrover360.mp4" type="video/mp4">
+  </video>
 
- <video
-  autoplay
-  muted
-  loop
-  playsinline
-  preload="auto"
-  class="intro-video"
->
-  <source src="/skyrover360.mp4" type="video/mp4">
-</video>
-
-  <div class="hero-overlay"></div>
-
-  <div class="hero-content">
-    <h1>Engineering India’s<br>Next Generation of Flight</h1>
-    <p>
-      Indigenous aerospace platforms for defence, training,
-      surveillance, and future aviation.
-    </p>
-
-    <div class="hero-buttons">
-      <a href="skyrover.html" class="btn primary">Explore SkyRover</a>
-      <a href="projects.html" class="btn secondary">View Programs</a>
-    </div>
+  <div class="hero-content reveal">
+    <span>ALPHAX AEROSPACE</span>
+    <h1>Engineering India’s<br>Sovereign Skies</h1>
   </div>
 
+  <div class="scroll-hint">SCROLL TO INITIATE</div>
 </section>
 
-  <div class="hero-overlay"></div>
-
-  <div class="hero-content">
-    <h1>Engineering India’s<br>Next Generation of Flight</h1>
+<!-- ================= WHY ================= -->
+<section class="dark center">
+  <div class="reveal">
+    <h2>Why AlphaX Exists</h2>
     <p>
-      Indigenous aerospace platforms engineered for defence, pilot training,
-      surveillance, and next-generation air mobility.
+      India does not lack aerospace talent.<br>
+      It lacks sovereign, mission-ready platforms.
     </p>
-
-    <div class="hero-buttons">
-      <a href="skyrover.html" class="btn primary">Explore SkyRover</a>
-      <a href="projects.html" class="btn secondary">View Programs</a>
-    </div>
+    <p>
+      AlphaX Aerospace exists to change that — through disciplined engineering,
+      indigenous systems, and long-term thinking.
+    </p>
   </div>
 </section>
 
-<!-- ================= WHO WE ARE ================= -->
-<section class="section">
-  <h2>Who We Are</h2>
-  <p>
-    AlphaX Aerospace Pvt Ltd is an Indian deep-tech aerospace company focused on
-    designing, engineering, and manufacturing mission-adaptive aircraft and
-    autonomous platforms.
-  </p>
-  <p>
-    We build platforms that prioritize operational reliability, indigenous
-    systems, and real-world deployment — not experimental concepts.
-  </p>
+<!-- ================= TECHNOLOGY ================= -->
+<section class="gradient center">
+  <div class="reveal">
+    <h2>Core Aerospace Systems</h2>
+
+    <div class="tech-stack">
+      <div class="tech">
+        <h3>AlphaX GlideCore™</h3>
+        <p>Human-centric vibration and fatigue control engineered at airframe level.</p>
+      </div>
+
+      <div class="tech">
+        <h3>AlphaX FlightCore™</h3>
+        <p>Predictable, pilot-first flight control architecture with autonomy readiness.</p>
+      </div>
+
+      <div class="tech">
+        <h3>AlphaX PowerCore™</h3>
+        <p>Aviation-grade energy management for electric and hybrid platforms.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- ================= TECHNOLOGIES ================= -->
-<section class="section dark">
-  <h2>Core Aerospace Technologies</h2>
-
-  <div class="cards">
-
-   <div class="cards">
-
-  <!-- GlideCore -->
-  <div class="card">
-    <h3>AlphaX GlideCore™</h3>
+<!-- ================= SKYROVER ================= -->
+<section class="skyrover center">
+  <div class="reveal">
+    <h2>SkyRover™</h2>
     <p>
-      GlideCore™ is AlphaX Aerospace’s proprietary vibration and comfort
-      control architecture, designed at the airframe and pilot-interface
-      level rather than as an add-on system.
+      India’s indigenous manned light aircraft platform designed for defence,
+      training, and multi-role operations.
     </p>
-    <p>
-      Unlike conventional damping solutions, GlideCore™ treats vibration
-      as a system-level design problem, improving pilot endurance,
-      handling consistency, and long-duration mission stability.
-    </p>
-    <p><strong>Operational Impact:</strong> Reduced fatigue, improved
-      control confidence, and higher mission effectiveness.</p>
+
+    <a href="#" class="cta">Explore SkyRover</a>
   </div>
+</section>
 
-  <!-- AeroCore -->
-  <div class="card">
-    <h3>AlphaX AeroCore™</h3>
-    <p>
-      AeroCore™ is AlphaX’s indigenous aerodynamic and structural design
-      framework governing airframe geometry, load distribution, and
-      efficiency optimization.
-    </p>
-    <p>
-      The framework enables modular aircraft configurations without
-      compromising structural integrity or performance envelopes.
-    </p>
-    <p><strong>Operational Impact:</strong> Higher endurance, improved
-      efficiency, and adaptable mission profiles.</p>
-  </div>
+<!-- ================= PROJECTS ================= -->
+<section class="dark center">
+  <div class="reveal">
+    <h2>Strategic Programs</h2>
 
-  <!-- FlightCore -->
-  <div class="card">
-    <h3>AlphaX FlightCore™</h3>
-    <p>
-      FlightCore™ is an integrated flight control and avionics
-      architecture designed to enhance handling precision, stability,
-      and pilot situational awareness.
-    </p>
-    <p>
-      Built with a pilot-centric philosophy, FlightCore™ prioritizes
-      predictable control behavior over aggressive automation.
-    </p>
-    <p><strong>Operational Impact:</strong> Safer training, smoother
-      transitions, and higher pilot confidence.</p>
-  </div>
-
-  <!-- PowerCore -->
-  <div class="card">
-    <h3>AlphaX PowerCore™</h3>
-    <p>
-      PowerCore™ is AlphaX’s energy management and propulsion integration
-      system supporting electric, hybrid, and future propulsion
-      architectures.
-    </p>
-    <p>
-      Designed specifically for aviation-grade safety and redundancy,
-      PowerCore™ avoids adapting automotive battery logic to flight
-      applications.
-    </p>
-    <p><strong>Operational Impact:</strong> Improved reliability,
-      thermal stability, and future-ready propulsion capability.</p>
-  </div>
-
-</div>
-
-
-<!-- ================= PROGRAMS ================= -->
-<section class="section">
-  <h2>Flagship Programs</h2>
-
-  <div class="cards">
-
-    <div class="card">
-      <h3>SkyRover™</h3>
-      <p>
-        Indigenous manned light aircraft platform for defence, pilot training,
-        and regional aviation.
-      </p>
-      <a href="skyrover.html">Learn More →</a>
-    </div>
-
-    <div class="card">
-      <div class="cards project-cards">
-
-  <!-- SkyRover -->
-  <div class="card project-card">
-    <h3>SkyRover™ – Manned Light Aircraft</h3>
-    <p>
-      Indigenous manned aircraft platform designed for pilot training,
-      reconnaissance, and multi-role operations.
-    </p>
-
-    <div class="project-details">
-      <p>
-        SkyRover™ integrates AlphaX’s GlideCore™, AeroCore™, FlightCore™,
-        and PowerCore™ systems into a single scalable platform.
-      </p>
-      <p>
-        Designed with operational deployment in mind, the platform focuses
-        on handling stability, pilot endurance, and mission adaptability.
-      </p>
+    <div class="projects-list">
+      <span>• SeaRover™ – Maritime ISR Platform</span>
+      <span>• Anti-Landmine Detection Systems</span>
+      <span>• Defence-Oriented ISR Drones</span>
+      <span>• Long-Endurance Autonomous Platforms</span>
+      <span>• Advanced Propulsion Research</span>
     </div>
   </div>
-
-  <!-- SeaRover -->
-  <div class="card project-card">
-    <h3>SeaRover™ – Maritime ISR Platform</h3>
-    <p>
-      Maritime surveillance and reconnaissance platform for coastal
-      monitoring and situational awareness.
-    </p>
-
-    <div class="project-details">
-      <p>
-        SeaRover™ explores integration between aerial and maritime sensing
-        systems to extend coverage and endurance in coastal environments.
-      </p>
-      <p>
-        The program remains in conceptual and early research stages.
-      </p>
-    </div>
-  </div>
-
-  <!-- Anti-Landmine -->
-  <div class="card project-card">
-    <h3>Anti-Landmine Detection System</h3>
-    <p>
-      Autonomous system concept for detecting landmines and hazardous
-      terrain with minimal human exposure.
-    </p>
-
-    <div class="project-details">
-      <p>
-        The program emphasizes non-invasive sensing, remote operation,
-        and modular payload integration.
-      </p>
-      <p>
-        Intended for humanitarian and post-conflict clearance support.
-      </p>
-    </div>
-  </div>
-
-  <!-- ISR Drone -->
-  <div class="card project-card">
-    <h3>Defence-Oriented ISR Drone Program</h3>
-    <p>
-      Unmanned aerial research program focused on surveillance and
-      intelligence support missions.
-    </p>
-
-    <div class="project-details">
-      <p>
-        The platform is designed around endurance, stability, and secure
-        control architectures.
-      </p>
-      <p>
-        All development is aligned with applicable regulatory frameworks.
-      </p>
-    </div>
-  </div>
-
-  <!-- Nuclear -->
-  <div class="card project-card">
-    <h3>Nuclear-Powered Aircraft Research</h3>
-    <p>
-      Long-term academic research initiative exploring ultra-long
-      endurance propulsion concepts.
-    </p>
-
-    <div class="project-details">
-      <p>
-        This initiative is strictly theoretical and exploratory in nature,
-        focusing on feasibility, safety, and regulatory understanding.
-      </p>
-    </div>
-  </div>
-
-</div>
-
 </section>
 
 <!-- ================= LEADERSHIP ================= -->
-<section class="founders-section" id="founders">
+<section class="gradient center">
+  <div class="reveal">
+    <h2>Leadership</h2>
 
-  <h2 class="founders-title">Leadership</h2>
-  <p class="founders-subtitle">
-    Driven by engineering depth, defence vision, and long-term aerospace ambition.
-  </p>
-
-  <div class="founders-slider">
-
-    <div class="founder-slide active">
-      <img src="john.jpeg" alt="John Stany Xavier">
-      <h3>John Stany Xavier</h3>
-      <span>Founder & CEO</span>
-      <p>Leads aircraft architecture, systems integration, and long-term aerospace strategy.</p>
+    <div class="leaders">
+      <div><strong>John Stany Xavier</strong> — Founder & CEO</div>
+      <div><strong>Sanjeev Kumar</strong> — Co-Founder</div>
+      <div><strong>Arogyaswamy Steevan</strong> — Managing Director</div>
     </div>
-
-    <div class="founder-slide">
-      <img src="sanjeev.jpeg" alt="Sanjeev Kumar">
-      <h3>Sanjeev Kumar</h3>
-      <span>Co-Founder</span>
-      <p>Oversees business strategy, defence partnerships, and institutional engagement.</p>
-    </div>
-
-    <div class="founder-slide">
-      <img src="steevan.jpeg" alt="Arogyaswamy Steevan">
-      <h3>Arogyaswamy Steevan</h3>
-      <span>Managing Director</span>
-      <p>Guides organisational leadership, manufacturing vision, and governance.</p>
-    </div>
-
   </div>
 </section>
 
+<!-- ================= FINAL CTA ================= -->
+<section class="final center">
+  <div class="reveal">
+    <h2>Built in India.<br>Engineered for the Next 50 Years.</h2>
+    <a href="#" class="cta">Request Briefing</a>
+  </div>
 
-
-<!-- ================= VISION ================= -->
-<section class="section">
-  <h2>Our Vision</h2>
-  <p>
-    To build India’s most trusted indigenous aerospace platforms by combining
-    disciplined engineering, national priorities, and long-term thinking.
-  </p>
-  <p>
-    Future of Flight. Made in India.
-  </p>
+  <footer>© AlphaX Aerospace Pvt Ltd</footer>
 </section>
 
-<!-- ================= FOOTER ================= -->
-<footer>
-  <p>© 2026 AlphaX Aerospace Pvt Ltd. All rights reserved.</p>
-  <p>Made in India 🇮🇳</p>
-</footer>
-      <script>
-document.addEventListener("DOMContentLoaded", function () {
-  const slides = document.querySelectorAll('.founder-slide');
-  let index = 0;
+<!-- ================= SCROLL REVEAL SCRIPT ================= -->
+<script>
+  const reveals = document.querySelectorAll('.reveal');
 
-  if (slides.length > 0) {
-    slides[index].classList.add('active');
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    },
+    { threshold: 0.35 }
+  );
 
-    setInterval(() => {
-      slides[index].classList.remove('active');
-      index = (index + 1) % slides.length;
-      slides[index].classList.add('active');
-    }, 3500);
-  }
-});
+  reveals.forEach(r => observer.observe(r));
 </script>
-
 
 </body>
 </html>
