@@ -1652,80 +1652,32 @@ html, body {
   opacity: 1;
 }
 
-/* ================================
-   FOUNDERS / LEADERSHIP SECTION
-================================ */
-
-/* ===== FOUNDERS SLIDER ===== */
-
-.founders-section {
-  padding: 90px 6%;
-  background: radial-gradient(circle at top, #0b1220, #02040a);
-  text-align: center;
+.leaders-with-images {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  margin-top: 40px;
 }
 
-.founders-title {
-  font-size: 36px;
-  color: #fff;
-  margin-bottom: 12px;
+.leader {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  justify-content: center;
 }
 
-.founders-subtitle {
-  color: #9fb6cc;
-  max-width: 600px;
-  margin: 0 auto 50px;
-}
-
-.founders-slider {
-  position: relative;
-  max-width: 420px;
-  margin: auto;
-  min-height: 420px;
-}
-
-.founder-slide {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  transform: translateX(40px);
-  transition: all 0.8s ease;
-  padding: 40px 30px;
-  background: rgba(255,255,255,0.04);
-  border-radius: 22px;
-  border: 1px solid rgba(255,255,255,0.08);
-}
-
-.founder-slide.active {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.founder-slide img {
-  width: 130px;
-  height: 130px;
-  object-fit: cover;
+.leader img {
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
-  margin-bottom: 22px;
-  border: 2px solid rgba(255,255,255,0.3);
+  object-fit: cover;
+  filter: grayscale(100%);
+  border: 1px solid rgba(255,255,255,0.3);
+  transition: all 0.3s ease;
 }
 
-.founder-slide h3 {
-  color: #fff;
-  font-size: 19px;
-  margin-bottom: 6px;
-}
-
-.founder-slide span {
-  color: #4cc3ff;
-  font-size: 12px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
-.founder-slide p {
-  margin-top: 16px;
-  font-size: 14px;
-  color: #cfd8e3;
-  line-height: 1.6;
+.leader:hover img {
+  filter: grayscale(0%);
+  transform: scale(1.05);
 }
 
