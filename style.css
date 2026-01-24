@@ -1668,6 +1668,7 @@ html, body {
   width: 140px;
   height: 140px;
   object-fit: cover;
+  object-position: center top;
   border-radius: 50%;
   margin-bottom: 18px;
   border: 2px solid rgba(255,255,255,0.15);
