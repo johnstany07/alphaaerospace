@@ -2,282 +2,179 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AlphaX Aerospace | Engineering the Skies</title>
 
 <style>
 :root{
-  --accent-cyan:#00f2ff;
-  --metallic-silver:#cfd6df;
-  --deep-space:#05070a;
-  --text-main:#ffffff;
-  --text-muted:#b6bcc6;
-  --font-sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --bg:#0b0f14;
+  --text:#ffffff;
+  --muted:#c9d1d9;
+  --accent:#00f2ff;
+  --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
-
-html,body{
-  background:var(--deep-space);
-  color:var(--text-main);
-  font-family:var(--font-sans);
-  line-height:1.6;
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font);
   overflow-x:hidden;
-  -webkit-font-smoothing:antialiased;
 }
 
-/* ================= INTRO ================= */
-#intro-overlay{
-  position:fixed;
-  inset:0;
-  background:var(--deep-space);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  z-index:1000;
-  transition:opacity 1s ease,visibility 1s ease;
-}
-
-.intro-svg{
-  width:140px;
-}
-
-.logo-stroke{
-  fill:none;
-  stroke:var(--metallic-silver);
-  stroke-width:2;
-  stroke-dasharray:500;
-  stroke-dashoffset:500;
-  animation:drawLogo 2.5s ease forwards;
-}
-
-.swoosh{
-  fill:none;
-  stroke:var(--accent-cyan);
-  stroke-width:3;
-  stroke-linecap:round;
-  stroke-dasharray:300;
-  stroke-dashoffset:300;
-  animation:drawSwoosh 2s ease 1s forwards;
-}
-
-@keyframes drawLogo{to{stroke-dashoffset:0}}
-@keyframes drawSwoosh{to{stroke-dashoffset:0}}
-
-.fade-out{
-  opacity:0;
-  visibility:hidden;
-  pointer-events:none;
-}
-
-/* ================= NAV ================= */
+/* NAV */
 nav{
   position:fixed;
   top:0;
   width:100%;
-  padding:26px 40px;
-  z-index:100;
-  background:linear-gradient(to bottom,rgba(5,7,10,.75),transparent);
+  padding:22px 40px;
+  z-index:10;
+  background:linear-gradient(to bottom, rgba(0,0,0,.35), transparent);
 }
-
-.nav-logo{
+nav span{
   font-weight:600;
-  letter-spacing:3px;
-  font-size:1rem;
-  color:#fff;
-  text-decoration:none;
+  letter-spacing:2px;
 }
 
-/* ================= SECTIONS ================= */
+/* SECTIONS */
 section{
   position:relative;
-  width:100%;
   min-height:100vh;
   display:flex;
   align-items:center;
-  justify-content:center;
-  overflow:hidden;
+  padding:0 10vw;
 }
 
-.video-container{
+.video-bg{
   position:absolute;
   inset:0;
-  z-index:-2;
-  background:black;
-}
-
-video{
   width:100%;
   height:100%;
   object-fit:cover;
-  filter:brightness(1.25) contrast(1.08) saturate(1.05);
+  z-index:-2;
+
+  /* 🔥 IMPORTANT: BRIGHT VIDEO */
+  filter: brightness(1.35) contrast(1.05) saturate(1.05);
 }
 
-.overlay-vignette{
+.overlay{
   position:absolute;
   inset:0;
-  background:
-    radial-gradient(circle at center,
-      rgba(0,0,0,0.15),
-      rgba(0,0,0,0.45));
-  z-index:1;
+  background:linear-gradient(
+    180deg,
+    rgba(0,0,0,.15),
+    rgba(0,0,0,.35)
+  );
+  z-index:-1;
 }
 
 .content{
-  position:relative;
-  z-index:2;
-  max-width:900px;
-  padding:0 40px;
-  text-align:center;
+  max-width:760px;
 }
 
 h1{
-  font-size:clamp(2.8rem,8vw,4.8rem);
-  font-weight:300;
-  letter-spacing:-1px;
-  margin-bottom:22px;
-  text-transform:uppercase;
+  font-size:clamp(42px,6vw,76px);
+  font-weight:600;
+  margin-bottom:20px;
 }
 
 h2{
-  font-size:clamp(1.6rem,5vw,2.6rem);
-  font-weight:400;
-  margin-bottom:20px;
+  font-size:clamp(26px,4vw,42px);
+  font-weight:500;
+  margin-bottom:18px;
 }
 
 p{
   font-size:1.05rem;
-  color:var(--text-muted);
-  max-width:620px;
-  margin:0 auto;
+  line-height:1.7;
+  color:var(--muted);
 }
 
-.accent-bar{
+.accent{
   width:44px;
   height:2px;
-  background:var(--accent-cyan);
-  margin:18px auto;
+  background:var(--accent);
+  margin:18px 0;
 }
 
-/* ================= MOBILE ================= */
+/* MOBILE */
 @media(max-width:768px){
-  nav{padding:18px 20px}
-  .content{padding:0 20px}
-  p{font-size:.95rem}
-  video{filter:brightness(1.35) contrast(1.05)}
-}
-
-html,body{
-  overscroll-behavior-y:none;
+  section{padding:0 7vw}
+  .video-bg{
+    filter: brightness(1.45) contrast(1.05);
+  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- INTRO -->
-<div id="intro-overlay">
-  <svg class="intro-svg" viewBox="0 0 100 100">
-    <path class="logo-stroke"
-          d="M20 80 L50 20 L80 80 M35 55 L65 55"/>
-    <path class="swoosh"
-          d="M10 85 C30 75,70 95,95 65"/>
-  </svg>
-</div>
-
 <nav>
-  <a class="nav-logo">ALPHAX AEROSPACE</a>
+  <span>ALPHAX AEROSPACE</span>
 </nav>
 
-<!-- VISION -->
+<!-- HERO -->
 <section>
-  <div class="video-container">
-    <video autoplay muted loop playsinline preload="auto">
-      <source src="future.mp4" type="video/mp4">
-    </video>
-    <div class="overlay-vignette"></div>
-  </div>
+  <video class="video-bg" autoplay muted loop playsinline>
+    <source src="future.mp4" type="video/mp4">
+  </video>
+  <div class="overlay"></div>
   <div class="content">
     <h1>Engineering the Skies</h1>
     <p>
-      Indigenous aerospace platforms designed for endurance,
-      adaptability, and long-term sovereign capability.
+      AlphaX Aerospace builds indigenous aircraft platforms
+      focused on defence, pilot training, and next-generation aviation.
     </p>
   </div>
 </section>
 
 <!-- SKYROVER -->
 <section>
-  <div class="video-container">
-    <video autoplay muted loop playsinline preload="auto">
-      <source src="skyrover1.mp4" type="video/mp4">
-    </video>
-    <div class="overlay-vignette"></div>
-  </div>
+  <video class="video-bg" autoplay muted loop playsinline>
+    <source src="skyrover1.mp4" type="video/mp4">
+  </video>
+  <div class="overlay"></div>
   <div class="content">
-    <div class="accent-bar"></div>
+    <div class="accent"></div>
     <h2>SkyRover Platform</h2>
     <p>
-      A manned light aircraft architecture designed for pilot training,
-      surveillance, and mission adaptability.
+      A manned light aircraft architecture designed for
+      surveillance, training, and multi-mission adaptability.
     </p>
   </div>
 </section>
 
 <!-- INTERIOR -->
 <section>
-  <div class="video-container">
-    <video autoplay muted loop playsinline preload="auto">
-      <source src="interior.mp4" type="video/mp4">
-    </video>
-    <div class="overlay-vignette"></div>
-  </div>
+  <video class="video-bg" autoplay muted loop playsinline>
+    <source src="interior.mp4" type="video/mp4">
+  </video>
+  <div class="overlay"></div>
   <div class="content">
-    <div class="accent-bar"></div>
+    <div class="accent"></div>
     <h2>Human-Centric Flight</h2>
     <p>
-      Ergonomic cockpit systems and vibration-controlled
-      flight environments built around the pilot.
+      GlideCore™ vibration control and ergonomic cockpit design
+      reduce fatigue and improve mission endurance.
     </p>
   </div>
 </section>
 
 <!-- TACTICAL -->
 <section>
-  <div class="video-container">
-    <video autoplay muted loop playsinline preload="auto">
-      <source src="tacticalrover.mp4" type="video/mp4">
-    </video>
-    <div class="overlay-vignette"></div>
-  </div>
+  <video class="video-bg" autoplay muted loop playsinline>
+    <source src="tacticalrover.mp4" type="video/mp4">
+  </video>
+  <div class="overlay"></div>
   <div class="content">
-    <div class="accent-bar"></div>
-    <h2>Defence Readiness</h2>
+    <div class="accent"></div>
+    <h2>Mission-Ready Systems</h2>
     <p>
-      Mission-ready aerospace systems engineered
-      for reliability in contested environments.
+      Defence-oriented aerospace systems engineered for
+      reliability, survivability, and future upgrades.
     </p>
   </div>
 </section>
-
-<script>
-/* Intro fade out */
-window.addEventListener('load',()=>{
-  setTimeout(()=>{
-    document.getElementById('intro-overlay')
-      .classList.add('fade-out');
-  },3000);
-});
-
-/* Mobile autoplay assist */
-document.addEventListener('touchstart',()=>{
-  document.querySelectorAll('video').forEach(v=>{
-    if(v.paused) v.play().catch(()=>{});
-  });
-},{once:true});
-</script>
 
 </body>
 </html>
