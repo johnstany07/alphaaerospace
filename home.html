@@ -3,202 +3,234 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AlphaX Aerospace | Engineering the Skies</title>
+<title>AlphaX Aerospace</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
-:root{
-  --bg:#0b0f14;
-  --text:#ffffff;
-  --muted:#cfd6df;
-  --accent:#00f2ff;
-}
-
+/* ================= BASE ================= */
 *{margin:0;padding:0;box-sizing:border-box}
-body{
-  background:var(--bg);
-  color:var(--text);
-  font-family:'Inter',sans-serif;
+html,body{
+  background:#020406;
+  color:#e0e0e0;
+  font-family:'Syncopate',sans-serif;
   overflow-x:hidden;
 }
 
-/* NAV */
-nav{
-  position:fixed;
-  top:0;
-  width:100%;
-  padding:24px 40px;
-  z-index:10;
-  background:linear-gradient(to bottom, rgba(0,0,0,.35), transparent);
-}
-nav span{
-  letter-spacing:3px;
-  font-weight:500;
+/* ================= INTRO ================= */
+.intro{
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  overflow:hidden;
 }
 
-/* SECTIONS */
-section{
+/* Space grid */
+.space-grid{
+  position:absolute;
+  inset:-100%;
+  background-image:
+    linear-gradient(rgba(0,242,255,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,242,255,.05) 1px, transparent 1px);
+  background-size:50px 50px;
+  transform:perspective(600px) rotateX(60deg);
+  animation:gridMove 20s linear infinite;
+  z-index:0;
+}
+
+/* Logo stage */
+.logo-stage{
+  position:relative;
+  display:flex;
+  align-items:center;
+  gap:40px;
+  z-index:1;
+}
+
+/* SVG */
+.alphax-svg{width:200px}
+.a-frame{
+  fill:none;
+  stroke:#e0e0e0;
+  stroke-width:.6;
+  stroke-dasharray:1000;
+  stroke-dashoffset:1000;
+  animation:draw 3s ease forwards, fillMetal 2s 2s forwards;
+}
+.swoosh-path{
+  fill:none;
+  stroke:#00f2ff;
+  stroke-width:3;
+  stroke-dasharray:400;
+  stroke-dashoffset:400;
+  animation:draw 2s 2s ease forwards;
+}
+
+/* Text */
+.text-reveal{
+  opacity:0;
+  transform:translateX(40px);
+  animation:reveal 2s 2s forwards;
+}
+.title{
+  font-size:72px;
+  letter-spacing:14px;
+}
+.subtitle{
+  font-size:14px;
+  letter-spacing:10px;
+  color:#777;
+  margin-top:14px;
+}
+
+/* ================= SECTIONS ================= */
+.section{
   position:relative;
   min-height:100vh;
   display:flex;
   align-items:center;
-  padding:0 10vw;
+  padding:10vw;
   overflow:hidden;
 }
 
-/* VIDEO — ABSOLUTELY NO TRANSFORM */
-.video-bg{
+.section video{
   position:absolute;
   inset:0;
   width:100%;
   height:100%;
   object-fit:cover;
   z-index:-2;
-  filter:brightness(1.35) contrast(1.05) saturate(1.05);
+  background:black;
 }
 
-/* LIGHT OVERLAY */
 .overlay{
   position:absolute;
   inset:0;
-  background:linear-gradient(
-    180deg,
-    rgba(0,0,0,.18),
-    rgba(0,0,0,.35)
-  );
+  background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.85));
   z-index:-1;
 }
 
-/* CONTENT */
 .content{
-  max-width:780px;
-  opacity:0;
-  transform:translateY(40px);
-  transition:all 1s ease;
-}
-.content.show{
-  opacity:1;
-  transform:translateY(0);
+  max-width:800px;
 }
 
-h1{
-  font-size:clamp(42px,6vw,78px);
-  font-weight:600;
-  margin-bottom:22px;
+.content h1{
+  font-size:clamp(36px,6vw,64px);
 }
-
-h2{
-  font-size:clamp(26px,4vw,44px);
-  font-weight:500;
-  margin-bottom:18px;
-}
-
-p{
-  font-size:1.05rem;
+.content p{
+  margin-top:20px;
+  font-family:system-ui,sans-serif;
+  letter-spacing:.3px;
   line-height:1.7;
-  color:var(--muted);
+  color:#cfd6df;
 }
 
-.accent{
-  width:44px;
-  height:2px;
-  background:var(--accent);
-  margin:18px 0;
+/* ================= FOOTER ================= */
+footer{
+  padding:40px;
+  text-align:center;
+  font-family:system-ui,sans-serif;
+  color:#888;
 }
 
-/* MOBILE */
+/* ================= MOBILE ================= */
 @media(max-width:768px){
-  section{padding:0 7vw}
-  .video-bg{
-    filter:brightness(1.45) contrast(1.05);
-  }
+  .title{font-size:42px;letter-spacing:8px}
+  .section{padding:14vw 8vw}
 }
+
+/* ================= ANIMATIONS ================= */
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes fillMetal{to{fill:rgba(224,224,224,.08);stroke-width:1.4}}
+@keyframes reveal{to{opacity:1;transform:none}}
+@keyframes gridMove{to{background-position:0 1000px}}
 </style>
 </head>
 
 <body>
 
-<nav>
-  <span>ALPHAX AEROSPACE</span>
-</nav>
+<!-- INTRO -->
+<section class="intro">
+  <div class="space-grid"></div>
+
+  <div class="logo-stage">
+    <svg class="alphax-svg" viewBox="0 0 120 120">
+      <path class="a-frame" d="M10,110 L60,10 L110,110 L92,110 L60,45 L28,110 Z"/>
+      <path class="swoosh-path" d="M18,92 C40,70 80,70 102,92"/>
+    </svg>
+
+    <div class="text-reveal">
+      <div class="title">ALPHAX</div>
+      <div class="subtitle">AEROSPACE PVT LTD</div>
+    </div>
+  </div>
+</section>
 
 <!-- HERO -->
-<section>
-  <video class="video-bg" autoplay muted loop playsinline>
+<section class="section">
+  <video autoplay muted loop playsinline preload="auto">
     <source src="future.mp4" type="video/mp4">
   </video>
   <div class="overlay"></div>
   <div class="content">
     <h1>Engineering the Skies</h1>
     <p>
-      AlphaX Aerospace builds indigenous aircraft platforms
-      for defence, pilot training, and next-generation aviation.
+      AlphaX Aerospace designs indigenous aircraft platforms
+      for defence, training, and next-generation aviation.
     </p>
   </div>
 </section>
 
 <!-- SKYROVER -->
-<section>
-  <video class="video-bg" autoplay muted loop playsinline>
+<section class="section">
+  <video autoplay muted loop playsinline preload="auto">
     <source src="skyrover1.mp4" type="video/mp4">
   </video>
   <div class="overlay"></div>
   <div class="content">
-    <div class="accent"></div>
-    <h2>SkyRover Platform</h2>
+    <h1>SkyRover Platform</h1>
     <p>
-      A manned light aircraft architecture designed for
-      surveillance, training, and multi-mission adaptability.
+      A modular manned aircraft engineered for ISR,
+      pilot training, and tactical endurance.
     </p>
   </div>
 </section>
 
 <!-- INTERIOR -->
-<section>
-  <video class="video-bg" autoplay muted loop playsinline>
+<section class="section">
+  <video autoplay muted loop playsinline preload="auto">
     <source src="interior.mp4" type="video/mp4">
   </video>
   <div class="overlay"></div>
   <div class="content">
-    <div class="accent"></div>
-    <h2>Human-Centric Flight</h2>
+    <h1>Human-Centric Flight</h1>
     <p>
-      GlideCore™ vibration control and ergonomic cockpit design
-      reduce fatigue and increase mission endurance.
+      GlideCore™ vibration isolation and ergonomic cockpit
+      architecture reduce fatigue on long missions.
     </p>
   </div>
 </section>
 
 <!-- TACTICAL -->
-<section>
-  <video class="video-bg" autoplay muted loop playsinline>
+<section class="section">
+  <video autoplay muted loop playsinline preload="auto">
     <source src="tacticalrover.mp4" type="video/mp4">
   </video>
   <div class="overlay"></div>
   <div class="content">
-    <div class="accent"></div>
-    <h2>Mission-Ready Systems</h2>
+    <h1>Mission-Ready Systems</h1>
     <p>
-      Defence-oriented aerospace systems engineered for
-      reliability, survivability, and future upgrades.
+      Designed for surveillance, reconnaissance,
+      and future defence adaptability.
     </p>
   </div>
 </section>
 
-<script>
-/* PURE TEXT REVEAL — NO VIDEO TOUCH */
-const observer = new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.classList.add('show');
-    }
-  });
-},{threshold:0.4});
-
-document.querySelectorAll('.content')
-  .forEach(el=>observer.observe(el));
-</script>
+<footer>
+© 2026 AlphaX Aerospace Pvt Ltd · Engineering the Skies
+</footer>
 
 </body>
 </html>
