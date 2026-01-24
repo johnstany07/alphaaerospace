@@ -1656,78 +1656,76 @@ html, body {
    FOUNDERS / LEADERSHIP SECTION
 ================================ */
 
+/* ===== FOUNDERS SLIDER ===== */
+
 .founders-section {
-  padding: 100px 8%;
-  background: radial-gradient(circle at top, #0b1220, #03060c);
+  padding: 90px 6%;
+  background: radial-gradient(circle at top, #0b1220, #02040a);
+  text-align: center;
 }
 
 .founders-title {
-  text-align: center;
-  font-size: 42px;
-  font-weight: 600;
-  color: #ffffff;
-  margin-bottom: 20px;
+  font-size: 36px;
+  color: #fff;
+  margin-bottom: 12px;
 }
 
 .founders-subtitle {
-  text-align: center;
   color: #9fb6cc;
-  max-width: 720px;
-  margin: 0 auto 70px;
-  line-height: 1.7;
+  max-width: 600px;
+  margin: 0 auto 50px;
 }
 
-/* GRID */
-.founders-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 60px;
+.founders-slider {
+  position: relative;
+  max-width: 420px;
+  margin: auto;
+  min-height: 420px;
 }
 
-/* CARD */
-.founder {
-  text-align: center;
+.founder-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: translateX(40px);
+  transition: all 0.8s ease;
+  padding: 40px 30px;
   background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
   border-radius: 22px;
-  padding: 45px 30px;
-  transition: all 0.35s ease;
+  border: 1px solid rgba(255,255,255,0.08);
 }
 
-.founder:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 30px 80px rgba(0,160,255,0.18);
+.founder-slide.active {
+  opacity: 1;
+  transform: translateX(0);
 }
 
-/* IMAGE */
-.founder img {
-  width: 180px;
-  height: 180px;
+.founder-slide img {
+  width: 130px;
+  height: 130px;
   object-fit: cover;
   border-radius: 50%;
-  border: 2px solid rgba(255,255,255,0.25);
-  margin-bottom: 28px;
+  margin-bottom: 22px;
+  border: 2px solid rgba(255,255,255,0.3);
 }
 
-/* TEXT */
-.founder h3 {
-  font-size: 20px;
-  color: #ffffff;
+.founder-slide h3 {
+  color: #fff;
+  font-size: 19px;
   margin-bottom: 6px;
 }
 
-.founder span {
-  display: block;
-  font-size: 13px;
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
+.founder-slide span {
   color: #4cc3ff;
-  margin-bottom: 18px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
-.founder p {
-  font-size: 14.5px;
+.founder-slide p {
+  margin-top: 16px;
+  font-size: 14px;
   color: #cfd8e3;
-  line-height: 1.7;
+  line-height: 1.6;
 }
 
