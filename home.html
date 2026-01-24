@@ -1,265 +1,283 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-<html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> <title>AlphaX Aerospace | Engineering the Skies</title> <style> :root { --accent-cyan: #00f2ff; --metallic-silver: #c0c0c0; --deep-space: #05070a; --text-main: #ffffff; --text-muted: #a0a0a0; --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+<title>AlphaX Aerospace | Engineering the Skies</title>
 
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+<style>
+:root{
+  --accent-cyan:#00f2ff;
+  --metallic-silver:#cfd6df;
+  --deep-space:#05070a;
+  --text-main:#ffffff;
+  --text-muted:#b6bcc6;
+  --font-sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
 
-    body {
-        background-color: var(--deep-space);
-        color: var(--text-main);
-        font-family: var(--font-sans);
-        line-height: 1.6;
-        overflow-x: hidden;
-        -webkit-font-smoothing: antialiased;
-    }
+*{margin:0;padding:0;box-sizing:border-box}
 
-    /* --- Intro Animation --- */
-    #intro-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: var(--deep-space);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 1000;
-        transition: opacity 1s ease-in-out, visibility 1s;
-    }
+html,body{
+  background:var(--deep-space);
+  color:var(--text-main);
+  font-family:var(--font-sans);
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
 
-    .intro-svg {
-        width: 120px;
-        height: auto;
-        overflow: visible;
-    }
+/* ================= INTRO ================= */
+#intro-overlay{
+  position:fixed;
+  inset:0;
+  background:var(--deep-space);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:1000;
+  transition:opacity 1s ease,visibility 1s ease;
+}
 
-    .logo-stroke {
-        fill: none;
-        stroke: var(--metallic-silver);
-        stroke-width: 2;
-        stroke-dasharray: 500;
-        stroke-dashoffset: 500;
-        animation: drawLogo 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-    }
+.intro-svg{
+  width:140px;
+}
 
-    .swoosh {
-        fill: none;
-        stroke: var(--accent-cyan);
-        stroke-width: 3;
-        stroke-linecap: round;
-        stroke-dasharray: 300;
-        stroke-dashoffset: 300;
-        animation: drawSwoosh 2s cubic-bezier(0.4, 0, 0.2, 1) forwards 1s;
-    }
+.logo-stroke{
+  fill:none;
+  stroke:var(--metallic-silver);
+  stroke-width:2;
+  stroke-dasharray:500;
+  stroke-dashoffset:500;
+  animation:drawLogo 2.5s ease forwards;
+}
 
-    @keyframes drawLogo {
-        to { stroke-dashoffset: 0; }
-    }
+.swoosh{
+  fill:none;
+  stroke:var(--accent-cyan);
+  stroke-width:3;
+  stroke-linecap:round;
+  stroke-dasharray:300;
+  stroke-dashoffset:300;
+  animation:drawSwoosh 2s ease 1s forwards;
+}
 
-    @keyframes drawSwoosh {
-        to { stroke-dashoffset: 0; }
-    }
+@keyframes drawLogo{to{stroke-dashoffset:0}}
+@keyframes drawSwoosh{to{stroke-dashoffset:0}}
 
-    .fade-out {
-        opacity: 0;
-        visibility: hidden;
-    }
+.fade-out{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
 
-    /* --- Navigation --- */
-    nav {
-        position: fixed;
-        top: 0;
-        width: 100%;
-        padding: 30px 50px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        z-index: 100;
-        background: linear-gradient(to bottom, rgba(5,7,10,0.8) 0%, transparent 100%);
-    }
+/* ================= NAV ================= */
+nav{
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:26px 40px;
+  z-index:100;
+  background:linear-gradient(to bottom,rgba(5,7,10,.75),transparent);
+}
 
-    .nav-logo {
-        font-weight: 700;
-        letter-spacing: 2px;
-        font-size: 1.2rem;
-        color: var(--text-main);
-        text-decoration: none;
-    }
+.nav-logo{
+  font-weight:600;
+  letter-spacing:3px;
+  font-size:1rem;
+  color:#fff;
+  text-decoration:none;
+}
 
-    .nav-logo span {
-        color: var(--accent-cyan);
-    }
+/* ================= SECTIONS ================= */
+section{
+  position:relative;
+  width:100%;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
 
-    /* --- Fullscreen Sections --- */
-    section {
-        position: relative;
-        width: 100%;
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-    }
+.video-container{
+  position:absolute;
+  inset:0;
+  z-index:-2;
+  background:black;
+}
 
-    .video-container {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-    }
+video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:brightness(1.25) contrast(1.08) saturate(1.05);
+}
 
-    video {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
+.overlay-vignette{
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at center,
+      rgba(0,0,0,0.15),
+      rgba(0,0,0,0.45));
+  z-index:1;
+}
 
-    .overlay-vignette {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: radial-gradient(circle, transparent 40%, rgba(5,7,10,0.4) 100%);
-    }
+.content{
+  position:relative;
+  z-index:2;
+  max-width:900px;
+  padding:0 40px;
+  text-align:center;
+}
 
-    .content {
-        max-width: 900px;
-        padding: 0 40px;
-        text-align: center;
-    }
+h1{
+  font-size:clamp(2.8rem,8vw,4.8rem);
+  font-weight:300;
+  letter-spacing:-1px;
+  margin-bottom:22px;
+  text-transform:uppercase;
+}
 
-    h1 {
-        font-size: clamp(2.5rem, 8vw, 4.5rem);
-        font-weight: 300;
-        letter-spacing: -1px;
-        margin-bottom: 20px;
-        text-transform: uppercase;
-    }
+h2{
+  font-size:clamp(1.6rem,5vw,2.6rem);
+  font-weight:400;
+  margin-bottom:20px;
+}
 
-    h2 {
-        font-size: clamp(1.5rem, 5vw, 2.5rem);
-        font-weight: 400;
-        margin-bottom: 20px;
-    }
+p{
+  font-size:1.05rem;
+  color:var(--text-muted);
+  max-width:620px;
+  margin:0 auto;
+}
 
-    p {
-        font-size: 1.1rem;
-        color: var(--text-muted);
-        max-width: 600px;
-        margin: 0 auto;
-        font-weight: 300;
-    }
+.accent-bar{
+  width:44px;
+  height:2px;
+  background:var(--accent-cyan);
+  margin:18px auto;
+}
 
-    .accent-bar {
-        width: 40px;
-        height: 2px;
-        background: var(--accent-cyan);
-        margin: 20px auto;
-    }
+/* ================= MOBILE ================= */
+@media(max-width:768px){
+  nav{padding:18px 20px}
+  .content{padding:0 20px}
+  p{font-size:.95rem}
+  video{filter:brightness(1.35) contrast(1.05)}
+}
 
-    /* --- Mobile Responsiveness --- */
-    @media (max-width: 768px) {
-        nav { padding: 20px; }
-        .content { padding: 0 20px; }
-        p { font-size: 0.95rem; }
-    }
-
-    /* Prevent scroll pull-to-refresh on mobile while allowing normal scroll */
-    html, body {
-        overscroll-behavior-y: none;
-    }
+html,body{
+  overscroll-behavior-y:none;
+}
 </style>
-</head> <body>
+</head>
 
+<body>
+
+<!-- INTRO -->
 <div id="intro-overlay">
-    <svg class="intro-svg" viewBox="0 0 100 100">
-        <path class="logo-stroke" d="M20 80 L50 20 L80 80 M35 55 L65 55" />
-        <path class="swoosh" d="M10 85 C 30 75, 70 95, 95 65" />
-    </svg>
+  <svg class="intro-svg" viewBox="0 0 100 100">
+    <path class="logo-stroke"
+          d="M20 80 L50 20 L80 80 M35 55 L65 55"/>
+    <path class="swoosh"
+          d="M10 85 C30 75,70 95,95 65"/>
+  </svg>
 </div>
 
 <nav>
-    <a href="#" class="nav-logo">ALPHAX <span>AEROSPACE</span></a>
+  <a class="nav-logo">ALPHAX AEROSPACE</a>
 </nav>
 
-<section id="vision">
-    <div class="video-container">
-        <video autoplay muted loop playsinline poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
-            <source src="future.mp4" type="video/mp4">
-        </video>
-        <div class="overlay-vignette"></div>
-    </div>
-    <div class="content">
-        <h1>Engineering the Skies</h1>
-        <p>Pioneering indigenous aerospace solutions designed for the next century of global flight and beyond.</p>
-    </div>
+<!-- VISION -->
+<section>
+  <div class="video-container">
+    <video autoplay muted loop playsinline preload="auto">
+      <source src="future.mp4" type="video/mp4">
+    </video>
+    <div class="overlay-vignette"></div>
+  </div>
+  <div class="content">
+    <h1>Engineering the Skies</h1>
+    <p>
+      Indigenous aerospace platforms designed for endurance,
+      adaptability, and long-term sovereign capability.
+    </p>
+  </div>
 </section>
 
-<section id="skyrover">
-    <div class="video-container">
-        <video autoplay muted loop playsinline>
-            <source src="skyrover1.mp4" type="video/mp4">
-        </video>
-        <div class="overlay-vignette"></div>
-    </div>
-    <div class="content">
-        <div class="accent-bar"></div>
-        <h2>SkyRover Platform</h2>
-        <p>Our flagship manned aircraft architecture. High-altitude endurance meets unprecedented aerodynamic efficiency.</p>
-    </div>
+<!-- SKYROVER -->
+<section>
+  <div class="video-container">
+    <video autoplay muted loop playsinline preload="auto">
+      <source src="skyrover1.mp4" type="video/mp4">
+    </video>
+    <div class="overlay-vignette"></div>
+  </div>
+  <div class="content">
+    <div class="accent-bar"></div>
+    <h2>SkyRover Platform</h2>
+    <p>
+      A manned light aircraft architecture designed for pilot training,
+      surveillance, and mission adaptability.
+    </p>
+  </div>
 </section>
 
-<section id="interior">
-    <div class="video-container">
-        <video autoplay muted loop playsinline>
-            <source src="interior.mp4" type="video/mp4">
-        </video>
-        <div class="overlay-vignette"></div>
-    </div>
-    <div class="content">
-        <div class="accent-bar"></div>
-        <h2>Human-Centric Flight</h2>
-        <p>Rethinking the cockpit. We prioritize pilot ergonomics and situational awareness through integrated digital-analogue systems.</p>
-    </div>
+<!-- INTERIOR -->
+<section>
+  <div class="video-container">
+    <video autoplay muted loop playsinline preload="auto">
+      <source src="interior.mp4" type="video/mp4">
+    </video>
+    <div class="overlay-vignette"></div>
+  </div>
+  <div class="content">
+    <div class="accent-bar"></div>
+    <h2>Human-Centric Flight</h2>
+    <p>
+      Ergonomic cockpit systems and vibration-controlled
+      flight environments built around the pilot.
+    </p>
+  </div>
 </section>
 
-<section id="tactical">
-    <div class="video-container">
-        <video autoplay muted loop playsinline>
-            <source src="tacticalrover.mp4" type="video/mp4">
-        </video>
-        <div class="overlay-vignette"></div>
-    </div>
-    <div class="content">
-        <div class="accent-bar"></div>
-        <h2>Defence Readiness</h2>
-        <p>Mission-ready systems engineered for tactical superiority and rugged reliability in contested environments.</p>
-    </div>
+<!-- TACTICAL -->
+<section>
+  <div class="video-container">
+    <video autoplay muted loop playsinline preload="auto">
+      <source src="tacticalrover.mp4" type="video/mp4">
+    </video>
+    <div class="overlay-vignette"></div>
+  </div>
+  <div class="content">
+    <div class="accent-bar"></div>
+    <h2>Defence Readiness</h2>
+    <p>
+      Mission-ready aerospace systems engineered
+      for reliability in contested environments.
+    </p>
+  </div>
 </section>
 
 <script>
-    // Intro handling
-    window.addEventListener('load', () => {
-        setTimeout(() => {
-            const intro = document.getElementById('intro-overlay');
-            intro.classList.add('fade-out');
-        }, 3500);
-    });
+/* Intro fade out */
+window.addEventListener('load',()=>{
+  setTimeout(()=>{
+    document.getElementById('intro-overlay')
+      .classList.add('fade-out');
+  },3000);
+});
 
-    // Ensure videos play on mobile power-save or interaction
-    document.body.addEventListener('touchstart', function() {
-        const videos = document.querySelectorAll('video');
-        videos.forEach(v => {
-            if (v.paused) v.play();
-        });
-    }, {once: true});
+/* Mobile autoplay assist */
+document.addEventListener('touchstart',()=>{
+  document.querySelectorAll('video').forEach(v=>{
+    if(v.paused) v.play().catch(()=>{});
+  });
+},{once:true});
 </script>
-</body> </html>
+
+</body>
+</html>
