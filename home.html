@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>AlphaX Aerospace</title>
+<title>AlphaX Aerospace — Engineering the Skies</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -12,40 +12,52 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
 body{background:#02040a;color:#fff;overflow-x:hidden;}
 
-/* ========== BACKGROUND VIDEOS ========== */
-.bg-video{
+/* ========== BRAND ========== */
+.brand{
+  position:fixed;
+  top:26px;
+  left:34px;
+  font-size:12px;
+  letter-spacing:4px;
+  color:rgba(255,255,255,.55);
+  z-index:10;
+}
+
+/* ========== VIDEO WRAPPER (NO ROTATION EVER) ========== */
+.bg-video-wrap{
   position:fixed;
   inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
   z-index:-3;
   opacity:0;
   transform:scale(1.08);
   transition:opacity 1.4s ease, transform 1.4s ease;
-  filter:brightness(.38) contrast(1.15) saturate(1.05);
 }
-.bg-video.active{
+.bg-video-wrap.active{
   opacity:1;
   transform:scale(1);
 }
 
+/* VIDEO ITSELF — NEVER TRANSFORM */
+.bg-video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:brightness(.52) contrast(1.15) saturate(1.05);
+  transform:rotate(0deg) !important;
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+}
+
+/* ========== OVERLAY ========== */
 .bg-overlay{
   position:fixed;
   inset:0;
   z-index:-2;
-  background:radial-gradient(circle at center, rgba(20,30,60,.45), #02040a 72%);
-}
-
-/* ========== BRAND ========== */
-.brand{
-  position:fixed;
-  top:24px;
-  left:30px;
-  font-size:12px;
-  letter-spacing:4px;
-  color:rgba(255,255,255,.45);
-  z-index:10;
+  background:radial-gradient(
+    circle at center,
+    rgba(30,40,70,.35),
+    #02040a 78%
+  );
 }
 
 /* ========== SECTIONS ========== */
@@ -56,6 +68,7 @@ section{
   align-items:center;
 }
 
+/* ========== CONTENT REVEAL ========== */
 .content{
   max-width:780px;
   opacity:0;
@@ -69,7 +82,7 @@ section{
 
 /* ========== TYPOGRAPHY ========== */
 h1{
-  font-size:clamp(44px,6vw,84px);
+  font-size:clamp(44px,6vw,86px);
   font-weight:700;
   line-height:1.05;
 }
@@ -96,30 +109,13 @@ p{
   text-decoration:none;
 }
 
-/* ========== LEADERSHIP ========== */
-.leader{
-  margin-top:22px;
-}
-.leader img{
-  width:92px;
-  height:92px;
-  border-radius:50%;
-  object-fit:cover;
-  filter:grayscale(100%);
-  opacity:0;
-  transition:opacity 1s ease, filter 1s ease;
-}
-.content.visible img{
-  opacity:1;
-}
-
 /* ========== SPACING ========== */
 .spacer{height:18vh;}
 
-/* ========== MOBILE OPTIMIZATION ========== */
+/* ========== MOBILE ========== */
 @media(max-width:768px){
   section{padding:14vw 8vw;}
-  .bg-video{display:none;}
+  .bg-video-wrap{display:none;}
   .bg-overlay{
     background:linear-gradient(180deg,#050914,#02040a);
   }
@@ -132,19 +128,30 @@ p{
 <!-- BRAND -->
 <div class="brand">ALPHAX</div>
 
-<!-- BACKGROUND VIDEOS -->
-<video id="v-future" class="bg-video active" autoplay muted loop playsinline>
-  <source src="future.mp4" type="video/mp4">
-</video>
-<video id="v-interor" class="bg-video" autoplay muted loop playsinline>
-  <source src="interor.mp4" type="video/mp4">
-</video>
-<video id="v-skyrover" class="bg-video" autoplay muted loop playsinline>
-  <source src="skyrover1.mp4" type="video/mp4">
-</video>
-<video id="v-tactical" class="bg-video" autoplay muted loop playsinline>
-  <source src="tacticalrover.mp4" type="video/mp4">
-</video>
+<!-- BACKGROUND VIDEOS (WRAPPED) -->
+<div id="w-future" class="bg-video-wrap active">
+  <video class="bg-video" autoplay muted loop playsinline>
+    <source src="future.mp4" type="video/mp4">
+  </video>
+</div>
+
+<div id="w-interor" class="bg-video-wrap">
+  <video class="bg-video" autoplay muted loop playsinline>
+    <source src="interor.mp4" type="video/mp4">
+  </video>
+</div>
+
+<div id="w-skyrover" class="bg-video-wrap">
+  <video class="bg-video" autoplay muted loop playsinline>
+    <source src="skyrover1.mp4" type="video/mp4">
+  </video>
+</div>
+
+<div id="w-tactical" class="bg-video-wrap">
+  <video class="bg-video" autoplay muted loop playsinline>
+    <source src="tacticalrover.mp4" type="video/mp4">
+  </video>
+</div>
 
 <div class="bg-overlay"></div>
 
@@ -169,33 +176,20 @@ p{
       surveillance, and light tactical aviation.
     </p>
     <p>
-      These platforms are expensive, rigid, and misaligned
-      with Indian operational realities.
+      These platforms are expensive, rigid,
+      and misaligned with Indian operational realities.
     </p>
   </div>
 </section>
 
 <div class="spacer"></div>
 
-<section data-video="future">
-  <div class="content">
-    <h2>Why AlphaX Exists</h2>
-    <p>
-      AlphaX was founded to build indigenous, mission-adaptive
-      aerospace systems designed for decades — not cycles.
-    </p>
-  </div>
-</section>
-
-<div class="spacer"></div>
-
-<!-- TECHNOLOGY -->
 <section data-video="interor">
   <div class="content">
     <h2>Our Aerospace Philosophy</h2>
     <p>
       AlphaX does not build aircraft as isolated products.
-      We design systems that evolve without redesign.
+      We engineer systems that evolve without redesign.
     </p>
   </div>
 </section>
@@ -205,22 +199,21 @@ p{
 <section data-video="interor">
   <div class="content">
     <h2>Core Systems</h2>
-    <p><strong>GlideCore™</strong> — Human-centric vibration & fatigue control.</p>
+    <p><strong>GlideCore™</strong> — Human-centric vibration control.</p>
     <p><strong>FlightCore™</strong> — Predictability-first flight architecture.</p>
     <p><strong>PowerCore™</strong> — Aviation-grade energy intelligence.</p>
-    <p><strong>AeroCore™</strong> — Structure, modularity, longevity.</p>
+    <p><strong>AeroCore™</strong> — Modular structural longevity.</p>
   </div>
 </section>
 
 <div class="spacer"></div>
 
-<!-- SKYROVER -->
 <section data-video="skyrover">
   <div class="content">
     <h2>The Origin of SkyRover™</h2>
     <p>
-      India lacked an affordable, indigenous,
-      manned light aircraft adaptable across missions.
+      India lacked an affordable indigenous manned
+      aircraft adaptable across missions.
     </p>
   </div>
 </section>
@@ -230,15 +223,14 @@ p{
 <section data-video="skyrover">
   <div class="content">
     <h2>SkyRover Variants</h2>
-    <p>Base — Training & surveillance familiarization</p>
-    <p>Premium — Extended endurance & avionics</p>
-    <p>Tactical — ISR-ready defence configuration</p>
+    <p>Base — Training & surveillance</p>
+    <p>Premium — Extended endurance</p>
+    <p>Tactical — ISR-ready configuration</p>
   </div>
 </section>
 
 <div class="spacer"></div>
 
-<!-- PROGRAMS -->
 <section data-video="tactical">
   <div class="content">
     <h2>Strategic Programs</h2>
@@ -251,28 +243,6 @@ p{
 
 <div class="spacer"></div>
 
-<!-- LEADERSHIP -->
-<section data-video="tactical">
-  <div class="content">
-    <h2>Leadership</h2>
-    <div class="leader">
-      John Stany Xavier — Founder & CEO<br>
-      <img src="john.jpeg">
-    </div>
-    <div class="leader">
-      Sanjeev Kumar — Co-Founder<br>
-      <img src="sanjeev.jpeg">
-    </div>
-    <div class="leader">
-      Arogyaswamy Steevan — Managing Director<br>
-      <img src="arogyaswamy.jpeg">
-    </div>
-  </div>
-</section>
-
-<div class="spacer"></div>
-
-<!-- FINAL -->
 <section data-video="future">
   <div class="content">
     <h2>Built in India.<br>Engineered for the Next 50 Years.</h2>
@@ -280,45 +250,41 @@ p{
   </div>
 </section>
 
-<!-- VIDEO SWITCH + PARALLAX + REVEAL -->
 <script>
+/* CONTENT REVEAL */
 const contents = document.querySelectorAll('.content');
-const sections = document.querySelectorAll('section');
-
-const videos = {
-  future: document.getElementById('v-future'),
-  interor: document.getElementById('v-interor'),
-  skyrover: document.getElementById('v-skyrover'),
-  tactical: document.getElementById('v-tactical')
-};
-
 const revealObserver = new IntersectionObserver(entries=>{
   entries.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.classList.add('visible');
-    }
+    if(e.isIntersecting) e.target.classList.add('visible');
   });
 },{threshold:.3});
-
 contents.forEach(c=>revealObserver.observe(c));
 
+/* VIDEO SWITCH */
+const wrappers = {
+  future: document.getElementById('w-future'),
+  interor: document.getElementById('w-interor'),
+  skyrover: document.getElementById('w-skyrover'),
+  tactical: document.getElementById('w-tactical')
+};
+
+const sections = document.querySelectorAll('section');
 const videoObserver = new IntersectionObserver(entries=>{
   entries.forEach(e=>{
     if(e.isIntersecting){
-      const key = e.target.getAttribute('data-video');
-      if(!key) return;
-      Object.values(videos).forEach(v=>v.classList.remove('active'));
-      videos[key].classList.add('active');
+      const key = e.target.dataset.video;
+      Object.values(wrappers).forEach(w=>w.classList.remove('active'));
+      wrappers[key].classList.add('active');
     }
   });
 },{threshold:.6});
-
 sections.forEach(s=>videoObserver.observe(s));
 
+/* SCROLL ZOOM — SAFE (WRAPPER ONLY) */
 window.addEventListener('scroll',()=>{
-  const y = window.scrollY * 0.0003;
-  document.querySelectorAll('.bg-video').forEach(v=>{
-    v.style.transform = `scale(${1.05 - y})`;
+  const y = window.scrollY * 0.00025;
+  document.querySelectorAll('.bg-video-wrap').forEach(w=>{
+    w.style.transform = `scale(${1.06 - y})`;
   });
 });
 </script>
