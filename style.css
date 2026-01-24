@@ -1714,3 +1714,7 @@ section[data-video="interor"] .bg-overlay{
     rgba(20,30,60,.15),
     #02040a 85%);
 }
+.bg-video{
+  transform: translate(-50%, -50%) !important;
+  rotate: 0deg !important;
+}
