@@ -5,231 +5,231 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AlphaX Aerospace</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+
 <style>
-/* ================= RESET ================= */
+/* ================= BASE ================= */
 *{margin:0;padding:0;box-sizing:border-box}
-html,body{font-family: "Segoe UI",system-ui,sans-serif;background:#05070b;color:#fff;scroll-behavior:smooth}
+html,body{
+  background:#020406;
+  color:#e0e0e0;
+  font-family:'Syncopate',sans-serif;
+  overflow-x:hidden;
+}
 
-/* ================= LOGO ================= */
-.logo-fixed{
-  position:fixed;
-  top:24px;
-  left:24px;
-  width:90px;
-  z-index:1000;
-}
-.logo-svg{
-  fill:none;
-  stroke:#dfe6ee;
-  stroke-width:2;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-}
-.draw-path{
-  stroke-dasharray:1000;
-  stroke-dashoffset:1000;
-  animation:draw 2.8s ease forwards;
-}
-.fill-shape{
-  fill:rgba(223,230,238,0);
-  animation:fillIn 1.2s ease 2s forwards;
-}
-@keyframes draw{to{stroke-dashoffset:0}}
-@keyframes fillIn{to{fill:#dfe6ee;stroke-width:0}}
-
-/* ================= HERO ================= */
-.section{
-  position:relative;
-  width:100%;
-  min-height:100vh;
-  overflow:hidden;
+/* ================= INTRO ================= */
+.intro{
+  height:100vh;
   display:flex;
   align-items:center;
   justify-content:center;
+  position:relative;
+  overflow:hidden;
 }
-.video-bg{
+
+/* Space grid */
+.space-grid{
+  position:absolute;
+  inset:-100%;
+  background-image:
+    linear-gradient(rgba(0,242,255,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,242,255,.05) 1px, transparent 1px);
+  background-size:50px 50px;
+  transform:perspective(600px) rotateX(60deg);
+  animation:gridMove 20s linear infinite;
+  z-index:0;
+}
+
+/* Logo stage */
+.logo-stage{
+  position:relative;
+  display:flex;
+  align-items:center;
+  gap:40px;
+  z-index:1;
+}
+
+/* SVG */
+.alphax-svg{width:200px}
+.a-frame{
+  fill:none;
+  stroke:#e0e0e0;
+  stroke-width:.6;
+  stroke-dasharray:1000;
+  stroke-dashoffset:1000;
+  animation:draw 3s ease forwards, fillMetal 2s 2s forwards;
+}
+.swoosh-path{
+  fill:none;
+  stroke:#00f2ff;
+  stroke-width:3;
+  stroke-dasharray:400;
+  stroke-dashoffset:400;
+  animation:draw 2s 2s ease forwards;
+}
+
+/* Text */
+.text-reveal{
+  opacity:0;
+  transform:translateX(40px);
+  animation:reveal 2s 2s forwards;
+}
+.title{
+  font-size:72px;
+  letter-spacing:14px;
+}
+.subtitle{
+  font-size:14px;
+  letter-spacing:10px;
+  color:#777;
+  margin-top:14px;
+}
+
+/* ================= SECTIONS ================= */
+.section{
+  position:relative;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  padding:10vw;
+  overflow:hidden;
+}
+
+.section video{
   position:absolute;
   inset:0;
   width:100%;
   height:100%;
   object-fit:cover;
   z-index:-2;
-  transform:none !important;
+  background:black;
 }
+
 .overlay{
   position:absolute;
   inset:0;
   background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.85));
   z-index:-1;
 }
-.hero-text{
-  max-width:900px;
-  padding:24px;
-}
-.hero-text h1{
-  font-size:clamp(36px,6vw,72px);
-  font-weight:700;
-  letter-spacing:-1px;
-}
-.hero-text p{
-  margin-top:18px;
-  font-size:clamp(16px,2vw,20px);
-  color:#cfd6df;
+
+.content{
+  max-width:800px;
 }
 
-/* ================= SPLIT ================= */
-.split{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:48px;
-  padding:80px 8vw;
+.content h1{
+  font-size:clamp(36px,6vw,64px);
 }
-.split h2{
-  font-size:clamp(28px,4vw,44px);
-}
-.split p{
-  margin-top:16px;
-  color:#cbd3dd;
+.content p{
+  margin-top:20px;
+  font-family:system-ui,sans-serif;
+  letter-spacing:.3px;
   line-height:1.7;
-}
-@media(max-width:900px){
-  .split{grid-template-columns:1fr}
-}
-
-/* ================= TECHNOLOGY ================= */
-.tech-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:32px;
-}
-.tech-card{
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:20px;
-  padding:32px;
-  transition:.4s;
-}
-.tech-card:hover{
-  transform:translateY(-6px);
-  background:rgba(255,255,255,.06);
-}
-.tech-card h3{
-  margin-bottom:10px;
+  color:#cfd6df;
 }
 
 /* ================= FOOTER ================= */
 footer{
   padding:40px;
   text-align:center;
-  color:#9aa3af;
-  font-size:14px;
+  font-family:system-ui,sans-serif;
+  color:#888;
 }
+
+/* ================= MOBILE ================= */
+@media(max-width:768px){
+  .title{font-size:42px;letter-spacing:8px}
+  .section{padding:14vw 8vw}
+}
+
+/* ================= ANIMATIONS ================= */
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes fillMetal{to{fill:rgba(224,224,224,.08);stroke-width:1.4}}
+@keyframes reveal{to{opacity:1;transform:none}}
+@keyframes gridMove{to{background-position:0 1000px}}
 </style>
 </head>
 
 <body>
 
-<!-- LOGO -->
-<div class="logo-fixed">
-<svg viewBox="0 0 100 100" class="logo-svg">
-  <path class="draw-path fill-shape"
-    d="M50 10 L10 90 L30 90 L35 78 Q50 60 85 75 L90 90 L100 90 L60 10 Z
-       M40 65 Q55 50 80 65 L60 25 Z"/>
-  <path class="draw-path"
-    style="animation-delay:.4s"
-    d="M15 85 Q40 65 75 78"
-    stroke="#05070b" stroke-width="4" fill="none"/>
-</svg>
-</div>
+<!-- INTRO -->
+<section class="intro">
+  <div class="space-grid"></div>
+
+  <div class="logo-stage">
+    <svg class="alphax-svg" viewBox="0 0 120 120">
+      <path class="a-frame" d="M10,110 L60,10 L110,110 L92,110 L60,45 L28,110 Z"/>
+      <path class="swoosh-path" d="M18,92 C40,70 80,70 102,92"/>
+    </svg>
+
+    <div class="text-reveal">
+      <div class="title">ALPHAX</div>
+      <div class="subtitle">AEROSPACE PVT LTD</div>
+    </div>
+  </div>
+</section>
 
 <!-- HERO -->
 <section class="section">
-  <video class="video-bg" autoplay muted loop playsinline>
-    <source src="skyrover1.mp4" type="video/mp4">
+  <video autoplay muted loop playsinline preload="auto">
+    <source src="future.mp4" type="video/mp4">
   </video>
   <div class="overlay"></div>
-  <div class="hero-text">
-    <h1>Re-engineering India’s Skies</h1>
+  <div class="content">
+    <h1>Engineering the Skies</h1>
     <p>
-      AlphaX Aerospace builds indigenous aircraft platforms focused on defence,
-      pilot training, and next-generation regional aviation.
+      AlphaX Aerospace designs indigenous aircraft platforms
+      for defence, training, and next-generation aviation.
     </p>
   </div>
 </section>
 
 <!-- SKYROVER -->
 <section class="section">
-  <video class="video-bg" autoplay muted loop playsinline>
-    <source src="tacticalrover.mp4" type="video/mp4">
+  <video autoplay muted loop playsinline preload="auto">
+    <source src="skyrover1.mp4" type="video/mp4">
   </video>
   <div class="overlay"></div>
-  <div class="hero-text">
+  <div class="content">
     <h1>SkyRover Platform</h1>
     <p>
-      A manned light aircraft engineered for ISR, pilot training,
-      and tactical endurance — designed for Indian conditions.
+      A modular manned aircraft engineered for ISR,
+      pilot training, and tactical endurance.
     </p>
   </div>
 </section>
 
 <!-- INTERIOR -->
 <section class="section">
-  <video class="video-bg" autoplay muted loop playsinline>
+  <video autoplay muted loop playsinline preload="auto">
     <source src="interior.mp4" type="video/mp4">
   </video>
   <div class="overlay"></div>
-  <div class="hero-text">
+  <div class="content">
     <h1>Human-Centric Flight</h1>
     <p>
-      GlideCore™ vibration isolation and ergonomic cockpit design
-      reduce fatigue during prolonged missions.
+      GlideCore™ vibration isolation and ergonomic cockpit
+      architecture reduce fatigue on long missions.
     </p>
   </div>
 </section>
 
-<!-- TECHNOLOGY -->
-<section class="section" style="background:#070b12">
-  <div class="split">
-    <div>
-      <h2>Core Technologies</h2>
-      <p>
-        AlphaX does not build aircraft as isolated products.
-        We engineer integrated aerospace systems.
-      </p>
-    </div>
-    <div class="tech-grid">
-      <div class="tech-card">
-        <h3>GlideCore™</h3>
-        <p>Vibration isolation & comfort architecture.</p>
-      </div>
-      <div class="tech-card">
-        <h3>FlightCore™</h3>
-        <p>Indigenous flight control & autonomy stack.</p>
-      </div>
-      <div class="tech-card">
-        <h3>PowerCore™</h3>
-        <p>Advanced battery & power management systems.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FUTURE -->
+<!-- TACTICAL -->
 <section class="section">
-  <video class="video-bg" autoplay muted loop playsinline>
-    <source src="future.mp4" type="video/mp4">
+  <video autoplay muted loop playsinline preload="auto">
+    <source src="tacticalrover.mp4" type="video/mp4">
   </video>
   <div class="overlay"></div>
-  <div class="hero-text">
-    <h1>Built for the Next 30 Years</h1>
+  <div class="content">
+    <h1>Mission-Ready Systems</h1>
     <p>
-      Defence-ready. Export-capable. Designed and built in India.
+      Designed for surveillance, reconnaissance,
+      and future defence adaptability.
     </p>
   </div>
 </section>
 
 <footer>
-© 2026 AlphaX Aerospace Pvt Ltd · Made in India
+© 2026 AlphaX Aerospace Pvt Ltd · Engineering the Skies
 </footer>
 
 </body>
