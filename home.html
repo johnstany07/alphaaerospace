@@ -1,404 +1,261 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>AlphaX Aerospace | Take Off</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<title>AlphaX Aerospace — Take Off</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- FONT -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <style>
-    /* =========================
-       RESET & BASE
-    ========================= */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
-    }
+<style>
+/* ================= RESET ================= */
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
+body{background:#02040a;color:#fff;overflow:hidden;}
 
-    body {
-      background: #03060c;
-      color: #ffffff;
-      overflow-x: hidden;
-    }
+/* ================= SCENE SYSTEM ================= */
+#viewport{
+  height:100vh;
+  width:100vw;
+  overflow:hidden;
+  position:relative;
+}
 
-    section {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 80px 10%;
-      scroll-snap-align: start;
-      position: relative;
-    }
+.scene{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:8vw;
+  opacity:0;
+  transform:scale(0.98);
+  transition:opacity 1s ease, transform 1s ease;
+  pointer-events:none;
+}
 
-    html {
-      scroll-snap-type: y mandatory;
-      scroll-behavior: smooth;
-    }
+.scene.active{
+  opacity:1;
+  transform:scale(1);
+  pointer-events:auto;
+}
 
-    h1 {
-      font-size: clamp(42px, 6vw, 76px);
-      font-weight: 700;
-      line-height: 1.05;
-    }
+/* ================= BACKGROUND ================= */
+.bg-video{
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  object-fit:cover;
+  width:100%;
+  height:100%;
+  filter:brightness(0.35) contrast(1.1);
+}
 
-    h2 {
-      font-size: clamp(28px, 4vw, 46px);
-      font-weight: 600;
-    }
+.bg-overlay{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  background:radial-gradient(circle at center, rgba(15,25,50,0.45), #02040a 70%);
+}
 
-    p {
-      font-size: 16px;
-      line-height: 1.7;
-      color: #cfd8e3;
-      max-width: 720px;
-    }
+/* ================= TEXT ================= */
+h1{
+  font-size:clamp(44px,6vw,82px);
+  font-weight:700;
+  line-height:1.05;
+  letter-spacing:-1px;
+}
 
-    .center {
-      text-align: center;
-    }
-   
+h2{
+  font-size:clamp(30px,4vw,48px);
+  font-weight:600;
+  line-height:1.2;
+}
 
+p{
+  margin-top:24px;
+  font-size:17px;
+  line-height:1.8;
+  color:#cfd8e3;
+  max-width:720px;
+}
 
-    /* =========================
-       HERO / TAKE OFF
-    ========================= */
-    .hero {
-      background: #000;
-      overflow: hidden;
-    }
-     <div class="brand-mark">ALPHAX</div>
-    .hero video {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: brightness(0.35) contrast(1.1);
-      z-index: 0;
-    }
+/* ================= BRAND ================= */
+.brand{
+  position:fixed;
+  top:26px;
+  left:30px;
+  font-size:12px;
+  letter-spacing:4px;
+  color:rgba(255,255,255,0.45);
+  z-index:10;
+}
 
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at center, rgba(10,15,25,0.5), rgba(3,6,12,0.95));
-      z-index: 1;
-    }
+/* ================= CTA ================= */
+.cta{
+  margin-top:40px;
+  display:inline-block;
+  padding:14px 36px;
+  border-radius:999px;
+  background:linear-gradient(135deg,#4cc3ff,#63ffd8);
+  color:#000;
+  font-weight:600;
+  text-decoration:none;
+}
 
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-    }
-
-    .hero-content span {
-      display: block;
-      letter-spacing: 3px;
-      font-size: 12px;
-      color: #4cc3ff;
-      margin-bottom: 18px;
-    }
-
-    .scroll-hint {
-      position: absolute;
-      bottom: 40px;
-      font-size: 12px;
-      letter-spacing: 2px;
-      opacity: 0.6;
-    }
-<!-- ================= SKYROVER STORY ================= -->
-<section class="dark center">
-  <div class="reveal">
-    <h2>The Problem SkyRover Solves</h2>
-
-    <p>
-      India’s defence, training, and regional aviation ecosystem faces a
-      persistent gap: the absence of an indigenous, affordable, manned
-      light aircraft platform designed for multi-role adaptability.
-    </p>
-
-    <p>
-      Existing solutions are either imported, over-specialized, or
-      cost-prohibitive — limiting scalability, availability, and
-      operational flexibility.
-    </p>
-
-    <p>
-      SkyRover™ was conceived to bridge this gap: a modular, indigenous,
-      and mission-adaptive aircraft platform that can evolve across
-      training, surveillance, and defence roles without redesigning the
-      airframe from scratch.
-    </p>
-  </div>
-</section>
-
-
-    /* =========================
-       TECH BLOCKS
-    ========================= */
-    .tech-stack {
-      display: flex;
-      flex-direction: column;
-      gap: 40px;
-      margin-top: 40px;
-    }
-
-    .tech {
-      border-left: 3px solid #4cc3ff;
-      padding-left: 24px;
-    }
-
-    .tech h3 {
-      font-size: 22px;
-      margin-bottom: 8px;
-    }
-
-    /* =========================
-       SKYROVER
-    ========================= */
-    .skyrover {
-      background: linear-gradient(180deg, #02040a, #050b18);
-    }
-
-    .cta {
-      margin-top: 30px;
-      display: inline-block;
-      padding: 14px 34px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, #4cc3ff, #63ffd8);
-      color: #000;
-      font-weight: 600;
-      text-decoration: none;
-    }
-
-    /* =========================
-       PROJECTS
-    ========================= */
-    .projects-list {
-      margin-top: 40px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      font-size: 18px;
-    }
-
-    .projects-list span {
-      color: #9fb6cc;
-    }
-
-    /* =========================
-       LEADERSHIP
-    ========================= */
-    .leaders {
-      margin-top: 40px;
-      display: flex;
-      flex-direction: column;
-      gap: 22px;
-      font-size: 18px;
-    }
-
-    .leaders strong {
-      color: #ffffff;
-    }
-
-    /* =========================
-       FOOTER / CTA
-    ========================= */
-    .final {
-      background: radial-gradient(circle at top, #0a1222, #02040a);
-    }
-
-    footer {
-      position: absolute;
-      bottom: 30px;
-      font-size: 12px;
-      opacity: 0.6;
-    }
-  </style>
+/* ================= SCROLL HINT ================= */
+.hint{
+  position:fixed;
+  bottom:34px;
+  width:100%;
+  text-align:center;
+  font-size:11px;
+  letter-spacing:2px;
+  opacity:0.5;
+}
+</style>
 </head>
 
 <body>
 
-<!-- ================= HERO ================= -->
-<section class="hero">
-  <!-- Optional video (keep file in root) -->
-  <video autoplay muted loop playsinline>
-    <source src="skyrover360.mp4" type="video/mp4">
-  </video>
+<!-- BRAND -->
+<div class="brand">ALPHAX</div>
 
-  <div class="hero-content reveal">
-    <span>ALPHAX AEROSPACE</span>
-    <h1>Engineering India’s<br>Sovereign Skies</h1>
-  </div>
+<!-- BACKGROUND -->
+<video class="bg-video" autoplay muted loop playsinline>
+  <source src="skyrover360.mp4" type="video/mp4">
+</video>
+<div class="bg-overlay"></div>
 
-  <div class="scroll-hint">SCROLL TO INITIATE</div>
-</section>
+<!-- VIEWPORT -->
+<div id="viewport">
 
-<!-- ================= WHY ================= -->
-<section class="dark center">
-  <div class="reveal">
-    <h2>Why AlphaX Exists</h2>
-    <p>
-      India does not lack aerospace talent.<br>
-      It lacks sovereign, mission-ready platforms.
-    </p>
-    <p>
-      AlphaX Aerospace exists to change that — through disciplined engineering,
-      indigenous systems, and long-term thinking.
-    </p>
-  </div>
-</section>
-
-<!-- ================= TECHNOLOGY ================= -->
-<section class="gradient center">
-  <div class="reveal">
-    <h2>Core Aerospace Systems</h2>
-
-    <div class="tech-stack">
-      <div class="tech">
-        <h3>AlphaX GlideCore™</h3>
-        <p>Human-centric vibration and fatigue control engineered at airframe level.</p>
-      </div>
-
-      <div class="tech">
-        <h3>AlphaX FlightCore™</h3>
-        <p>Predictable, pilot-first flight control architecture with autonomy readiness.</p>
-      </div>
-
-      <div class="tech">
-        <h3>AlphaX PowerCore™</h3>
-        <p>Aviation-grade energy management for electric and hybrid platforms.</p>
-      </div>
+  <!-- SCENE 1 -->
+  <section class="scene active">
+    <div>
+      <h1>Engineering India’s<br>Sovereign Skies</h1>
+      <p>
+        This is not an aircraft company.<br>
+        This is a long-term aerospace mission.
+      </p>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ================= SKYROVER ================= -->
-<section class="skyrover center">
-  <div class="reveal">
-    <h2>SkyRover™</h2>
-    <p>
-      India’s indigenous manned light aircraft platform designed for defence,
-      training, and multi-role operations.
-    </p>
-
-    <a href="#skyrover-details" class="cta">Explore SkyRover</a>
-
-  </div>
-</section>
-  <!-- ================= SKYROVER DETAILS ================= -->
-<section class="dark center" id="skyrover-details">
-  <div class="reveal">
-    <h2>SkyRover™ Variants</h2>
-    <p>
-      SkyRover is not a single aircraft — it is a modular platform
-      engineered to adapt across missions, budgets, and operational roles.
-    </p>
-
-    <div class="tech-stack">
-
-      <div class="tech">
-        <h3>SkyRover Base</h3>
-        <p>
-          Entry-level manned aircraft optimized for pilot training,
-          surveillance familiarization, and regional operations.
-        </p>
-      </div>
-
-      <div class="tech">
-        <h3>SkyRover Premium</h3>
-        <p>
-          Extended endurance, upgraded avionics, and enhanced comfort
-          for long-duration patrol and advanced training missions.
-        </p>
-      </div>
-
-      <div class="tech">
-        <h3>SkyRover Tactical</h3>
-        <p>
-          Mission-ready configuration designed for defence reconnaissance,
-          ISR support, and tactical payload adaptability.
-        </p>
-      </div>
-
+  <!-- SCENE 2 -->
+  <section class="scene">
+    <div>
+      <h2>The Problem</h2>
+      <p>
+        India depends on imported platforms for pilot training, surveillance,
+        and light tactical aviation.
+      </p>
+      <p>
+        Existing solutions are expensive, over-specialized,
+        or not designed for Indian operational realities.
+      </p>
     </div>
-  </div>
-</section>
+  </section>
 
-
-<!-- ================= PROJECTS ================= -->
-<section class="dark center">
-  <div class="reveal">
-    <h2>Strategic Programs</h2>
-
-    <div class="projects-list">
-      <span>• SeaRover™ – Maritime ISR Platform</span>
-      <span>• Anti-Landmine Detection Systems</span>
-      <span>• Defence-Oriented ISR Drones</span>
-      <span>• Long-Endurance Autonomous Platforms</span>
-      <span>• Advanced Propulsion Research</span>
+  <!-- SCENE 3 -->
+  <section class="scene">
+    <div>
+      <h2>Why AlphaX Exists</h2>
+      <p>
+        AlphaX Aerospace was founded to build indigenous,
+        mission-adaptive aerospace platforms —
+        engineered for scale, endurance, and sovereignty.
+      </p>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ================= LEADERSHIP ================= -->
-<section class="gradient center">
-  <div class="reveal">
-    <h2>Leadership</h2>
-
-    <div class="leaders leaders-with-images">
-
-      <div class="leader">
-        <img src="john.jpeg" alt="John Stany Xavier">
-        <div><strong>John Stany Xavier</strong> — Founder & CEO</div>
-      </div>
-
-      <div class="leader">
-        <img src="sanjeev.jpeg" alt="Sanjeev Kumar">
-        <div><strong>Sanjeev Kumar</strong> — Co-Founder</div>
-      </div>
-
-      <div class="leader">
-        <img src="steevan.jpeg" alt="Arogyaswamy Steevan">
-        <div><strong>Arogyaswamy Steevan</strong> — Managing Director</div>
-      </div>
-
+  <!-- SCENE 4 -->
+  <section class="scene">
+    <div>
+      <h2>Core Systems</h2>
+      <p><strong>GlideCore™</strong> — Human-centric vibration & fatigue control.</p>
+      <p><strong>FlightCore™</strong> — Predictable, pilot-first flight architecture.</p>
+      <p><strong>PowerCore™</strong> — Aviation-grade energy & propulsion intelligence.</p>
     </div>
-  </div>
-</section>
+  </section>
 
+  <!-- SCENE 5 -->
+  <section class="scene">
+    <div>
+      <h2>SkyRover™</h2>
+      <p>
+        India’s indigenous manned light aircraft platform —
+        designed as a modular system, not a single configuration.
+      </p>
+      <p>
+        One airframe. Multiple missions. Long-term evolution.
+      </p>
+    </div>
+  </section>
 
-<!-- ================= FINAL CTA ================= -->
-<section class="final center">
-  <div class="reveal">
-    <h2>Built in India.<br>Engineered for the Next 50 Years.</h2>
-    <a href="#" class="cta">Request Briefing</a>
-  </div>
+  <!-- SCENE 6 -->
+  <section class="scene">
+    <div>
+      <h2>SkyRover Variants</h2>
+      <p>
+        Base — Pilot training & surveillance familiarization.
+      </p>
+      <p>
+        Premium — Extended endurance & advanced avionics.
+      </p>
+      <p>
+        Tactical — ISR-ready configuration for defence operations.
+      </p>
+    </div>
+  </section>
 
-  <footer>© AlphaX Aerospace Pvt Ltd</footer>
-</section>
+  <!-- SCENE 7 -->
+  <section class="scene">
+    <div>
+      <h2>Strategic Programs</h2>
+      <p>SeaRover™ — Maritime ISR</p>
+      <p>Anti-Landmine Detection Systems</p>
+      <p>Autonomous ISR Platforms</p>
+      <p>Advanced Propulsion Research</p>
+    </div>
+  </section>
 
-<!-- ================= SCROLL REVEAL SCRIPT ================= -->
+  <!-- SCENE 8 -->
+  <section class="scene">
+    <div>
+      <h2>Leadership</h2>
+      <p>John Stany Xavier — Founder & CEO</p>
+      <p>Sanjeev Kumar — Co-Founder</p>
+      <p>Arogyaswamy Steevan — Managing Director</p>
+    </div>
+  </section>
+
+  <!-- SCENE 9 -->
+  <section class="scene">
+    <div>
+      <h2>Built in India.<br>Engineered for the Next 50 Years.</h2>
+      <a href="#" class="cta">Request Briefing</a>
+    </div>
+  </section>
+
+</div>
+
+<div class="hint">SCROLL TO CONTINUE</div>
+
 <script>
-  const reveals = document.querySelectorAll('.reveal');
+let current = 0;
+const scenes = document.querySelectorAll('.scene');
 
-  const observer = new IntersectionObserver(
-    entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-        }
-      });
-    },
-    { threshold: 0.35 }
-  );
-
-  reveals.forEach(r => observer.observe(r));
+window.addEventListener('wheel', (e)=>{
+  if(e.deltaY > 0 && current < scenes.length - 1){
+    scenes[current].classList.remove('active');
+    current++;
+    scenes[current].classList.add('active');
+  }
+  if(e.deltaY < 0 && current > 0){
+    scenes[current].classList.remove('active');
+    current--;
+    scenes[current].classList.add('active');
+  }
+},{passive:true});
 </script>
 
 </body>
