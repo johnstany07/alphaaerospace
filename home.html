@@ -2,87 +2,45 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>AlphaX Aerospace — Take Off</title>
+<title>AlphaX Aerospace</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-/* ================= RESET ================= */
+/* ========== RESET ========== */
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
-body{background:#02040a;color:#fff;overflow:hidden;}
+body{background:#02040a;color:#fff;overflow-x:hidden;}
 
-/* ================= VIEWPORT ================= */
-#viewport{
-  height:100vh;
-  width:100vw;
-  overflow:hidden;
-  position:relative;
-}
-
-/* ================= SCENES ================= */
-.scene{
-  position:absolute;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:8vw;
-  opacity:0;
-  transform:translateY(30px);
-  transition:opacity .9s ease, transform .9s ease;
-  pointer-events:none;
-}
-
-.scene.active{
-  opacity:1;
-  transform:translateY(0);
-  pointer-events:auto;
-}
-
-/* ================= BACKGROUND ================= */
+/* ========== BACKGROUND VIDEOS ========== */
 .bg-video{
   position:fixed;
   inset:0;
-  z-index:-2;
   width:100%;
   height:100%;
   object-fit:cover;
-  filter:brightness(.35) contrast(1.1);
+  z-index:-3;
+  opacity:0;
+  transform:scale(1.08);
+  transition:opacity 1.4s ease, transform 1.4s ease;
+  filter:brightness(.38) contrast(1.15) saturate(1.05);
+}
+.bg-video.active{
+  opacity:1;
+  transform:scale(1);
 }
 
 .bg-overlay{
   position:fixed;
   inset:0;
-  z-index:-1;
-  background:radial-gradient(circle at center, rgba(15,25,50,.45), #02040a 70%);
+  z-index:-2;
+  background:radial-gradient(circle at center, rgba(20,30,60,.45), #02040a 72%);
 }
 
-/* ================= TYPOGRAPHY ================= */
-h1{
-  font-size:clamp(44px,6vw,80px);
-  font-weight:700;
-  line-height:1.05;
-}
-
-h2{
-  font-size:clamp(28px,4vw,46px);
-  font-weight:600;
-  line-height:1.2;
-}
-
-p{
-  margin-top:22px;
-  font-size:17px;
-  line-height:1.8;
-  color:#cfd8e3;
-  max-width:720px;
-}
-
-/* ================= BRAND ================= */
+/* ========== BRAND ========== */
 .brand{
   position:fixed;
-  top:26px;
+  top:24px;
   left:30px;
   font-size:12px;
   letter-spacing:4px;
@@ -90,11 +48,47 @@ p{
   z-index:10;
 }
 
-/* ================= CTA ================= */
+/* ========== SECTIONS ========== */
+section{
+  min-height:100vh;
+  padding:9vw;
+  display:flex;
+  align-items:center;
+}
+
+.content{
+  max-width:780px;
+  opacity:0;
+  transform:translateY(50px);
+  transition:all 1.1s ease;
+}
+.content.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* ========== TYPOGRAPHY ========== */
+h1{
+  font-size:clamp(44px,6vw,84px);
+  font-weight:700;
+  line-height:1.05;
+}
+h2{
+  font-size:clamp(30px,4vw,48px);
+  font-weight:600;
+}
+p{
+  margin-top:22px;
+  font-size:17px;
+  line-height:1.85;
+  color:#cfd8e3;
+}
+
+/* ========== CTA ========== */
 .cta{
   margin-top:36px;
   display:inline-block;
-  padding:14px 36px;
+  padding:14px 38px;
   border-radius:999px;
   background:linear-gradient(135deg,#4cc3ff,#63ffd8);
   color:#000;
@@ -102,31 +96,33 @@ p{
   text-decoration:none;
 }
 
-/* ================= SCROLL HINT ================= */
-.hint{
-  position:fixed;
-  bottom:34px;
-  width:100%;
-  text-align:center;
-  font-size:11px;
-  letter-spacing:2px;
-  opacity:.45;
+/* ========== LEADERSHIP ========== */
+.leader{
+  margin-top:22px;
 }
-
-/* ================= LEADERSHIP PHOTOS ================= */
-.leader-photo{
-  margin-top:28px;
-  width:120px;
-  height:120px;
+.leader img{
+  width:92px;
+  height:92px;
   border-radius:50%;
   object-fit:cover;
   filter:grayscale(100%);
   opacity:0;
-  transition:opacity .8s ease, filter .8s ease;
+  transition:opacity 1s ease, filter 1s ease;
+}
+.content.visible img{
+  opacity:1;
 }
 
-.scene.active .leader-photo{
-  opacity:1;
+/* ========== SPACING ========== */
+.spacer{height:18vh;}
+
+/* ========== MOBILE OPTIMIZATION ========== */
+@media(max-width:768px){
+  section{padding:14vw 8vw;}
+  .bg-video{display:none;}
+  .bg-overlay{
+    background:linear-gradient(180deg,#050914,#02040a);
+  }
 }
 </style>
 </head>
@@ -136,17 +132,25 @@ p{
 <!-- BRAND -->
 <div class="brand">ALPHAX</div>
 
-<!-- BACKGROUND -->
-<video class="bg-video" autoplay muted loop playsinline>
-  <source src="skyrover360.mp4" type="video/mp4">
+<!-- BACKGROUND VIDEOS -->
+<video id="v-future" class="bg-video active" autoplay muted loop playsinline>
+  <source src="future.mp4" type="video/mp4">
 </video>
+<video id="v-interor" class="bg-video" autoplay muted loop playsinline>
+  <source src="interor.mp4" type="video/mp4">
+</video>
+<video id="v-skyrover" class="bg-video" autoplay muted loop playsinline>
+  <source src="skyrover1.mp4" type="video/mp4">
+</video>
+<video id="v-tactical" class="bg-video" autoplay muted loop playsinline>
+  <source src="tacticalrover.mp4" type="video/mp4">
+</video>
+
 <div class="bg-overlay"></div>
 
-<div id="viewport">
-
-<!-- ACT I — AUTHORITY -->
-<section class="scene active">
-  <div>
+<!-- HERO -->
+<section data-video="future">
+  <div class="content">
     <h1>Engineering India’s<br>Sovereign Skies</h1>
     <p>
       AlphaX Aerospace is not a product company.<br>
@@ -155,146 +159,88 @@ p{
   </div>
 </section>
 
-<section class="scene">
-  <div>
+<div class="spacer"></div>
+
+<section data-video="future">
+  <div class="content">
     <h2>The Problem</h2>
     <p>
       India relies on imported platforms for pilot training,
       surveillance, and light tactical aviation.
     </p>
     <p>
-      These platforms are expensive, rigid, and not designed
-      for Indian operational realities.
+      These platforms are expensive, rigid, and misaligned
+      with Indian operational realities.
     </p>
   </div>
 </section>
 
-<section class="scene">
-  <div>
+<div class="spacer"></div>
+
+<section data-video="future">
+  <div class="content">
     <h2>Why AlphaX Exists</h2>
     <p>
-      AlphaX Aerospace was founded to build indigenous,
-      mission-adaptive aerospace platforms — engineered
-      for scale, endurance, and sovereignty.
+      AlphaX was founded to build indigenous, mission-adaptive
+      aerospace systems designed for decades — not cycles.
     </p>
   </div>
 </section>
 
-<!-- ACT II — SYSTEM THINKING -->
-<section class="scene">
-  <div>
+<div class="spacer"></div>
+
+<!-- TECHNOLOGY -->
+<section data-video="interor">
+  <div class="content">
     <h2>Our Aerospace Philosophy</h2>
     <p>
       AlphaX does not build aircraft as isolated products.
-      We build systems designed to survive decades
-      of operational evolution.
+      We design systems that evolve without redesign.
     </p>
   </div>
 </section>
 
-<section class="scene">
-  <div>
-    <h2>GlideCore™</h2>
-    <p>
-      Most aircraft treat pilot fatigue as an afterthought.
-      AlphaX treats the human as part of the system.
-    </p>
-    <p>
-      GlideCore™ governs vibration, comfort, and control
-      consistency at the airframe level.
-    </p>
+<div class="spacer"></div>
+
+<section data-video="interor">
+  <div class="content">
+    <h2>Core Systems</h2>
+    <p><strong>GlideCore™</strong> — Human-centric vibration & fatigue control.</p>
+    <p><strong>FlightCore™</strong> — Predictability-first flight architecture.</p>
+    <p><strong>PowerCore™</strong> — Aviation-grade energy intelligence.</p>
+    <p><strong>AeroCore™</strong> — Structure, modularity, longevity.</p>
   </div>
 </section>
 
-<section class="scene">
-  <div>
-    <h2>FlightCore™</h2>
-    <p>
-      Aggressive automation fails in unpredictable missions.
-      AlphaX prioritizes predictability over novelty.
-    </p>
-    <p>
-      FlightCore™ ensures stable, intuitive handling
-      across training and operational environments.
-    </p>
-  </div>
-</section>
+<div class="spacer"></div>
 
-<section class="scene">
-  <div>
-    <h2>PowerCore™</h2>
-    <p>
-      Aviation energy systems are not automotive systems.
-      Safety margins, redundancy, and thermal discipline matter.
-    </p>
-    <p>
-      PowerCore™ is designed from aviation-first principles,
-      not adapted from other industries.
-    </p>
-  </div>
-</section>
-
-<section class="scene">
-  <div>
-    <h2>AeroCore™</h2>
-    <p>
-      Speed is meaningless without structure.
-      AeroCore™ governs airframe geometry,
-      modularity, and long-term maintainability.
-    </p>
-  </div>
-</section>
-
-<!-- ACT III — SKYROVER -->
-<section class="scene">
-  <div>
+<!-- SKYROVER -->
+<section data-video="skyrover">
+  <div class="content">
     <h2>The Origin of SkyRover™</h2>
     <p>
-      India lacked an indigenous, affordable,
-      manned light aircraft platform
-      adaptable across missions.
-    </p>
-    <p>
-      SkyRover™ was conceived to bridge this gap.
+      India lacked an affordable, indigenous,
+      manned light aircraft adaptable across missions.
     </p>
   </div>
 </section>
 
-<section class="scene">
-  <div>
-    <h2>SkyRover Is a Platform</h2>
-    <p>
-      SkyRover™ was never designed as a single aircraft.
-      It is a modular system capable of evolving
-      without redesigning the airframe.
-    </p>
-  </div>
-</section>
+<div class="spacer"></div>
 
-<section class="scene">
-  <div>
+<section data-video="skyrover">
+  <div class="content">
     <h2>SkyRover Variants</h2>
-    <p>Base — Pilot training & surveillance familiarization</p>
-    <p>Premium — Extended endurance & advanced avionics</p>
+    <p>Base — Training & surveillance familiarization</p>
+    <p>Premium — Extended endurance & avionics</p>
     <p>Tactical — ISR-ready defence configuration</p>
   </div>
 </section>
 
-<section class="scene">
-  <div>
-    <h2>Problems SkyRover Solves</h2>
-    <p>
-      Accelerates pilot training pipelines,
-      enables affordable ISR,
-      and restores lifecycle control
-      to indigenous stakeholders.
-    </p>
-  </div>
-</section>
+<div class="spacer"></div>
 
-<!-- ACT IV — PIPELINE -->
-<section class="scene">
-  <div>
+<!-- PROGRAMS -->
+<section data-video="tactical">
+  <div class="content">
     <h2>Strategic Programs</h2>
     <p>SeaRover™ — Maritime ISR</p>
     <p>Anti-Landmine Detection Systems</p>
@@ -303,64 +249,78 @@ p{
   </div>
 </section>
 
-<section class="scene">
-  <div>
-    <h2>Long-Term Vision</h2>
-    <p>
-      AlphaX is not optimized for the next funding round.
-      It is optimized for the next 30 years.
-    </p>
-  </div>
-</section>
+<div class="spacer"></div>
 
-<!-- ACT V — PEOPLE -->
-<section class="scene">
-  <div>
+<!-- LEADERSHIP -->
+<section data-video="tactical">
+  <div class="content">
     <h2>Leadership</h2>
-    <p>John Stany Xavier — Founder & CEO</p>
-    <p>Sanjeev Kumar — Co-Founder</p>
-    <p>Arogyaswamy Steevan — Managing Director</p>
-
-    <img src="john.jpeg" class="leader-photo" alt="">
-    <img src="sanjeev.jpeg" class="leader-photo" alt="">
-    <img src="arogyaswamy.jpeg" class="leader-photo" alt="">
+    <div class="leader">
+      John Stany Xavier — Founder & CEO<br>
+      <img src="john.jpeg">
+    </div>
+    <div class="leader">
+      Sanjeev Kumar — Co-Founder<br>
+      <img src="sanjeev.jpeg">
+    </div>
+    <div class="leader">
+      Arogyaswamy Steevan — Managing Director<br>
+      <img src="steevan.jpeg">
+    </div>
   </div>
 </section>
 
-<section class="scene">
-  <div>
+<div class="spacer"></div>
+
+<!-- FINAL -->
+<section data-video="future">
+  <div class="content">
     <h2>Built in India.<br>Engineered for the Next 50 Years.</h2>
-    <a href="#contact" class="cta">Request Briefing</a>
+    <a href="#" class="cta">Request Briefing</a>
   </div>
 </section>
 
-</div>
-
-<div class="hint">SCROLL TO CONTINUE</div>
-
+<!-- VIDEO SWITCH + PARALLAX + REVEAL -->
 <script>
-let current = 0;
-const scenes = document.querySelectorAll('.scene');
-let locked = false;
+const contents = document.querySelectorAll('.content');
+const sections = document.querySelectorAll('section');
 
-window.addEventListener('wheel', (e)=>{
-  if(locked) return;
-  locked = true;
+const videos = {
+  future: document.getElementById('v-future'),
+  interor: document.getElementById('v-interor'),
+  skyrover: document.getElementById('v-skyrover'),
+  tactical: document.getElementById('v-tactical')
+};
 
-  if(e.deltaY > 0 && current < scenes.length - 1){
-    scenes[current].classList.remove('active');
-    current++;
-    scenes[current].classList.add('active');
-  }
+const revealObserver = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+    }
+  });
+},{threshold:.3});
 
-  if(e.deltaY < 0 && current > 0){
-    scenes[current].classList.remove('active');
-    current--;
-    scenes[current].classList.add('active');
-  }
+contents.forEach(c=>revealObserver.observe(c));
 
-  setTimeout(()=>locked=false, 900);
-},{passive:true});
+const videoObserver = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const key = e.target.getAttribute('data-video');
+      if(!key) return;
+      Object.values(videos).forEach(v=>v.classList.remove('active'));
+      videos[key].classList.add('active');
+    }
+  });
+},{threshold:.6});
+
+sections.forEach(s=>videoObserver.observe(s));
+
+window.addEventListener('scroll',()=>{
+  const y = window.scrollY * 0.0003;
+  document.querySelectorAll('.bg-video').forEach(v=>{
+    v.style.transform = `scale(${1.05 - y})`;
+  });
+});
 </script>
 
 </body>
