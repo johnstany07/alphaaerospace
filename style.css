@@ -1652,10 +1652,29 @@ html, body {
   filter: brightness(1.25) contrast(1.1) saturate(1.05);
 }
 
-/* ================= LEADERSHIP ================= */
+/* ===== LEADERSHIP FIX ===== */
 .leader{
-  margin-top:40px;
-  max-width:680px;
+  margin-top:48px;
+  max-width:720px;
+}
+
+.leader img{
+  width:96px;
+  height:96px;
+  border-radius:50%;
+  object-fit:cover;
+  display:block;
+  margin-bottom:16px;
+
+  /* premium look */
+  filter:grayscale(100%);
+  opacity:0;
+  transition:opacity 1s ease;
+}
+
+/* image appears with content reveal */
+.content.visible .leader img{
+  opacity:1;
 }
 
 .leader h3{
@@ -1678,11 +1697,4 @@ html, body {
   line-height:1.8;
   color:#cfd8e3;
 }
-.leader-photo{
-  width:84px;
-  height:84px;
-  border-radius:50%;
-  object-fit:cover;
-  filter:grayscale(100%);
-  margin-bottom:16px;
-}
+
