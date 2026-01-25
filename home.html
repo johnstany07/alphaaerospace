@@ -2,32 +2,27 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>AlphaX Aerospace | Engineering the Skies</title>
+<title>Skyrover™ | AlphaX Aerospace</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-/* ================= RESET ================= */
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
-body{
-  background:#02040a;
-  color:#ffffff;
-  overflow-x:hidden;
-}
+/* ===== RESET ===== */
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+body{background:#02040a;color:#fff;overflow-x:hidden}
 
-/* ================= BRAND ================= */
+/* ===== BRAND ===== */
 .brand{
   position:fixed;
-  top:26px;
-  left:34px;
+  top:26px; left:34px;
   font-size:12px;
   letter-spacing:4px;
-  color:rgba(255,255,255,.55);
+  color:rgba(255,255,255,.6);
   z-index:10;
 }
 
-/* ================= BACKGROUND VIDEO ================= */
+/* ===== BACKGROUND VIDEOS ===== */
 .bg-video{
   position:fixed;
   inset:0;
@@ -37,23 +32,21 @@ body{
   z-index:-3;
   opacity:0;
   transition:opacity 1.2s ease;
-  filter:brightness(.6) contrast(1.12) saturate(1.05);
+  filter:brightness(.6) contrast(1.1) saturate(1.05);
 }
 .bg-video.active{opacity:1}
 
-/* ================= OVERLAY ================= */
-.bg-overlay{
+/* ===== OVERLAY ===== */
+.overlay{
   position:fixed;
   inset:0;
   z-index:-2;
-  background:radial-gradient(
-    circle at center,
+  background:radial-gradient(circle at center,
     rgba(30,40,70,.35),
-    #02040a 75%
-  );
+    #02040a 75%);
 }
 
-/* ================= SECTIONS ================= */
+/* ===== SECTIONS ===== */
 section{
   min-height:100vh;
   padding:9vw;
@@ -62,7 +55,7 @@ section{
 }
 
 .content{
-  max-width:820px;
+  max-width:880px;
   opacity:0;
   transform:translateY(40px);
   transition:all 1s ease;
@@ -72,9 +65,9 @@ section{
   transform:translateY(0);
 }
 
-/* ================= TYPOGRAPHY ================= */
+/* ===== TYPOGRAPHY ===== */
 h1{
-  font-size:clamp(46px,6vw,86px);
+  font-size:clamp(46px,6vw,88px);
   font-weight:700;
   line-height:1.05;
 }
@@ -88,23 +81,15 @@ p{
   line-height:1.85;
   color:#cfd8e3;
 }
-
-.highlight{
-  color:#7dfcff;
-  font-weight:600;
-}
+.highlight{color:#7dfcff;font-weight:600}
 
 .divider{
-  width:48px;
-  height:2px;
+  width:48px;height:2px;
   background:#7dfcff;
   margin:22px 0;
 }
 
-/* ================= SPACING ================= */
-.spacer{height:18vh;}
-
-/* ================= CTA ================= */
+/* ===== CTA ===== */
 .cta{
   margin-top:36px;
   display:inline-block;
@@ -116,11 +101,27 @@ p{
   text-decoration:none;
 }
 
-/* ================= MOBILE ================= */
+/* ===== TABLE ===== */
+table{
+  margin-top:28px;
+  border-collapse:collapse;
+  width:100%;
+  max-width:520px;
+}
+td{
+  padding:12px 0;
+  border-bottom:1px solid rgba(255,255,255,.15);
+}
+td:last-child{text-align:right;font-weight:600}
+
+/* ===== SPACING ===== */
+.spacer{height:18vh}
+
+/* ===== MOBILE ===== */
 @media(max-width:768px){
-  section{padding:14vw 8vw;}
-  .bg-video{display:none;}
-  .bg-overlay{
+  section{padding:14vw 8vw}
+  .bg-video{display:none}
+  .overlay{
     background:linear-gradient(180deg,#050914,#02040a);
   }
 }
@@ -129,164 +130,154 @@ p{
 
 <body>
 
-<!-- BRAND -->
-<div class="brand">ALPHAX</div>
+<div class="brand">SKYROVER™</div>
 
 <!-- BACKGROUND VIDEOS -->
 <video id="v-hero" class="bg-video active" autoplay muted loop playsinline>
-  <source src="future.mp4" type="video/mp4">
+  <source src="hero.mp4" type="video/mp4">
 </video>
 
-<video id="v-conn" class="bg-video" autoplay muted loop playsinline>
-  <source src="skyrover1.mp4" type="video/mp4">
+<video id="v-connect" class="bg-video" autoplay muted loop playsinline>
+  <source src="connect.mp4" type="video/mp4">
 </video>
 
 <video id="v-interior" class="bg-video" autoplay muted loop playsinline>
-  <source src="interor.mp4" type="video/mp4">
+  <source src="interior.mp4" type="video/mp4">
 </video>
 
-<video id="v-tactical" class="bg-video" autoplay muted loop playsinline>
-  <source src="tacticalrover.mp4" type="video/mp4">
+<video id="v-vertiport" class="bg-video" autoplay muted loop playsinline>
+  <source src="vertiport.mp4" type="video/mp4">
 </video>
 
-<div class="bg-overlay"></div>
+<div class="overlay"></div>
 
 <!-- HERO -->
 <section data-video="hero">
   <div class="content">
-    <h1>Engineering India’s<br>Sovereign Skies</h1>
+    <h1>Engineering the Skies.</h1>
     <p>
-      AlphaX Aerospace is building the future of regional aviation —
-      connecting India faster, safer, and smarter.
+      <span class="highlight">Bangalore to Chennai in just 40 minutes.</span><br>
+      Skyrover™ is AlphaX Aerospace’s flagship electric aircraft,
+      redefining regional air mobility for India.
     </p>
+    <a href="#" class="cta">Explore the Future of Mobility</a>
   </div>
 </section>
 
 <div class="spacer"></div>
-
-<!-- CONNECTIVITY STORY -->
-<section data-video="conn">
-  <div class="content">
-    <h2>Reimagining Regional Travel</h2>
-    <div class="divider"></div>
-    <p>
-      Today, Tier-2 and Tier-3 cities remain disconnected from
-      India’s economic centres due to slow, inefficient travel.
-    </p>
-    <p>
-      AlphaX changes that.
-    </p>
-  </div>
-</section>
-
-<div class="spacer"></div>
-
-<section data-video="conn">
-  <div class="content">
-    <h2>Time Becomes the Advantage</h2>
-    <p>
-      <span class="highlight">Bangalore → Chennai</span>  
-      <br>From <strong>1 hour+</strong> to <strong>40 minutes</strong>
-    </p>
-    <p>
-      <span class="highlight">Delhi → Jaipur</span>  
-      <br>From <strong>90 minutes</strong> to <strong>45 minutes</strong>
-    </p>
-    <p>
-      Faster point-to-point travel without large airports.
-    </p>
-  </div>
-</section>
-
-<div class="spacer"></div>
-
-<!-- TECHNOLOGY -->
-<section data-video="interior">
-  <div class="content">
-    <h2>The AlphaX Technology Stack</h2>
-    <div class="divider"></div>
-    <p>
-      <strong>AeroCore™</strong> — Structural intelligence that enables
-      short-range, high-frequency regional flight.
-    </p>
-    <p>
-      <strong>GlideCore™</strong> — Comfort engineering that reduces vibration
-      and fatigue, even in compact aircraft.
-    </p>
-    <p>
-      <strong>FlightCore™</strong> — Safety-first flight control architecture
-      designed for predictable handling and redundancy.
-    </p>
-  </div>
-</section>
-
-<div class="spacer"></div>
-  <div class="leader">
-  <img 
-    src="./john.jpeg" 
-    alt="John Stany Xavier"
-    style="
-      display:block;
-      width:96px;
-      height:96px;
-      border-radius:50%;
-      object-fit:cover;
-      opacity:1;
-      visibility:visible;
-      position:relative;
-      z-index:5;
-    "
-  >
-  <h3>John Stany Xavier</h3>
-  <span>Founder & CEO</span>
-  <p>
-    Aerospace systems architect focused on building indigenous,
-    long-term aviation platforms for India.
-  </p>
-</div>
-
 
 <!-- SKYROVER -->
-<section data-video="conn">
+<section data-video="hero">
   <div class="content">
-    <h2>The SkyRover™ Platform</h2>
+    <h2>The Skyrover™ Platform</h2>
     <div class="divider"></div>
     <p>
-      A manned light aircraft platform designed to serve
-      regional mobility, training, and future defence needs.
+      Skyrover™ is a next-generation electric VTOL aircraft
+      engineered for speed, range, and regional connectivity.
+    </p>
+    <p>
+      <strong>Range:</strong> Up to 800 km<br>
+      <strong>Cruise Speed:</strong> 300–400 km/h
     </p>
   </div>
 </section>
 
 <div class="spacer"></div>
-<section data-video="tactical">
-  <div class="content">  
+
+<!-- REGIONAL CONNECT -->
+<section data-video="connect">
+  <div class="content">
+    <h2>Redefining Regional Connect</h2>
+    <div class="divider"></div>
+    <p>
+      Skyrover bridges India’s Tier-2 and Tier-3 cities
+      directly with Tier-1 hubs—without detours or delays.
+    </p>
+    <p>
+      Mysore. Salem. Tirupati. Coimbatore.<br>
+      Connected directly to Bangalore and Chennai.
+    </p>
   </div>
 </section>
 
+<div class="spacer"></div>
 
-<!-- FUTURE -->
-<section data-video="tactical">
+<!-- TIME TABLE -->
+<section data-video="connect">
   <div class="content">
-    <h2>Built in India.<br>Engineered for the Next 50 Years.</h2>
-    <a href="#" class="cta">Request Briefing</a>
+    <h2>Bangalore ↔ Chennai</h2>
+    <table>
+      <tr><td>Car</td><td>6–7 Hours</td></tr>
+      <tr><td>Train</td><td>~5 Hours</td></tr>
+      <tr><td>Commercial Flight</td><td>~3 Hours</td></tr>
+      <tr><td><strong>Skyrover™</strong></td><td><strong>40 Minutes</strong></td></tr>
+    </table>
+  </div>
+</section>
+
+<div class="spacer"></div>
+
+<!-- NO AIRPORT -->
+<section data-video="vertiport">
+  <div class="content">
+    <h2>No Airport Needed</h2>
+    <div class="divider"></div>
+    <p>
+      Skyrover operates from vertiports—compact landing zones
+      located on rooftops, business hubs, hospitals, and industrial zones.
+    </p>
+    <p>
+      Fly city-center to city-center. Skip traffic. Skip terminals.
+    </p>
+  </div>
+</section>
+
+<div class="spacer"></div>
+
+<!-- SUSTAINABILITY -->
+<section data-video="interior">
+  <div class="content">
+    <h2>Zero-Emission by Design</h2>
+    <div class="divider"></div>
+    <p>
+      Skyrover runs on a fully electric powertrain—delivering
+      quiet, clean, and sustainable regional flight.
+    </p>
+  </div>
+</section>
+
+<div class="spacer"></div>
+
+<!-- INVESTORS -->
+<section data-video="hero">
+  <div class="content">
+    <h2>Why AlphaX Aerospace</h2>
+    <div class="divider"></div>
+    <p>
+      AlphaX is building India’s Advanced Air Mobility ecosystem
+      from the ground up—designed for scale, export, and national relevance.
+    </p>
+    <p>
+      Powered by <strong>AeroCore™</strong>, comfort via <strong>GlideCore™</strong>,
+      safety through <strong>FlightCore™</strong>.
+    </p>
   </div>
 </section>
 
 <script>
-/* CONTENT REVEAL */
+/* TEXT REVEAL */
 const contents=document.querySelectorAll('.content');
 const reveal=new IntersectionObserver(e=>{
-  e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible');});
+  e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')});
 },{threshold:.3});
 contents.forEach(c=>reveal.observe(c));
 
-/* VIDEO SWITCH (NO TRANSFORM, NO ROTATION) */
+/* VIDEO SWITCH */
 const videos={
   hero:document.getElementById('v-hero'),
-  conn:document.getElementById('v-conn'),
+  connect:document.getElementById('v-connect'),
   interior:document.getElementById('v-interior'),
-  tactical:document.getElementById('v-tactical')
+  vertiport:document.getElementById('v-vertiport')
 };
 
 const sections=document.querySelectorAll('section');
@@ -298,7 +289,6 @@ const videoObs=new IntersectionObserver(e=>{
     }
   });
 },{threshold:.6});
-
 sections.forEach(s=>videoObs.observe(s));
 </script>
 
