@@ -2,27 +2,28 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Skyrover™ | AlphaX Aerospace</title>
+<title>AlphaX Aerospace | Skyrover</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-/* ===== RESET ===== */
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+/* ================= RESET ================= */
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
 body{background:#02040a;color:#fff;overflow-x:hidden}
 
-/* ===== BRAND ===== */
+/* ================= BRAND ================= */
 .brand{
   position:fixed;
-  top:26px; left:34px;
+  top:24px;
+  left:32px;
   font-size:12px;
   letter-spacing:4px;
-  color:rgba(255,255,255,.6);
+  color:rgba(255,255,255,.55);
   z-index:10;
 }
 
-/* ===== BACKGROUND VIDEOS ===== */
+/* ================= BACKGROUND VIDEOS ================= */
 .bg-video{
   position:fixed;
   inset:0;
@@ -32,30 +33,31 @@ body{background:#02040a;color:#fff;overflow-x:hidden}
   z-index:-3;
   opacity:0;
   transition:opacity 1.2s ease;
-  filter:brightness(.6) contrast(1.1) saturate(1.05);
+  filter:brightness(.6) contrast(1.12) saturate(1.05);
 }
 .bg-video.active{opacity:1}
 
-/* ===== OVERLAY ===== */
-.overlay{
+/* ================= OVERLAY ================= */
+.bg-overlay{
   position:fixed;
   inset:0;
   z-index:-2;
-  background:radial-gradient(circle at center,
+  background:radial-gradient(
+    circle at center,
     rgba(30,40,70,.35),
-    #02040a 75%);
+    #02040a 75%
+  );
 }
 
-/* ===== SECTIONS ===== */
+/* ================= SECTIONS ================= */
 section{
   min-height:100vh;
   padding:9vw;
   display:flex;
   align-items:center;
 }
-
 .content{
-  max-width:880px;
+  max-width:900px;
   opacity:0;
   transform:translateY(40px);
   transition:all 1s ease;
@@ -65,9 +67,9 @@ section{
   transform:translateY(0);
 }
 
-/* ===== TYPOGRAPHY ===== */
+/* ================= TYPOGRAPHY ================= */
 h1{
-  font-size:clamp(46px,6vw,88px);
+  font-size:clamp(46px,6vw,86px);
   font-weight:700;
   line-height:1.05;
 }
@@ -75,8 +77,13 @@ h2{
   font-size:clamp(30px,4vw,48px);
   font-weight:600;
 }
+h3{
+  font-size:20px;
+  font-weight:600;
+  margin-top:24px;
+}
 p{
-  margin-top:22px;
+  margin-top:18px;
   font-size:17px;
   line-height:1.85;
   color:#cfd8e3;
@@ -89,7 +96,7 @@ p{
   margin:22px 0;
 }
 
-/* ===== CTA ===== */
+/* ================= CTA ================= */
 .cta{
   margin-top:36px;
   display:inline-block;
@@ -101,27 +108,34 @@ p{
   text-decoration:none;
 }
 
-/* ===== TABLE ===== */
-table{
-  margin-top:28px;
-  border-collapse:collapse;
-  width:100%;
-  max-width:520px;
+/* ================= LEADERSHIP ================= */
+.leader{
+  margin-top:40px;
 }
-td{
-  padding:12px 0;
-  border-bottom:1px solid rgba(255,255,255,.15);
+.leader img{
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  object-fit:cover;
+  display:block;
+  margin-bottom:14px;
+  filter:grayscale(100%);
 }
-td:last-child{text-align:right;font-weight:600}
+.leader span{
+  font-size:13px;
+  letter-spacing:1.4px;
+  text-transform:uppercase;
+  color:#7dfcff;
+}
 
-/* ===== SPACING ===== */
+/* ================= SPACING ================= */
 .spacer{height:18vh}
 
-/* ===== MOBILE ===== */
+/* ================= MOBILE ================= */
 @media(max-width:768px){
   section{padding:14vw 8vw}
   .bg-video{display:none}
-  .overlay{
+  .bg-overlay{
     background:linear-gradient(180deg,#050914,#02040a);
   }
 }
@@ -130,142 +144,166 @@ td:last-child{text-align:right;font-weight:600}
 
 <body>
 
-<div class="brand">SKYROVER™</div>
+<div class="brand">ALPHAX AEROSPACE</div>
 
 <!-- BACKGROUND VIDEOS -->
-<video id="v-hero" class="bg-video active" autoplay muted loop playsinline>
-  <source src="hero.mp4" type="video/mp4">
-</video>
-
-<video id="v-connect" class="bg-video" autoplay muted loop playsinline>
-  <source src="connect.mp4" type="video/mp4">
+<video id="v-skyrover" class="bg-video active" autoplay muted loop playsinline>
+  <source src="skyrover1.mp4" type="video/mp4">
 </video>
 
 <video id="v-interior" class="bg-video" autoplay muted loop playsinline>
-  <source src="interior.mp4" type="video/mp4">
+  <source src="interor.mp4" type="video/mp4">
 </video>
 
-<video id="v-vertiport" class="bg-video" autoplay muted loop playsinline>
-  <source src="vertiport.mp4" type="video/mp4">
+<video id="v-tactical" class="bg-video" autoplay muted loop playsinline>
+  <source src="tacticalrover.mp4" type="video/mp4">
 </video>
 
-<div class="overlay"></div>
+<div class="bg-overlay"></div>
 
 <!-- HERO -->
-<section data-video="hero">
+<section data-video="skyrover">
   <div class="content">
-    <h1>Engineering the Skies.</h1>
+    <h1>Engineering the Skies</h1>
     <p>
-      <span class="highlight">Bangalore to Chennai in just 40 minutes.</span><br>
-      Skyrover™ is AlphaX Aerospace’s flagship electric aircraft,
-      redefining regional air mobility for India.
+      <span class="highlight">Bangalore to Chennai in 40 minutes.</span><br>
+      Skyrover is AlphaX Aerospace’s flagship electric aircraft,
+      built to redefine regional travel in India.
     </p>
-    <a href="#" class="cta">Explore the Future of Mobility</a>
-  </div>
-</section>
-
-<div class="spacer"></div>
-
-<!-- SKYROVER -->
-<section data-video="hero">
-  <div class="content">
-    <h2>The Skyrover™ Platform</h2>
-    <div class="divider"></div>
-    <p>
-      Skyrover™ is a next-generation electric VTOL aircraft
-      engineered for speed, range, and regional connectivity.
-    </p>
-    <p>
-      <strong>Range:</strong> Up to 800 km<br>
-      <strong>Cruise Speed:</strong> 300–400 km/h
-    </p>
+    <a href="#" class="cta">Explore Skyrover</a>
   </div>
 </section>
 
 <div class="spacer"></div>
 
 <!-- REGIONAL CONNECT -->
-<section data-video="connect">
+<section data-video="skyrover">
   <div class="content">
-    <h2>Redefining Regional Connect</h2>
+    <h2>Redefining Regional Connectivity</h2>
     <div class="divider"></div>
     <p>
-      Skyrover bridges India’s Tier-2 and Tier-3 cities
-      directly with Tier-1 hubs—without detours or delays.
+      India’s Tier-2 and Tier-3 cities power its economy,
+      yet remain disconnected from Tier-1 hubs.
     </p>
     <p>
-      Mysore. Salem. Tirupati. Coimbatore.<br>
-      Connected directly to Bangalore and Chennai.
+      Skyrover enables direct, point-to-point air travel—
+      no large airports, no congestion, no delays.
     </p>
   </div>
 </section>
 
 <div class="spacer"></div>
 
-<!-- TIME TABLE -->
-<section data-video="connect">
+<!-- TIME COMPARISON -->
+<section data-video="skyrover">
   <div class="content">
-    <h2>Bangalore ↔ Chennai</h2>
-    <table>
-      <tr><td>Car</td><td>6–7 Hours</td></tr>
-      <tr><td>Train</td><td>~5 Hours</td></tr>
-      <tr><td>Commercial Flight</td><td>~3 Hours</td></tr>
-      <tr><td><strong>Skyrover™</strong></td><td><strong>40 Minutes</strong></td></tr>
-    </table>
+    <h2>Time is the Advantage</h2>
+    <p><strong>Bangalore → Chennai</strong></p>
+    <p>Car: 6–7 hours</p>
+    <p>Train: ~5 hours</p>
+    <p>Commercial Flight: ~3 hours</p>
+    <p class="highlight">Skyrover: 40 minutes</p>
   </div>
 </section>
 
 <div class="spacer"></div>
 
-<!-- NO AIRPORT -->
-<section data-video="vertiport">
-  <div class="content">
-    <h2>No Airport Needed</h2>
-    <div class="divider"></div>
-    <p>
-      Skyrover operates from vertiports—compact landing zones
-      located on rooftops, business hubs, hospitals, and industrial zones.
-    </p>
-    <p>
-      Fly city-center to city-center. Skip traffic. Skip terminals.
-    </p>
-  </div>
-</section>
-
-<div class="spacer"></div>
-
-<!-- SUSTAINABILITY -->
+<!-- TECHNOLOGIES -->
 <section data-video="interior">
   <div class="content">
-    <h2>Zero-Emission by Design</h2>
+    <h2>Technology That Sets Us Apart</h2>
     <div class="divider"></div>
+
+    <h3>AeroCore™</h3>
     <p>
-      Skyrover runs on a fully electric powertrain—delivering
-      quiet, clean, and sustainable regional flight.
+      A modular airframe and propulsion architecture designed
+      for short-range, high-frequency regional flight.
+    </p>
+
+    <h3>GlideCore™</h3>
+    <p>
+      Advanced vibration isolation and ergonomic design
+      delivering unmatched comfort in compact aircraft.
+    </p>
+
+    <h3>FlightCore™</h3>
+    <p>
+      Safety-first flight control systems built for predictability,
+      redundancy, and Indian operating conditions.
     </p>
   </div>
 </section>
 
 <div class="spacer"></div>
 
-<!-- INVESTORS -->
-<section data-video="hero">
+<!-- COMPETITIVE EDGE -->
+<section data-video="interior">
   <div class="content">
-    <h2>Why AlphaX Aerospace</h2>
+    <h2>Why AlphaX Is Different</h2>
     <div class="divider"></div>
     <p>
-      AlphaX is building India’s Advanced Air Mobility ecosystem
-      from the ground up—designed for scale, export, and national relevance.
+      Most global eVTOL concepts are built for luxury demos
+      or dense Western cities.
     </p>
     <p>
-      Powered by <strong>AeroCore™</strong>, comfort via <strong>GlideCore™</strong>,
-      safety through <strong>FlightCore™</strong>.
+      AlphaX builds aircraft for India—regional, rugged,
+      scalable, and economically viable from day one.
     </p>
+  </div>
+</section>
+
+<div class="spacer"></div>
+
+<!-- LEADERSHIP -->
+<section data-video="tactical">
+  <div class="content">
+    <h2>Leadership</h2>
+    <div class="divider"></div>
+
+    <div class="leader">
+      <img src="john.jpeg" alt="John Stany Xavier">
+      <h3>John Stany Xavier</h3>
+      <span>Founder & CEO</span>
+      <p>
+        Aerospace systems architect focused on building
+        indigenous aviation platforms for India.
+      </p>
+    </div>
+
+    <div class="leader">
+      <img src="sanjeev.jpeg" alt="Sanjeev Kumar">
+      <h3>Sanjeev Kumar</h3>
+      <span>Co-Founder</span>
+      <p>
+        Driving strategy, partnerships, and execution
+        across AlphaX’s growth journey.
+      </p>
+    </div>
+
+    <div class="leader">
+      <img src="arogyaswamy.jpeg" alt="Arogyaswamy Steevan">
+      <h3>Arogyaswamy Steevan</h3>
+      <span>Managing Director</span>
+      <p>
+        Providing governance, infrastructure leadership,
+        and long-term industrial vision.
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="spacer"></div>
+
+<!-- FINAL -->
+<section data-video="skyrover">
+  <div class="content">
+    <h2>Built in India.<br>Engineered for the Next 50 Years.</h2>
+    <a href="#" class="cta">Request Briefing</a>
   </div>
 </section>
 
 <script>
-/* TEXT REVEAL */
+/* CONTENT REVEAL */
 const contents=document.querySelectorAll('.content');
 const reveal=new IntersectionObserver(e=>{
   e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')});
@@ -274,10 +312,9 @@ contents.forEach(c=>reveal.observe(c));
 
 /* VIDEO SWITCH */
 const videos={
-  hero:document.getElementById('v-hero'),
-  connect:document.getElementById('v-connect'),
+  skyrover:document.getElementById('v-skyrover'),
   interior:document.getElementById('v-interior'),
-  vertiport:document.getElementById('v-vertiport')
+  tactical:document.getElementById('v-tactical')
 };
 
 const sections=document.querySelectorAll('section');
