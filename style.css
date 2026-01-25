@@ -1701,3 +1701,14 @@ html, body {
   opacity:1 !important;
 }
 
+/* ===== IMAGE FORCE RENDER ===== */
+.leader,
+.leader *{
+  opacity:1 !important;
+  visibility:visible !important;
+}
+
+.leader{
+  position:relative;
+  z-index:5;
+}
