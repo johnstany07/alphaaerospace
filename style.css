@@ -1697,4 +1697,7 @@ html, body {
   line-height:1.8;
   color:#cfd8e3;
 }
+.leader img{
+  opacity:1 !important;
+}
 
