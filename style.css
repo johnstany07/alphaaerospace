@@ -1652,3 +1652,37 @@ html, body {
   filter: brightness(1.25) contrast(1.1) saturate(1.05);
 }
 
+/* ================= LEADERSHIP ================= */
+.leader{
+  margin-top:40px;
+  max-width:680px;
+}
+
+.leader h3{
+  font-size:22px;
+  font-weight:600;
+  margin-bottom:6px;
+}
+
+.leader span{
+  display:block;
+  font-size:13px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:#7dfcff;
+  margin-bottom:12px;
+}
+
+.leader p{
+  font-size:16px;
+  line-height:1.8;
+  color:#cfd8e3;
+}
+.leader-photo{
+  width:84px;
+  height:84px;
+  border-radius:50%;
+  object-fit:cover;
+  filter:grayscale(100%);
+  margin-bottom:16px;
+}
