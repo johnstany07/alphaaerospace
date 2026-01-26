@@ -1769,3 +1769,51 @@ html, body {
   position:relative;
   z-index:5;
 }
+/* ===== SKYROVER VARIANTS FORCE FIX ===== */
+.variants{
+  margin-top:50px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:28px;
+}
+
+.variant-card{
+  padding:28px;
+  border-radius:18px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.1);
+}
+
+.variant-card h3{
+  font-size:22px;
+  margin-bottom:6px;
+}
+
+.variant-tag{
+  display:block;
+  font-size:12px;
+  letter-spacing:1.4px;
+  text-transform:uppercase;
+  color:#7dfcff;
+  margin-bottom:12px;
+}
+
+.variant-card ul{
+  list-style:none;
+  padding:0;
+}
+
+.variant-card li{
+  font-size:14.5px;
+  color:#cfd8e3;
+  margin-bottom:8px;
+}
+
+.highlight-variant{
+  border:1px solid rgba(125,252,255,.5);
+  background:linear-gradient(
+    180deg,
+    rgba(125,252,255,.12),
+    rgba(255,255,255,.05)
+  );
+}
