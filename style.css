@@ -1310,6 +1310,63 @@ Fix navbar link to projects page
   width: 260px;
   height: auto;
 }
+/* ================= SKYROVER VARIANTS ================= */
+.variants{
+  margin-top:50px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:28px;
+}
+
+.variant-card{
+  padding:28px;
+  border-radius:18px;
+  background:rgba(255,255,255,0.04);
+  backdrop-filter:blur(6px);
+  border:1px solid rgba(255,255,255,0.08);
+}
+
+.variant-card h3{
+  font-size:22px;
+  font-weight:600;
+  margin-bottom:8px;
+}
+
+.variant-tag{
+  display:inline-block;
+  font-size:12px;
+  letter-spacing:1.3px;
+  text-transform:uppercase;
+  color:#7dfcff;
+  margin-bottom:14px;
+}
+
+.variant-card p{
+  font-size:15.5px;
+  line-height:1.7;
+  margin-bottom:16px;
+}
+
+.variant-card ul{
+  list-style:none;
+  padding-left:0;
+}
+
+.variant-card li{
+  font-size:14.5px;
+  color:#cfd8e3;
+  margin-bottom:8px;
+}
+
+/* Highlight Premium Variant */
+.highlight-variant{
+  border:1px solid rgba(125,252,255,.35);
+  background:linear-gradient(
+    180deg,
+    rgba(125,252,255,.08),
+    rgba(255,255,255,.04)
+  );
+}
 
 .logo-text {
   font-family: 'Arial', sans-serif;
