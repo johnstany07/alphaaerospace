@@ -1769,7 +1769,7 @@ html, body {
   position:relative;
   z-index:5;
 }
-/* ===== SKYROVER VARIANTS FORCE FIX ===== */
+/* ================= SKYROVER VARIANTS ================= */
 .variants{
   margin-top:50px;
   display:grid;
@@ -1780,8 +1780,8 @@ html, body {
 .variant-card{
   padding:28px;
   border-radius:18px;
-  background:rgba(255,255,255,0.06);
-  border:1px solid rgba(255,255,255,0.1);
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.18);
 }
 
 .variant-card h3{
@@ -1817,3 +1817,4 @@ html, body {
     rgba(255,255,255,.05)
   );
 }
+
