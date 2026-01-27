@@ -503,26 +503,22 @@ section p {
   line-height: 1.6;
 }
 
-.cta-section {
-  background: linear-gradient(180deg, #0b1220, #0e1a2f);
-  text-align: center;
+.cta{
+  margin-top:36px;
+  display:inline-block;
+  padding:14px 40px;
+  border-radius:999px;
+  background:linear-gradient(135deg,#4cc3ff,#63ffd8);
+  color:#000;
+  font-weight:600;
+  text-decoration:none;
+  transition:transform .35s ease, box-shadow .35s ease;
+  box-shadow:0 10px 30px rgba(0,0,0,.25);
 }
 
-.cta-section h2 {
-  font-size: 42px;
-  margin-bottom: 16px;
-}
-
-.cta-section p {
-  max-width: 720px;
-  margin: 0 auto 32px;
-  opacity: 0.85;
-}
-
-.cta-buttons {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
+.cta:hover{
+  transform:translateY(-2px);
+  box-shadow:0 18px 44px rgba(0,0,0,.35);
 }
 
 /* ===== PREMIUM FLOATING CARD ===== */
@@ -1742,6 +1738,19 @@ html, body {
 .content.visible{
   opacity:1;
   transform:translateY(0);
+}
+h1, h2{
+  position:relative;
+}
+
+.content.visible h1,
+.content.visible h2{
+  animation: titleIn .9s cubic-bezier(.22,.61,.36,1) both;
+}
+
+@keyframes titleIn{
+  from{opacity:0; transform:translateY(14px);}
+  to{opacity:1; transform:translateY(0);}
 }
 
 
