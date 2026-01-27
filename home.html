@@ -460,25 +460,6 @@ const reveal=new IntersectionObserver(e=>{
 },{threshold:.3});
 contents.forEach(c=>reveal.observe(c));
 
-/* VIDEO SWITCH */
-const videos={
-  skyrover:document.getElementById('v-skyrover'),
-  interior:document.getElementById('v-interior'),
-  tactical:document.getElementById('v-tactical')
-};
-
-const sections=document.querySelectorAll('section');
-const videoObs=new IntersectionObserver(e=>{
-  e.forEach(x=>{
-    if(x.isIntersecting){
-      Object.values(videos).forEach(v=>v.classList.remove('active'));
-      videos[x.target.dataset.video].classList.add('active');
-    }
-  });
-},{threshold:.6});
-sections.forEach(s=>videoObs.observe(s));
-</script>
-<script>
 /* VIDEO SWITCH CONTROLLER */
 const videos = {
   future: document.getElementById('v-future'),
