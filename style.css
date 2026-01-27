@@ -1730,9 +1730,20 @@ html, body {
 }
 
 /* image appears with content reveal */
-.content.visible .leader img{
-  opacity:1;
+.content{
+  max-width:920px;
+  opacity:0;
+  transform:translateY(28px);
+  transition:
+    opacity .9s ease,
+    transform .9s cubic-bezier(.22,.61,.36,1);
+  will-change: opacity, transform;
 }
+.content.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
 
 .leader h3{
   font-size:22px;
