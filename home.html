@@ -478,6 +478,33 @@ const videoObs=new IntersectionObserver(e=>{
 },{threshold:.6});
 sections.forEach(s=>videoObs.observe(s));
 </script>
+<script>
+/* VIDEO SWITCH CONTROLLER */
+const videos = {
+  future: document.getElementById('v-future'),
+  skyrover360: document.getElementById('v-skyrover360'),
+  video1: document.getElementById('v-video1'),
+  interior: document.getElementById('v-interior'),
+  skyrover1: document.getElementById('v-skyrover1'),
+  tactical: document.getElementById('v-tactical')
+};
+
+const sections = document.querySelectorAll('section');
+
+const videoObserver = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      const key = entry.target.dataset.video;
+      if(!videos[key]) return;
+
+      Object.values(videos).forEach(v=>v.classList.remove('active'));
+      videos[key].classList.add('active');
+    }
+  });
+},{threshold:0.6});
+
+sections.forEach(sec=>videoObserver.observe(sec));
+</script>
 
 </body>
 </html>
